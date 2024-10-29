@@ -1,5 +1,7 @@
 package cityShop.estoque;
 
+import cityShop.app.*;
+
 public class Produto
 {
 

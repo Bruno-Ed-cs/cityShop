@@ -1,5 +1,8 @@
 package cityShop.estoque;
 
+import cityShop.app.*; 
+import cityShop.estoque.*; 
+
 public class TabelaProduto
 {
 	public Integer qtdProduto;

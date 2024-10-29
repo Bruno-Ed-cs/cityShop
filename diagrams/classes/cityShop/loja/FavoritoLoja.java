@@ -1,5 +1,7 @@
 package cityShop.loja;
 
+import cityShop.app.*;
+
 public class FavoritoLoja implements Favoritavel
 {
 

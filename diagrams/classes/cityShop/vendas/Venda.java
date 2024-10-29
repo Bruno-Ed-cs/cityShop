@@ -1,4 +1,7 @@
 package cityShop.vendas;
+import cityShop.usuario.*; 
+import cityShop.estoque.*; 
+import cityShop.app.*;
 
 public class Venda
 {

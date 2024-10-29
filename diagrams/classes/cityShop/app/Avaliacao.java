@@ -1,5 +1,7 @@
 package cityShop.app
 
+import cityShop.usuario.*;
+
 public class Avaliacao {
 
 	public Integer nota;
