@@ -1,4 +1,4 @@
-package cityShop;
+package cityShop.estoque;
 
 public class FavoritoProduto implements Favoritavel
 {

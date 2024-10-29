@@ -1,4 +1,4 @@
-package cityShop;
+package cityShop.usuario;
 
 public class Usuario 
 {
