@@ -2,6 +2,7 @@ package cityShop.estoque;
 
 import cityShop.app.*; 
 import cityShop.estoque.*; 
+import java.util.ArrayList;
 
 public class TabelaProduto
 {

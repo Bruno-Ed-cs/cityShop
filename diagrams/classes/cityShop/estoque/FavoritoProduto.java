@@ -25,7 +25,7 @@ public class FavoritoProduto implements Favoritavel
 	@Override
 	public void adicionarAosFavoritos(Usuario usuario) {
 
-		usuario.adicionarProdutoFavorito(this);
+		usuario.produtosFavoritos.add(this);
 	}
 
 	@Override

@@ -1,7 +1,9 @@
-package cityShop;
+package cityShop.usuario;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import cityShop.estoque.*;
+import cityShop.loja.*;
+import cityShop.usuario.*;
 
 public class Usuario 
 {
@@ -29,7 +31,7 @@ public class Usuario
 	
 	//criação do método que vai acessar a instancia unica
 
-	public static Usario getInstance(String nome, String cpf, Long id) {
+	public static Usuario getInstance(String nome, String cpf, Long id) {
 
 		if(instancia == null) {
 
@@ -44,12 +46,12 @@ public class Usuario
 
 	public void adicionarFavoritoProduto(FavoritoProduto favoritoProduto) {
 
-		produtosFavoritos.add(FavoritoProduto);
+		produtosFavoritos.add(favoritoProduto);
 	}
 
 	public void adicionarFavoritoLoja(FavoritoLoja favoritoLoja) {
 
-		lojasFavoritas.add(FavoritoLoja);
+		lojasFavoritas.add(favoritoLoja);
 	}
 
 	public ArrayList<FavoritoProduto> getProdutosFavoritos() {
@@ -57,7 +59,7 @@ public class Usuario
 		return produtosFavoritos;
 	} 
 
-	public ArrayList<FavoritoLoja> getProdutosFavoritos() {
+	public ArrayList<FavoritoLoja> getLojasFavoritas() {
 
 		return lojasFavoritas;
 	}

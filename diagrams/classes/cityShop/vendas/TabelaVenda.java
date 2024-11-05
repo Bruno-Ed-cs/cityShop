@@ -1,5 +1,7 @@
 package cityShop.vendas;
 
+import java.util.ArrayList;
+
 public class TabelaVenda {
 	
 	public Integer qtdVenda;
@@ -26,9 +28,13 @@ public class TabelaVenda {
 
 	public Integer getQtdVenda() {
 
+		return null;
+
 	}
 
 	public ArrayList<Venda> getVendas() {
+
+		return null;
 		
 	}
 

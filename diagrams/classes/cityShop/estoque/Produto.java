@@ -1,5 +1,7 @@
 package cityShop.estoque;
 
+import java.util.ArrayList;
+
 import cityShop.app.*;
 
 public class Produto

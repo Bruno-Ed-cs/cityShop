@@ -4,6 +4,9 @@ package cityShop.loja;
 import cityShop.app.*;
 import cityShop.vendas.*;
 import cityShop.loja.*;
+import cityShop.estoque.*;
+
+import java.util.ArrayList;
 
 public class Loja 
 {

@@ -1,4 +1,4 @@
-package cityShop;
+package cityShop.app;
 
 public class Local 
 {

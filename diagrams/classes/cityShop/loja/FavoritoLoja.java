@@ -1,6 +1,7 @@
 package cityShop.loja;
 
 import cityShop.app.*;
+import cityShop.usuario.Usuario;
 
 public class FavoritoLoja implements Favoritavel
 {
@@ -26,4 +27,5 @@ public class FavoritoLoja implements Favoritavel
 
 		usuario.getProdutosFavoritos().remove(this);
 	}
+
 }
