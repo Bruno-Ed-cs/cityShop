@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "cityShop"
 include(":app")
+include(":data")
  
