@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cityshop.ui.theme.CityShopTheme
+import org.cityShop.app.*;
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +21,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             CityShopTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    val cat: Categoria = Categoria()
+                    cat.nome = "cell"
                     Greeting(
-                        name = "Android",
+
+                        name = cat.nome,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
