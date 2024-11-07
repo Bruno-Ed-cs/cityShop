@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="gL8M4owtvY24I_2i-5Fp-1" value="App" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="gL8M4owtvY24I_2i-5Fp-1" value="CittyShop" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="690" y="410" width="70" height="50" as="geometry" />
         </mxCell>
         <mxCell id="gL8M4owtvY24I_2i-5Fp-3" value="Ususario" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
