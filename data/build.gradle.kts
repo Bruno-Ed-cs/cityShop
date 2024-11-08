@@ -20,3 +20,8 @@ application {
     // Define the main class for the application.
     mainClass = "org.cityShop.app.App"
 }
+
+dependencies {
+
+    implementation("org.json:json:20240303")
+}
