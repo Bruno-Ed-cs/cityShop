@@ -15,8 +15,6 @@ public class App {
 		json.put("Ano", 2200);
 		json.put("Puto", true);
 
-		
-
 		System.out.println("It just works " + prod);
 		System.out.println(json.toString());
 	}

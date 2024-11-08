@@ -3,7 +3,6 @@ package org.cityShop.usuario;
 import java.util.ArrayList;
 import org.cityShop.estoque.*;
 import org.cityShop.loja.*;
-import org.cityShop.usuario.*;
 
 public class Usuario 
 {
