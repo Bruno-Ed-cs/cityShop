@@ -1,8 +1,7 @@
-package org.cityShop.estoque;
-
+package org.cityShop.app;
 import java.util.ArrayList;
+import org.cityShop.usuario.FavoritoProduto;
 
-import org.cityShop.app.*;
 
 public class Produto
 {
@@ -11,7 +10,7 @@ public class Produto
 	public Descricao descricao;
 	public ArrayList<Categoria> categorias;
 	public ArrayList<FavoritoProduto> favoritados;
-	public Estoque estoque;
+	public ItemEstoque estoque;
 
 
 }

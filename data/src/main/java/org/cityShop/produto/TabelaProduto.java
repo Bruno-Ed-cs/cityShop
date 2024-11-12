@@ -1,7 +1,7 @@
-package org.cityShop.estoque;
+package org.cityShop.app;
 
-import org.cityShop.app.*; 
-import org.cityShop.produto.*;
+import org.cityShop.app.*;
+
 import java.util.ArrayList;
 
 public class TabelaProduto
