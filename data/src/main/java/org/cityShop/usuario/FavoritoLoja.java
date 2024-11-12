@@ -1,7 +1,7 @@
-package org.cityShop.loja;
+package org.cityShop.usuario;
 
 import org.cityShop.app.*;
-import org.cityShop.usuario.Usuario;
+
 
 //classe "FavoritoLoja" adiciona as lojas favoritas do usuário
 
