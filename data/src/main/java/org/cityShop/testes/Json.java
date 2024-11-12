@@ -1,6 +1,6 @@
 package org.cityShop.testes;
 
-import org.cityShop.estoque.*;
+import org.cityShop.produto.*
 import org.json.JSONObject;
 import java.io.*;
 import java.util.Scanner;

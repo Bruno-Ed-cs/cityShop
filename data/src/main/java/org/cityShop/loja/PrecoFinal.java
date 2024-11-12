@@ -1,4 +1,4 @@
-package org.cityShop.vendas;
+package org.cityShop.loja;
 
 public class PrecoFinal 
 {

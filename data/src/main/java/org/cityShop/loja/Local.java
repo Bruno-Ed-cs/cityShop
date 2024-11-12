@@ -1,4 +1,4 @@
-package org.cityShop.app;
+package org.cityShop.loja;
 
 public class Local 
 {
@@ -8,9 +8,9 @@ public class Local
 	public Double latitude;
 
 	public Local(String endereco, Double longitude, Double latitude) {
-        this.endereco = endereco;
-        this.longitude = longitude;
-        this.latitude = latitude;
-    }
-	
+		this.endereco = endereco;
+		this.longitude = longitude;
+		this.latitude = latitude;
+	}
+
 }

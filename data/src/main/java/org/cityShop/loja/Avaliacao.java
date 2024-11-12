@@ -1,4 +1,4 @@
-package org.cityShop.app;
+package org.cityShop.loja;
 
 import org.cityShop.usuario.*;
 

@@ -1,7 +1,7 @@
 package org.cityShop.usuario;
 
 import java.util.ArrayList;
-import org.cityShop.estoque.*;
+import org.cityShop.produto.*
 import org.cityShop.loja.*;
 
 public class Usuario 

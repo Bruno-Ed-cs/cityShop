@@ -2,9 +2,9 @@ package org.cityShop.loja;
 
 
 import org.cityShop.app.*;
-import org.cityShop.vendas.*;
+import org.cityShop.usuario.*;
 import org.cityShop.loja.*;
-import org.cityShop.estoque.*;
+import org.cityShop.produto.*;
 
 import java.util.ArrayList;
 
@@ -12,13 +12,15 @@ public class Loja
 {
 	public String nome;
 	public Long id;
+	public Boolean aberto;
+
 
 	public Local localizacao;
-	public ArrayList<Avaliacao> avaliacoes;
-
-	public TabelaVenda vendas;
+	public TabelaPreco tabelaPreco;
+	public TabelaReserva reservas;
 	public TabelaProduto produtos;
 
+	public ArrayList<Avaliacao> avaliacoes;
 	public ArrayList<FavoritoLoja> favoritos;
 	
 }

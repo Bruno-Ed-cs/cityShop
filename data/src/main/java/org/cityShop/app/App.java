@@ -1,6 +1,6 @@
 package org.cityShop.app;
 
-import org.cityShop.estoque.*;
+import org.cityShop.produto.*
 import org.json.JSONObject;
 
 
