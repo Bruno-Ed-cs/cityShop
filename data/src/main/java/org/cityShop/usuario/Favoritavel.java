@@ -1,5 +1,6 @@
-package org.cityShop.app;
-import org.cityShop.usuario.Usuario;
+package org.cityShop.usuario;
+
+import org.cityShop.app;
 
 public interface Favoritavel
 {
