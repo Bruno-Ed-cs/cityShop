@@ -1,11 +1,12 @@
-package org.cityShop.estoque;
+package org.cityShop.usuario;
 
 import org.cityShop.app.*;
-import org.cityShop.usuario.*;
 
-//ajustar a classe "FavoritoProduto" pra que possa ser adicionado aos favoritos do usuário
+
+//classe "FavoritoProduto" adiciona os produtos favoritos do usuário
 
 public class FavoritoProduto implements Favoritavel
+
 {
 
 	public Produto target;
@@ -20,7 +21,7 @@ public class FavoritoProduto implements Favoritavel
 		this.publisher = publisher;
 	}
 
-	//implementar os métodos na interface (fazer o construtor, implementar os métodos...) 
+	//implementando os métodos na interface (fazer o construtor, implementar os metodos e etc...) 
 
 	@Override
 	public void adicionarAosFavoritos(Usuario usuario) {
