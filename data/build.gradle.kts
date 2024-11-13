@@ -18,7 +18,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.cityShop.testes.Json"
+    mainClass = "org.cityShop.app.App"
 }
 
 dependencies {

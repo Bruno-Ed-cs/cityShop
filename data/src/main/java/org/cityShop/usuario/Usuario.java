@@ -1,11 +1,8 @@
 package org.cityShop.usuario;
 
 import java.util.ArrayList;
-import org.cityShop.estoque.*;
-import org.cityShop.loja.*;
 
 public class Usuario 
-
 {
 
 	public String nome;
@@ -15,5 +12,17 @@ public class Usuario
 	public ArrayList<FavoritoLoja> lojasFavoritas;
 	public ArrayList<FavoritoProduto> produtosFavoritos;
 
+
+	public ArrayList<FavoritoProduto> getProdutosFavoritos(){
+
+		return this.produtosFavoritos;
+
+	}
+
+	public void adicionarFavoritoLoja(FavoritoLoja favoritoLoja){
+
+		this.lojasFavoritas.add(favoritoLoja);
+
+	}
 
 }

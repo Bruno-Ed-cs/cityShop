@@ -1,6 +1,7 @@
 package org.cityShop.usuario;
 
 import org.cityShop.app.*;
+import org.cityShop.loja.*;
 
 
 //classe "FavoritoLoja" adiciona as lojas favoritas do usuário
@@ -18,17 +19,4 @@ public class FavoritoLoja implements Favoritavel
 		this.target = target;
 		this.publisher = publisher;
 	}
-
-	@Override
-	public void adicionarAosFavoritos(Usuario usuario) {
-
-		usuario.adicionarFavoritoLoja(this);
-	}
-
-	@Override 
-	public void removerDosFavoritos(Usuario usuario) {
-
-		usuario.getProdutosFavoritos().remove(this);
-	}
-
 }

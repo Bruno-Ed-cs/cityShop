@@ -1,13 +1,13 @@
 package org.cityShop.app;
 
 import java.util.ArrayList;
-import javax.sound.sampled.SourceDataLine;
+import org.json.JSONObject;
 
-import org.cityShop.estoque.*;
 import org.cityShop.usuario.FavoritoLoja;
 import org.cityShop.usuario.FavoritoProduto;
 import org.cityShop.usuario.Usuario;
-import org.json.JSONObject;
+import org.cityShop.loja.Loja;
+import org.cityShop.produto.*;
 
 
 public class App {
@@ -17,19 +17,21 @@ public class App {
 
 	private static App instance;
 
-	
+
 	public Usuario usuario;
 
-	
+
 	//construtor
 
 	private App() {
 
-		usuario.nome = "testeJoadodasilva";
-		usuario.cpf = "666";
-		usuario.id = 0L;
-		usuario.lojasFavoritas = new ArrayList<FavoritoLoja>();
-		usuario.produtosFavoritos = new ArrayList<FavoritoProduto>();
+		this.usuario = new Usuario();
+
+		this.usuario.nome = "testeJoadodasilva";
+		this.usuario.cpf = "666";
+		this.usuario.id = 0L;
+		this.usuario.lojasFavoritas = new ArrayList<FavoritoLoja>();
+		this.usuario.produtosFavoritos = new ArrayList<FavoritoProduto>();
 
 	}
 
@@ -37,50 +39,52 @@ public class App {
 
 		if (instance == null) {
 
-			instance = new App(); 
+			App.instance = new App(); 
 		}
 
 		return instance;
 	}
 
-	 // run, executa o app
+	// run, executa o app
 
-    public void run() {
+	public void run() {
 
-        // teste da possivel criação de produto com dados faikes
+		// teste da possivel criação de produto com dados faikes
 
 		Produto prod = new Produto();
 
 		System.out.println("Produto criado " + prod);
 
-       JSONObject json = new JSONObejetc();
+		JSONObject json = new JSONObject();
 
-	   json.put("Titulo", "bruno eduardo é femboy");
+		json.put("Titulo", "bruno eduardo é femboy");
 
-	   json.put("Ano", 2069):
+		json.put("Ano", 2069);
 
-	   json.put("ana kelry eh linda", true);
+		json.put("ana kelry eh linda", true);
 
 		System.out.println("JSON criado" + json.toString());
 
-		FavoritoLoja = LojaFavorita = new FavoritoLoja();
+		Usuario user = App.getInstance().usuario;
 
-		FavoritoProduto produtoFavorito = new FavoritoProduto();
+		FavoritoLoja lojaFavorita = new FavoritoLoja(new Loja(), user);
 
-		usuario.lojasFavoritas.add(lojasFavoritas);
+		FavoritoProduto produtoFavorito = new FavoritoProduto(new Produto(), user);
 
-		usuario.produtosFavoritos.add(produtosFavoritos);
-		
-		System.out.println("Usuário: " + usuario.nome);
-        System.out.println("Lojas favoritas: " + usuario.lojasFavoritas);
-        System.out.println("Produtos favoritos: " + usuario.produtosFavoritos);
-    }
+		user.lojasFavoritas.add(lojaFavorita);
+
+		user.produtosFavoritos.add(produtoFavorito);
+
+		System.out.println("Usuário: " + user.nome);
+		System.out.println("Lojas favoritas: " + user.lojasFavoritas);
+		System.out.println("Produtos favoritos: " + user.produtosFavoritos);
+	}
 
 	public static void main(String[] args) {
 
 		App app = App.getInstance();
-        app.run();
+		app.run();
 
-}
+	}
 
 }

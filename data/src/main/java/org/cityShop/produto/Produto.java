@@ -1,4 +1,4 @@
-package org.cityShop.app;
+package org.cityShop.produto;
 import java.util.ArrayList;
 import org.cityShop.usuario.FavoritoProduto;
 

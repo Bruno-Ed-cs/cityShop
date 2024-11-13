@@ -1,4 +1,4 @@
-package org.cityShop.estoque;
+package org.cityShop.produto;
 
 public class Estoque {
 	
