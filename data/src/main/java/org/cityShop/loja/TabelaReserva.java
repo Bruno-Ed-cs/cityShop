@@ -6,25 +6,6 @@ public class TabelaReserva{
 	
 	public Integer qtdVenda;
 	public ArrayList<Reserva> reservas;
-	private TabelaReserva instancia;
-
-	private TabelaReserva() {
-
-
-	}
-
-	public TabelaReserva getInstance() {
-
-		if (this.instancia == null) {
-
-
-			this.instancia = new TabelaReserva();
-
-		}
-
-		return this.instancia;
-
-	}
 
 	public Integer getQtdVenda() {
 
@@ -32,7 +13,7 @@ public class TabelaReserva{
 
 	}
 
-	public ArrayList<Reserva> getReservas() {
+	public Reserva getReserva(Long id) {
 
 		return null;
 		
