@@ -25,3 +25,14 @@ dependencies {
 
     implementation("org.json:json:20240303")
 }
+
+tasks.jar {
+
+    manifest {
+
+        attributes["Main-Class"] = "org.cityShop.app.App"
+
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+
+}

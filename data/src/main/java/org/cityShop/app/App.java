@@ -8,6 +8,9 @@ import org.cityShop.usuario.FavoritoProduto;
 import org.cityShop.usuario.Usuario;
 import org.cityShop.loja.Loja;
 import org.cityShop.produto.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class App {
@@ -78,12 +81,16 @@ public class App {
 		System.out.println("Usuário: " + user.nome);
 		System.out.println("Lojas favoritas: " + user.lojasFavoritas);
 		System.out.println("Produtos favoritos: " + user.produtosFavoritos);
+
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		System.out.println(timestamp);
 	}
 
 	public static void main(String[] args) {
 
 		App app = App.getInstance();
 		app.run();
+
 
 	}
 
