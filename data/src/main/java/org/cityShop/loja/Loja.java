@@ -23,5 +23,21 @@ public class Loja
 	public ArrayList<TabelaPreco> tabelasPreco;
 	public ArrayList<Avaliacao> avaliacoes;
 	public ArrayList<FavoritoLoja> favoritos;
+
+	public TabelaPreco getBaseTabelaPreco(){
+
+		return null;
+	}
+
+	public TabelaPreco getActiveTabelaPreco(){
+
+		return null;
+	}
+
+	public Boolean addProduto(Produto produto){
+
+
+		return null;
+	}
 	
 }

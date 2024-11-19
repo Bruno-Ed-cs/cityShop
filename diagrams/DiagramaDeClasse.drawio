@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="925" dy="847" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="5000" math="0" shadow="0">
+    <mxGraphModel dx="1886" dy="847" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="5000" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -23,7 +23,7 @@
           <mxGeometry y="26" width="140" height="26" as="geometry" />
         </mxCell>
         <mxCell id="S5NlNBrOPDAlS5kl1jgC-24" value="Modificador" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="3150" y="3280" width="140" height="78" as="geometry" />
+          <mxGeometry x="2960" y="3374" width="140" height="78" as="geometry" />
         </mxCell>
         <mxCell id="AroC4z26SkDrhtmdcJUx-34" value="+ desconto: Boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="S5NlNBrOPDAlS5kl1jgC-24" vertex="1">
           <mxGeometry y="26" width="140" height="26" as="geometry" />
@@ -357,7 +357,7 @@
         <mxCell id="fAmvNO7AGKNMKRKbmZ1W-19" value="+ preco: Double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fAmvNO7AGKNMKRKbmZ1W-18" vertex="1">
           <mxGeometry y="26" width="140" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="fAmvNO7AGKNMKRKbmZ1W-23" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="fAmvNO7AGKNMKRKbmZ1W-18" target="S5NlNBrOPDAlS5kl1jgC-24" edge="1">
+        <mxCell id="fAmvNO7AGKNMKRKbmZ1W-23" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="fAmvNO7AGKNMKRKbmZ1W-0" target="S5NlNBrOPDAlS5kl1jgC-24" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="3050" y="3490" as="sourcePoint" />
             <mxPoint x="3210" y="3490" as="targetPoint" />
@@ -440,9 +440,7 @@
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="2960" y="3303" as="sourcePoint" />
             <mxPoint x="2880" y="3323" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="2910" y="3310" />
-            </Array>
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
       </root>

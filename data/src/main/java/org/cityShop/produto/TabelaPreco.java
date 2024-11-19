@@ -11,7 +11,20 @@ public class TabelaPreco {
 	public String nome;
 	public Timestamp criacao;
 	public Timestamp validade;
+	public Modificador modificador;
 
 	public ArrayList<ItemProduto> produtos;
+
+	public TabelaPreco(Long id, String nome, Timestamp validade, Double modificador){
+
+
+	}
+
+	public void addProduto(Produto produto){
+
+		//o preco vai ser aplicado com base no modificador da tabela
+	}
+
+	
 	
 }

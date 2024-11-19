@@ -226,16 +226,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="IJzy_CR9gzLhfkeMkCAJ-87" value="ItemEstoque" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="2580" y="3046" width="140" height="138" as="geometry" />
-        </mxCell>
-        <mxCell id="5QD4UBAS7MrZhr4iT8cd-4" value="+idItem : In" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="IJzy_CR9gzLhfkeMkCAJ-87" vertex="1">
-          <mxGeometry y="26" width="140" height="30" as="geometry" />
+          <mxGeometry x="2580" y="3046" width="140" height="108" as="geometry" />
         </mxCell>
         <mxCell id="IJzy_CR9gzLhfkeMkCAJ-89" value="+ quantidadeTotal: Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="IJzy_CR9gzLhfkeMkCAJ-87" vertex="1">
-          <mxGeometry y="56" width="140" height="42" as="geometry" />
+          <mxGeometry y="26" width="140" height="42" as="geometry" />
         </mxCell>
         <mxCell id="ZcZaUDcg-7I3fWJ0n-dv-4" value="+quantidadeReserva: Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="IJzy_CR9gzLhfkeMkCAJ-87" vertex="1">
-          <mxGeometry y="98" width="140" height="40" as="geometry" />
+          <mxGeometry y="68" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="IJzy_CR9gzLhfkeMkCAJ-91" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="IJzy_CR9gzLhfkeMkCAJ-27" target="IJzy_CR9gzLhfkeMkCAJ-87" edge="1">
           <mxGeometry x="-1" relative="1" as="geometry">
