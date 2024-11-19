@@ -19,5 +19,17 @@ public class Tui {
 
 		return Tui.instancia;
 	}
+
+	public void printProdutos(){
+
+	}
+
+	public void printUsuario() {
+		
+	}
+
+	public void printSelecao(){
+
+	}
 	
 }

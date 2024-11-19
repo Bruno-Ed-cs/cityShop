@@ -3,14 +3,14 @@ package org.cityShop.app;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-import org.cityShop.usuario.FavoritoLoja;
-import org.cityShop.usuario.FavoritoProduto;
-import org.cityShop.usuario.Usuario;
+import org.cityShop.usuario.*;
 import org.cityShop.loja.Loja;
 import org.cityShop.produto.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.sound.sampled.BooleanControl;
 
 
 public class App {
@@ -21,16 +21,16 @@ public class App {
 	private static App instance;
 
 
-	public Usuario usuario;
-	public JSONObject database;
-	public Loja loadedShop;
+	public static Usuario usuarioLogado;
+	public static Loja loadedShop;
+	public static Produto loadedProduto; //para carregar a pagina do produto em si
 
 
 	//construtor
 
 	private App() {
 
-		this.usuario = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
+		App.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
 	}
 
 	public static App getInstance() {
@@ -63,7 +63,7 @@ public class App {
 
 		System.out.println("JSON criado" + json.toString());
 
-		Usuario user = App.getInstance().usuario;
+		Usuario user = App.getInstance().usuarioLogado;
 		System.out.println("Usuário: " + user.nome);
 		System.out.println("Lojas favoritas: " + user.favoritos);
 		System.out.println("Produtos favoritos: " + user.favoritos);
@@ -80,34 +80,60 @@ public class App {
 
 	}
 
-	//funcoes para criar
-
-	public void loadDatabase(){
-
-
-	}
-
-	public void saveDatabase(){
-
-	}
-
-	public Usuario getUser(Long idUser){
-
+	//funcoes para criar as entidades do app
+	// retornam booleanos pois esse é o sturuas da operacao, se falhar retorna false se for bem sucedidada retorna true
+	
+	public Boolean createUsuario(){
 
 		return null;
 	}
 
-	public Loja getLoja(Long idLoja){
+	
+	public Boolean createProduto(){
+
+		return null;
+	}	
+
+	public Boolean createLoja(){
 
 		return null;
 	}
 
-	public Produto getProduto(Long idProduto){
+	//funcoes para logar e delogar usuario armazenado no singleton
+
+	public Boolean login(){
 
 		return null;
 	}
 
+	public Boolean logout(){
 
+		return null;
+	}
+
+	// funcoes de navegacao
+	
+
+	public Boolean listarProdutos(){
+
+		return null;
+	}
+
+	public Boolean listarLojas(){
+
+		return null;
+	}
+
+	public Boolean listarFavoritos(FavType type){
+
+		return null;
+	}
+
+	public Boolean showUsuario(){
+
+
+		return null;
+	}
 
 
 }

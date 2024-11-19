@@ -1,6 +1,6 @@
 package org.cityShop.usuario;
 
-enum FavType {
+public enum FavType {
 
 	LOJA,
 	PRODUTO,
