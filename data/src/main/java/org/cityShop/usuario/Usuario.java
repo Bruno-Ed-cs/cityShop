@@ -12,9 +12,14 @@ public class Usuario
 
 	public ArrayList<Favoritavel> favoritos; 
 
-	//todo terminar o construtor
+	//construtor de um usuario
 	public Usuario(String nome, String cpf, Long id, Boolean lojista){
 
+		this.nome = nome;
+		this.cpf = cpf;
+		this.id = id;
+		this.lojista = lojista;
+		this.favoritos = new ArrayList<>();
 
 	}
 
