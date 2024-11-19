@@ -9,14 +9,14 @@ import org.cityShop.loja.*;
 public class FavoritoLoja implements Favoritavel
 {
 
-
 	public Long idTarget; //Loja favorita
 	public Long idUsuario; //Usuário que adicionou a loja aos favoritos
-	
+	public FavType type = FavType.LOJA;
 
-	public FavoritoLoja(Loja target, Usuario publisher) {
+	public FavoritoLoja(Long idTarget, Long idUsuario){
 
-		this.idTarget= target.id;
-		this.idUsuario = publisher.id;
+		this.idTarget = idTarget;
+		this.idUsuario = idUsuario;
 	}
+	
 }

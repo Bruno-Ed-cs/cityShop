@@ -10,20 +10,43 @@ public class Usuario
 	public Long id;
 	public Boolean lojista;
 
-	public ArrayList<FavoritoLoja> lojasFavoritas;
-	public ArrayList<FavoritoProduto> produtosFavoritos;
+	public ArrayList<Favoritavel> favoritos; 
 
+	//todo terminar o construtor
+	public Usuario(String nome, String cpf, Long id, Boolean lojista){
 
-	public ArrayList<FavoritoProduto> getProdutosFavoritos(){
-
-		return this.produtosFavoritos;
 
 	}
 
-	public void adicionarFavoritoLoja(FavoritoLoja favoritoLoja){
+	//o target pode ser ou om produto ou uma loja basta passar o id
+	public void adicionarFavorito(Long idTarget, FavType type){
 
-		this.lojasFavoritas.add(favoritoLoja);
 
+		Favoritavel favorito;
+
+		switch(type){
+
+			case FavType.PRODUTO:
+				favorito = new FavoritoProduto(idTarget, this.id);
+				break;
+
+			case FavType.LOJA:
+				favorito = new FavoritoLoja(idTarget, this.id);
+				break;
+
+			default:
+				return;
+
+		}
+
+		favoritos.add(favorito);
+
+	}
+
+	//funcao para retornar um array com os favoritos de um tipo
+	public Favoritavel[] querryFavoritos(FavType type){
+
+		return null;
 	}
 
 }

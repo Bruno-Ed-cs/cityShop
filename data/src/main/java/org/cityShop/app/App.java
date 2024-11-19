@@ -22,20 +22,15 @@ public class App {
 
 
 	public Usuario usuario;
+	public JSONObject database;
+	public Loja loadedShop;
 
 
 	//construtor
 
 	private App() {
 
-		this.usuario = new Usuario();
-
-		this.usuario.nome = "testeJoadodasilva";
-		this.usuario.cpf = "666";
-		this.usuario.id = 0L;
-		this.usuario.lojasFavoritas = new ArrayList<FavoritoLoja>();
-		this.usuario.produtosFavoritos = new ArrayList<FavoritoProduto>();
-
+		this.usuario = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
 	}
 
 	public static App getInstance() {
@@ -69,18 +64,9 @@ public class App {
 		System.out.println("JSON criado" + json.toString());
 
 		Usuario user = App.getInstance().usuario;
-
-		FavoritoLoja lojaFavorita = new FavoritoLoja(new Loja(), user);
-
-		FavoritoProduto produtoFavorito = new FavoritoProduto(new Produto(), user);
-
-		user.lojasFavoritas.add(lojaFavorita);
-
-		user.produtosFavoritos.add(produtoFavorito);
-
 		System.out.println("Usuário: " + user.nome);
-		System.out.println("Lojas favoritas: " + user.lojasFavoritas);
-		System.out.println("Produtos favoritos: " + user.produtosFavoritos);
+		System.out.println("Lojas favoritas: " + user.favoritos);
+		System.out.println("Produtos favoritos: " + user.favoritos);
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		System.out.println(timestamp);
@@ -93,5 +79,35 @@ public class App {
 
 
 	}
+
+	//funcoes para criar
+
+	public void loadDatabase(){
+
+
+	}
+
+	public void saveDatabase(){
+
+	}
+
+	public Usuario getUser(Long idUser){
+
+
+		return null;
+	}
+
+	public Loja getLoja(Long idLoja){
+
+		return null;
+	}
+
+	public Produto getProduto(Long idProduto){
+
+		return null;
+	}
+
+
+
 
 }

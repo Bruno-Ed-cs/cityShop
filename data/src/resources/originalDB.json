@@ -1,14 +1,88 @@
 {
 
     "Produtos" : [
-        {},
-        {}
+        {
+            "id": 1,
+            "idLoja": 1,
+            "preco": 5.50,
+            "descricao": {
+                "nome": "Hotdog",
+                "corpo": "O favorito dos ouriços"
+            },
+            "categorias": [{}],
+            "favoritos": [{}],
+            "estoque": {
+                "capacidade": 50,
+                "quantidade": 40
+            }
+
+        },
+        {
+
+            "id": 2,
+            "idLoja": 2,
+            "preco": 200.50,
+            "descricao": {
+                "nome": "Penicilina",
+                "corpo": "O favorito das bacterias"
+            },
+            "categorias": [{}],
+            "favoritos": [{}],
+            "estoque": {
+                "capacidade": 400,
+                "quantidade": 12
+            }
+        },
+        {
+
+            "id": 3,
+            "idLoja": 2,
+            "preco": 70.50,
+            "descricao": {
+                "nome": "Viagra",
+                "corpo": "A pipa vai subir"
+            },
+            "categorias": [{}],
+            "favoritos": [{}],
+            "estoque": {
+                "capacidade": 70,
+                "quantidade": 30
+            }
+
+        }
+ 
     ],
 
     "Lojas" : [
 
-        {},
-        {}
+        {
+
+            "nome": "vendinha de cachorro quente",
+            "dono": 1,
+            "id": 1,
+            "aberto": true,
+            "localizacao": {},
+            "reservas": {},
+            "tabelasPreco": [{}],
+            "avaliacoes": [{}],
+            "favoritos": [{}]
+
+        },
+        {
+
+            "nome": "Boticario vigario",
+            "dono": 1,
+            "id": 2,
+            "aberto": true,
+            "localizacao": {},
+            "reservas": {},
+            "produtos": {},
+            "tabelasPreco": [{}],
+            "avaliacoes": [{}],
+            "favoritos": [{}]
+
+
+        }
 
     ],
 
@@ -16,19 +90,17 @@
         {
             "nome": "Astoufo",
             "cpf" : "223.334.551.90",
-            "id" : "2",
+            "id" : 2,
             "lojista": false,
-            "lojasFavoritas": [{}],
-            "produtosFavoritos": [{}]
+            "favoritos": [{}]
         },
 
         {
             "nome": "seu ze",
             "cpf" : "122.334.551.90",
-            "id" : "1",
+            "id" : 1,
             "lojista": true,
-            "lojasFavoritas": [{}],
-            "produtosFavoritos": [{}]
+            "favoritos": [{}]
         }
     ]
 

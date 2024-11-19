@@ -1,7 +1,5 @@
 package org.cityShop.usuario;
 
-import org.cityShop.produto.*;
-
 
 //classe "FavoritoProduto" adiciona os produtos favoritos do usuário
 
@@ -11,14 +9,11 @@ public class FavoritoProduto implements Favoritavel
 
 	public Long idTarget;
 	public Long idUsuario;
-	
+	public FavType type = FavType.PRODUTO;
 
-	//criando um construtor pra iniciar
+	public FavoritoProduto(Long idTarget, Long idUsuario){
 
-	public FavoritoProduto(Produto target, Usuario publisher) {
-
-		this.idTarget= target.id;
-		this.idUsuario = publisher.id;
+		this.idTarget = idTarget;
+		this.idUsuario = idUsuario;
 	}
-
 }
