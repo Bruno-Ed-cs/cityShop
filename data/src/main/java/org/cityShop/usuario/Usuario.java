@@ -23,7 +23,8 @@ public class Usuario
 
 	}
 
-	//o target pode ser ou om produto ou uma loja basta passar o id
+	//agora, eu adicionei o tipo de favorito que vai ser especificado, definir se é uma loja ou um produto
+
 	public void adicionarFavorito(Long idTarget, FavType type){
 
 
@@ -48,10 +49,14 @@ public class Usuario
 
 	}
 
-	//funcao para retornar um array com os favoritos de um tipo
+	//funcao para retornar um array com os favoritos de um tipo que específico
 	public Favoritavel[] querryFavoritos(FavType type){
 
-		return null;
+		return favoritos.stream()
+		
+		.filter( f -> f instanceof FavoritoPrduto && type == FavType.PRODUTO || f instanceof FavoritoLoja && type == FavType.LOJA)
+		.toArray(Favoritavel[]::new);
+
 	}
 
 }
