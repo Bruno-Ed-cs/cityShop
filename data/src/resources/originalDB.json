@@ -1,0 +1,37 @@
+{
+
+    "Produtos" : [
+        {},
+        {}
+    ],
+
+    "Lojas" : [
+
+        {},
+        {}
+
+    ],
+
+    "Usuarios" : [
+        {
+            "nome": "Astoufo",
+            "cpf" : "223.334.551.90",
+            "id" : "2",
+            "lojista": false,
+            "lojasFavoritas": [{}],
+            "produtosFavoritos": [{}]
+        },
+
+        {
+            "nome": "seu ze",
+            "cpf" : "122.334.551.90",
+            "id" : "1",
+            "lojista": true,
+            "lojasFavoritas": [{}],
+            "produtosFavoritos": [{}]
+        }
+    ]
+
+
+
+}

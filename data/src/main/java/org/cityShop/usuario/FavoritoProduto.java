@@ -9,16 +9,16 @@ public class FavoritoProduto implements Favoritavel
 
 {
 
-	public Produto target;
-	public Usuario publisher;
+	public Long idTarget;
+	public Long idUsuario;
 	
 
 	//criando um construtor pra iniciar
 
 	public FavoritoProduto(Produto target, Usuario publisher) {
 
-		this.target = target;
-		this.publisher = publisher;
+		this.idTarget= target.id;
+		this.idUsuario = publisher.id;
 	}
 
 }

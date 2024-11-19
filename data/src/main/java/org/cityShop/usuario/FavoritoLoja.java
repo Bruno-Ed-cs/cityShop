@@ -10,13 +10,13 @@ public class FavoritoLoja implements Favoritavel
 {
 
 
-	public Loja target; //Loja favorita
-	public Usuario publisher; //Usuário que adicionou a loja aos favoritos
+	public Long idTarget; //Loja favorita
+	public Long idUsuario; //Usuário que adicionou a loja aos favoritos
 	
 
 	public FavoritoLoja(Loja target, Usuario publisher) {
 
-		this.target = target;
-		this.publisher = publisher;
+		this.idTarget= target.id;
+		this.idUsuario = publisher.id;
 	}
 }
