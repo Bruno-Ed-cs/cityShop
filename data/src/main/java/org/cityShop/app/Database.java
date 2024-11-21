@@ -5,6 +5,7 @@ import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.JSONObject;
 import java.io.*;
+import java.net.Proxy;
 import java.util.Scanner;
 
 
@@ -12,6 +13,8 @@ import java.util.Scanner;
 public class Database {
 	
 	private static Database instance;
+
+	public JSONObject database;
 
 	private Database(){
 
@@ -33,6 +36,8 @@ public class Database {
 
 
 	public void loadDatabase(){
+
+
 
 
 	}
@@ -76,6 +81,17 @@ public class Database {
 	}
 
 	public Loja[] querryLoja(Long idDono){
+
+		return null;
+	}
+
+	public Boolean changeLoja(Loja novaLoja, Long idTarget){
+
+		return null;
+	}
+
+	public Boolean changeProduto(Produto novoProduto, Long idTarget){
+
 
 		return null;
 	}

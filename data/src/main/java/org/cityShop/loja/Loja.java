@@ -39,5 +39,9 @@ public class Loja
 
 		return null;
 	}
+
+	public void addFavorito(Long idUsuario){
+
+	}
 	
 }

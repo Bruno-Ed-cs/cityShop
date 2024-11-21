@@ -21,16 +21,16 @@ public class App {
 	private static App instance;
 
 
-	public static Usuario usuarioLogado;
-	public static Loja loadedShop;
-	public static Produto loadedProduto; //para carregar a pagina do produto em si
+	public Usuario usuarioLogado;
+	public Loja loadedShop;
+	public Produto loadedProduto; //para carregar a pagina do produto em si
 
 
 	//construtor
 
 	private App() {
 
-		App.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
+		this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
 	}
 
 	public static App getInstance() {
@@ -70,14 +70,6 @@ public class App {
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		System.out.println(timestamp);
-	}
-
-	public static void main(String[] args) {
-
-		App app = App.getInstance();
-		app.run();
-
-
 	}
 
 	//funcoes para criar as entidades do app
@@ -124,7 +116,18 @@ public class App {
 		return null;
 	}
 
-	public Boolean listarFavoritos(FavType type){
+	public Boolean listarFavoritos(FavTypes type){
+
+		return null;
+	}
+
+	public Boolean FavoritarLoja(){
+
+
+		return null;
+	}
+
+	public Boolean favoritarProduto(){
 
 		return null;
 	}
@@ -134,6 +137,24 @@ public class App {
 
 		return null;
 	}
+
+	public Boolean reservarProduto(){
+
+		return null;
+	}
+
+	//modificar loja
+	
+	public Boolean acessLoja(){
+
+		return null;
+	}
+
+	public Boolean acessProduto(){
+
+		return null;
+	}
+
 
 
 }

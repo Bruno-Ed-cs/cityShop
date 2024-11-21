@@ -3,8 +3,10 @@
 3 - cadastrar produtos
 4 - logar usuario
 5 - alterar loja
-6 - listar produtos
+t 6 - listar produtos
 7 - favoritar produtos
 8 - favoritar loja
-9 - acessar loja
+t 9 - acessar loja
 10 - reservar produto
+t 11 - acessar produto
+

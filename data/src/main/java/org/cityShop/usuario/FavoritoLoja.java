@@ -11,7 +11,7 @@ public class FavoritoLoja implements Favoritavel
 
 	public Long idTarget; //Loja favorita
 	public Long idUsuario; //Usuário que adicionou a loja aos favoritos
-	public FavType type = FavType.LOJA;
+	public FavTypes type = FavTypes.LOJA;
 
 	public FavoritoLoja(Long idTarget, Long idUsuario){
 
