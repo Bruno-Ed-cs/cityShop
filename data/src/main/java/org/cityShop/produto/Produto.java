@@ -14,8 +14,8 @@ public class Produto
 	public Long id;
 	public Long idLoja;	
 	public Descricao descricao;
-	public ArrayList<Categoria> categorias;
-	public ArrayList<FavoritoProduto> favoritos;
+	public ArrayList<String> categorias;
+	public Long favoritadas;
 	public ItemEstoque estoque;
 
 	public void addFavorito(Long idUsuario){
@@ -24,8 +24,8 @@ public class Produto
 
 	public Produto(){
 
-		categorias = new ArrayList<Categoria>();
-		favoritos = new ArrayList<FavoritoProduto>();
+		categorias = new ArrayList<String>();
+		favoritadas = 0L;
 	}
 
 	public Produto(JSONObject json){
@@ -33,22 +33,23 @@ public class Produto
 		//System.out.println(json.toString());
 		this.id = json.getLong("id");
 		this.idLoja = json.getLong("idLoja");
+		this.favoritadas = json.getLong("favoritadas");
 
 		this.descricao = new Descricao(json.getJSONObject("descricao"));
 		this.estoque = new ItemEstoque(json.getJSONObject("estoque"));
 
 		JSONArray buffer = new JSONArray(json.getJSONArray("categorias").toString());
+		this.categorias = new ArrayList<String>();
 		//System.out.println(buffer.toString());
 
 		for (int i = 0; i < buffer.length(); i++){
 
-			if (!buffer.getJSONObject(i).isEmpty()){
-				this.categorias.add(new Categoria(buffer.getJSONObject(i)));
+			if (!buffer.isEmpty()){
+				this.categorias.add(buffer.getString(i));
 			}
 
 		}
 
-		this.favoritos = null;
 
 	}
 

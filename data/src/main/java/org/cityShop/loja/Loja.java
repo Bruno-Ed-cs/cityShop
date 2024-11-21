@@ -17,12 +17,11 @@ public class Loja
 
 	public Local localizacao;
 	public TabelaReserva reservas;
-	public TabelaProduto produtos;
 	public Long dono;
 
 	public ArrayList<TabelaPreco> tabelasPreco;
 	public ArrayList<Avaliacao> avaliacoes;
-	public ArrayList<FavoritoLoja> favoritos;
+	public Long favoritadas;
 
 	public TabelaPreco getBaseTabelaPreco(){
 

@@ -76,12 +76,18 @@ public class App {
 
 		for (int i = 0; i < querry.length; i++){
 
-			System.out.println(querry[i].id);
-			System.out.println(querry[i].idLoja);
-			System.out.println(querry[i].descricao.nome);
-			System.out.println(querry[i].descricao.corpo);
-			System.out.println(querry[i].categorias);
-			System.out.println(querry[i].favoritos);
+			System.out.println("ID = " + querry[i].id);
+			System.out.println("IDLoja = " + querry[i].idLoja);
+			System.out.println("Nome = " + querry[i].descricao.nome);
+			System.out.println("Descricao = " + querry[i].descricao.corpo);
+			System.out.println("Favoritadas = " + querry[i].favoritadas);
+
+			System.out.println("Categorias:");
+			for (int j = 0; j < querry[i].categorias.size(); j++){
+
+
+				System.out.println(querry[i].categorias.get(j));
+			}
 			System.out.println("");
 		}
 	}

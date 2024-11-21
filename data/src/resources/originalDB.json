@@ -8,8 +8,8 @@
                 "nome": "Hotdog",
                 "corpo": "O favorito dos ouriços"
             },
-            "categorias": [{}],
-            "favoritos": [{}],
+            "categorias": ["comida", "referencia"],
+            "favoritadas": 20,
             "estoque": {
                 "capacidade": 50,
                 "quantidade": 40
@@ -25,8 +25,8 @@
                 "nome": "Penicilina",
                 "corpo": "O favorito das bacterias"
             },
-            "categorias": [{}],
-            "favoritos": [{}],
+            "categorias": ["medicamento", "infecção"],
+            "favoritadas": 10,
             "estoque": {
                 "capacidade": 400,
                 "quantidade": 12
@@ -41,8 +41,8 @@
                 "nome": "Viagra",
                 "corpo": "A pipa vai subir"
             },
-            "categorias": [{}],
-            "favoritos": [{}],
+            "categorias": ["medicamento", "sex"],
+            "favoritadas": 1, 
             "estoque": {
                 "capacidade": 70,
                 "quantidade": 30
@@ -64,7 +64,7 @@
             "reservas": {},
             "tabelasPreco": [{}],
             "avaliacoes": [{}],
-            "favoritos": [{}]
+            "favoritadas": 170
 
         },
         {
@@ -75,10 +75,9 @@
             "aberto": true,
             "localizacao": {},
             "reservas": {},
-            "produtos": {},
             "tabelasPreco": [{}],
             "avaliacoes": [{}],
-            "favoritos": [{}]
+            "favoritadas": 89
 
 
         }
