@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.sound.midi.SoundbankResource;
 import javax.sound.sampled.BooleanControl;
 
 
@@ -70,6 +71,19 @@ public class App {
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		System.out.println(timestamp);
+
+		Produto[] querry = Database.getInstance().querryProduto(2L);
+
+		for (int i = 0; i < querry.length; i++){
+
+			System.out.println(querry[i].id);
+			System.out.println(querry[i].idLoja);
+			System.out.println(querry[i].descricao.nome);
+			System.out.println(querry[i].descricao.corpo);
+			System.out.println(querry[i].categorias);
+			System.out.println(querry[i].favoritos);
+			System.out.println("");
+		}
 	}
 
 	//funcoes para criar as entidades do app

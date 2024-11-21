@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 //a tabela de index 0 vai obrigatoriamente ser os precos padroes
+//consertar o json do banco de datos para ter os precos certos
 
 public class TabelaPreco {
 
