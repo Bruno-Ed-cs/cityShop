@@ -2,6 +2,8 @@ package org.cityShop.usuario;
 
 import java.util.ArrayList;
 
+import org.cityShop.testes.Json;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Usuario 
@@ -32,7 +34,32 @@ public class Usuario
 		this.id = json.getLong("id");
 		this.lojista = json.getBoolean("lojista");
 
+		JSONArray favoritos = new JSONArray(json.getJSONArray("favoritos").toString());
+		this.favoritos = new ArrayList<Favoritavel>();
 
+		for (int i = 0; i < favoritos.length(); i++){
+
+			Favoritavel favorito = null;
+
+			switch (favoritos.getJSONObject(i).getInt("type")){
+
+				case 1:
+
+					favorito = new FavoritoProduto(favoritos.getJSONObject(i).getLong("id"));
+
+				break;
+
+				case 0:
+
+					favorito = new FavoritoLoja(favoritos.getJSONObject(i).getLong("id"));
+
+				break;
+			}
+
+			this.favoritos.add(favorito);
+
+
+		}
 
 
 	}

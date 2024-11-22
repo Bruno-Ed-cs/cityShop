@@ -106,6 +106,27 @@ public class App {
 		}
 
 		System.out.println(lojas);
+
+		Usuario[] users = Database.getInstance().querryUsuarios();
+
+		for (int i = 0; i < users.length; i++) {
+
+			System.out.println(users[i].nome);
+			System.out.println(users[i].cpf);
+			System.out.println(users[i].id);
+			System.out.println(users[i].lojista);
+
+			System.out.println("Favoritos: ");
+
+			for (int y = 0; y < users[i].favoritos.size(); y++) {
+
+				System.out.println(users[i].favoritos.get(y).getTarget());
+			}
+			
+			System.out.println();
+		}
+
+
 	}
 
 	//funcoes para criar as entidades do app

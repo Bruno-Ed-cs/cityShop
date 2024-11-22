@@ -225,9 +225,17 @@ public class Database {
 
 		JSONArray usuarios = new JSONArray(this.database.getJSONArray("Usuarios").toString());
 
+		Usuario[] querry = new Usuario[usuarios.length()];
+
+		for (int i = 0; i < usuarios.length(); i++){
+
+			JSONObject usuario = new JSONObject(usuarios.getJSONObject(i).toString());
+
+			querry[i] = new Usuario(usuario);
+		}
 
 
-		return null;
+		return querry;
 	}
 
 	public Boolean changeLoja(Loja novaLoja, Long idTarget){
