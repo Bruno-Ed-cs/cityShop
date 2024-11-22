@@ -1,4 +1,6 @@
 package org.cityShop.produto;
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 import javax.sound.midi.SoundbankResource;
@@ -50,6 +52,12 @@ public class Produto
 
 		}
 
+
+	}
+
+	public Double getPreco(){
+
+		return null;
 
 	}
 

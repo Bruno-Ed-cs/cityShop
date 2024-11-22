@@ -4,10 +4,14 @@ public class Local
 {
 
 	public String endereco;
-	public Double longitude;
-	public Double latitude;
+	public String longitude;
+	public String latitude;
 
-	public Local(String endereco, Double longitude, Double latitude) {
+	public Local(){
+
+	}
+
+	public Local(String endereco, String longitude, String latitude) {
 		this.endereco = endereco;
 		this.longitude = longitude;
 		this.latitude = latitude;

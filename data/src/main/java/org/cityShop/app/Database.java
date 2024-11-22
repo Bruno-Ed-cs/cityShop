@@ -5,7 +5,6 @@ import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
 import java.io.*;
-import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -25,6 +24,7 @@ public class Database {
 
 	private Database(){
 
+		this.loadDatabase();
 		
 	}
 
@@ -43,7 +43,6 @@ public class Database {
 
 
 	public void loadDatabase(){
-
 
 		File file = new File(this.path + "active.json");
 
@@ -115,7 +114,22 @@ public class Database {
 
 	public Loja getLoja(Long idLoja){
 
-		return null;
+		JSONArray lojas = new JSONArray(database.get("Lojas").toString());
+		JSONObject target = new JSONObject();
+
+		for (int i = 0; i < lojas.length(); i++){
+
+			if (lojas.getJSONObject(i).getLong("id") == idLoja){
+
+				target = new JSONObject(lojas.getJSONObject(i).toString());
+				break;
+			}
+
+		}
+
+		Loja loja = new Loja(target);
+		return loja;
+
 	}
 
 	public Produto getProduto(Long idProduto){
@@ -143,7 +157,6 @@ public class Database {
 
 	public Produto[] querryProduto(Long idLoja){
 
-		this.loadDatabase();
 
 		Produto[] querry = this.querryProduto();
 		ArrayList<Produto> result = new ArrayList<Produto>();
@@ -166,7 +179,6 @@ public class Database {
 
 	public Produto[] querryProduto(){
 
-		this.loadDatabase();
 		//System.out.println(database.toString());
 
 
@@ -193,7 +205,27 @@ public class Database {
 		return querry;
 	}
 
-	public Loja[] querryLoja(Long idDono){
+	public Loja[] querryLoja(){
+
+		JSONArray lojas = new JSONArray(this.database.getJSONArray("Lojas").toString());
+
+		Loja[] querry = new Loja[lojas.length()];
+
+		for (int i = 0; i < lojas.length() && !lojas.isEmpty(); i++){
+
+			Loja loja = new Loja(lojas.getJSONObject(i));
+
+			querry[i] = loja;
+		}
+
+		return querry;
+	}
+
+	public Usuario[] querryUsuarios(){
+
+		JSONArray usuarios = new JSONArray(this.database.getJSONArray("Usuarios").toString());
+
+
 
 		return null;
 	}

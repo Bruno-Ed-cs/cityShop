@@ -72,7 +72,7 @@ public class App {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		System.out.println(timestamp);
 
-		Produto[] querry = Database.getInstance().querryProduto(2L);
+		Produto[] querry = Database.getInstance().querryProduto();
 
 		for (int i = 0; i < querry.length; i++){
 
@@ -90,6 +90,22 @@ public class App {
 			}
 			System.out.println("");
 		}
+
+
+		System.out.println(FavTypes.PRODUTO);
+
+		Loja[] lojas = Database.getInstance().querryLoja();
+
+		for (int i = 0; i < lojas.length; i++){
+
+			System.out.println(lojas[i].nome);
+			System.out.println(lojas[i].aberto);
+			System.out.println(lojas[i].favoritadas);
+
+			System.out.println("");
+		}
+
+		System.out.println(lojas);
 	}
 
 	//funcoes para criar as entidades do app

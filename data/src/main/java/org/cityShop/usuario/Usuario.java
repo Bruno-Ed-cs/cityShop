@@ -2,6 +2,8 @@ package org.cityShop.usuario;
 
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 public class Usuario 
 {
 
@@ -23,7 +25,21 @@ public class Usuario
 
 	}
 
+	public Usuario(JSONObject json){
+
+		this.nome = json.getString("nome");
+		this.cpf = json.getString("cpf");
+		this.id = json.getLong("id");
+		this.lojista = json.getBoolean("lojista");
+
+
+
+
+	}
+
 	//agora, eu adicionei o tipo de favorito que vai ser especificado, definir se é uma loja ou um produto
+	
+
 
 	public void adicionarFavorito(Long idTarget, FavTypes type){
 
@@ -34,12 +50,12 @@ public class Usuario
 
 			case FavTypes.PRODUTO:
 
-				favorito = new FavoritoProduto(idTarget, this.id);
+				favorito = new FavoritoProduto(idTarget);
 				break;
 
 			case FavTypes.LOJA:
 
-				favorito = new FavoritoLoja(idTarget, this.id);
+				favorito = new FavoritoLoja(idTarget);
 				break;
 	
 			default:

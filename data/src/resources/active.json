@@ -3,7 +3,6 @@
         {
             "id": 1,
             "idLoja": 1,
-            "preco": 5.50,
             "descricao": {
                 "nome": "Hotdog",
                 "corpo": "O favorito dos ouriços"
@@ -20,7 +19,6 @@
 
             "id": 2,
             "idLoja": 2,
-            "preco": 200.50, 
             "descricao": {
                 "nome": "Penicilina",
                 "corpo": "O favorito das bacterias"
@@ -36,7 +34,6 @@
 
             "id": 3,
             "idLoja": 2,
-            "preco": 70.50,
             "descricao": {
                 "nome": "Viagra",
                 "corpo": "A pipa vai subir"
@@ -60,10 +57,27 @@
             "dono": 1,
             "id": 1,
             "aberto": true,
-            "localizacao": {},
-            "reservas": {},
-            "tabelasPreco": [{}],
-            "avaliacoes": [{}],
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "longitude": "37°21'17.5\"W",
+                "latitude": "5°12'29.0\"S"
+            },
+            "reservas": [],
+            "tabelasPreco": [
+                {
+                    "id": 746,
+                    "nome": "padrao",
+                    "criacao": "2024-11-21 19:07:34.324",
+                    "validade": "3024-11-21 19:07:34.324",
+                    "modificador": 1.0,
+                    "hasDesconto": false,
+
+                    "produtos": [{"idProduto": 1, "preco": 3.77}]
+
+
+                }
+            ],
+            "avaliacoes": [],
             "favoritadas": 170
 
         },
@@ -73,10 +87,44 @@
             "dono": 1,
             "id": 2,
             "aberto": true,
-            "localizacao": {},
-            "reservas": {},
-            "tabelasPreco": [{}],
-            "avaliacoes": [{}],
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "longitude": "37°21'17.5\"W",
+                "latitude": "5°12'29.0\"S"
+            },
+            "reservas": [
+                {
+                    "qtdProduto": 5,
+                    "precoFinal": 120.50,
+                    "cliente": 1,
+                    "produto": 1,
+                    "dataReserva": "2024-11-22 10:00:00",
+                    "expiracaoHora": "2024-11-22 14:00:00",
+                    "concluido": false,
+                    "pego": false
+                }
+            ],
+            "tabelasPreco": [
+                {
+                    "id": 34,
+                    "nome": "padrao",
+                    "criacao": "2024-11-21 19:07:34.324",
+                    "validade": "2024-11-22 14:00:00",
+                    "modificador": 1.0,
+                    "hasDesconto": false,
+
+                    "produtos": [{"idProduto": 2, "preco": 200.50}, {"idProduto": 3, "preco": 70.50 }]
+
+
+                }
+            ],
+            "avaliacoes":[
+                {
+                    "nota": 5,
+                    "corpo": "Otimo produto",
+                    "idUsuario": 1;
+                }
+            ],
             "favoritadas": 89
 
 
@@ -90,7 +138,7 @@
             "cpf" : "223.334.551.90",
             "id" : 2,
             "lojista": false,
-            "favoritos": [{}]
+            "favoritos": [{"id": 1, "type": 1}]
         },
 
         {
@@ -98,7 +146,7 @@
             "cpf" : "122.334.551.90",
             "id" : 1,
             "lojista": true,
-            "favoritos": [{}]
+            "favoritos": []
         }
     ]
 
