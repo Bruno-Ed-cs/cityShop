@@ -82,12 +82,16 @@ public class App {
 			System.out.println("Descricao = " + querry[i].descricao.corpo);
 			System.out.println("Favoritadas = " + querry[i].favoritadas);
 
+
+			System.out.println("Preço = R$ " + querry[i].getPreco());
+
 			System.out.println("Categorias:");
 			for (int j = 0; j < querry[i].categorias.size(); j++){
 
 
 				System.out.println(querry[i].categorias.get(j));
 			}
+
 			System.out.println("");
 		}
 
@@ -101,6 +105,10 @@ public class App {
 			System.out.println(lojas[i].nome);
 			System.out.println(lojas[i].aberto);
 			System.out.println(lojas[i].favoritadas);
+
+			Usuario dono = Database.getInstance().getUser(lojas[i].dono);
+
+			System.out.println("Dono = " + dono.nome);
 
 			System.out.println("");
 		}
@@ -125,6 +133,10 @@ public class App {
 			
 			System.out.println();
 		}
+
+		System.out.println(Database.getInstance().getProduto(2L).descricao.nome);
+
+
 
 
 	}

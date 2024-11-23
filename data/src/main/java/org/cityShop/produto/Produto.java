@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 
 import javax.sound.midi.SoundbankResource;
+import javax.xml.crypto.Data;
 
+import org.cityShop.app.Database;
+import org.cityShop.loja.Loja;
 import org.cityShop.usuario.FavoritoProduto;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -56,6 +59,19 @@ public class Produto
 	}
 
 	public Double getPreco(){
+
+		Loja loja = Database.getInstance().getLoja(this.idLoja);
+
+		TabelaPreco tPreco = loja.tabelasPreco.getLast();
+
+		for (int i = 0; i < tPreco.produtos.size(); i++) {
+
+			if (tPreco.produtos.get(i).idProduto == this.id){
+
+				return tPreco.produtos.get(i).preco;
+			}
+			
+		}
 
 		return null;
 

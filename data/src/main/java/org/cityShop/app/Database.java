@@ -108,52 +108,52 @@ public class Database {
 
 	public Usuario getUser(Long idUser){
 
+		Usuario[] querry = this.querryUsuarios();
+
+		for (int i = 0; i < querry.length; i++) {
+
+			if (querry[i].id == idUser){
+
+				return querry[i];
+			}
+			
+		}
 
 		return null;
 	}
 
 	public Loja getLoja(Long idLoja){
 
-		JSONArray lojas = new JSONArray(database.get("Lojas").toString());
-		JSONObject target = new JSONObject();
+		Loja[] querry = this.querryLoja();
 
-		for (int i = 0; i < lojas.length(); i++){
+		for (int i = 0; i < querry.length; i++) {
 
-			if (lojas.getJSONObject(i).getLong("id") == idLoja){
+			if (querry[i].id == idLoja){
 
-				target = new JSONObject(lojas.getJSONObject(i).toString());
-				break;
+				return querry[i];
 			}
-
+			
 		}
 
-		Loja loja = new Loja(target);
-		return loja;
-
+		return null;
 	}
 
 	public Produto getProduto(Long idProduto){
 
+		Produto[] querry = this.querryProduto();
+
+		for (int i = 0; i < querry.length; i++) {
+
+			if (querry[i].id == idProduto){
+
+				return querry[i];
+			}
+			
+		}
+
 
 		return null;
 	}
-
-	public Boolean addProduto(Produto produto){
-
-		return null;
-	}
-
-	public Boolean addLoja(Loja	loja){
-
-		return null;
-	}
-
-
-	public Boolean addUsuario(Usuario usuario){
-
-		return null;
-	}
-
 
 	public Produto[] querryProduto(Long idLoja){
 
@@ -248,4 +248,27 @@ public class Database {
 
 		return null;
 	}
+
+	public Boolean changeUsuario(Usuario novoUsuario, Long idTarget){
+
+		return null;
+	}
+
+	public Boolean addProduto(Produto produto){
+
+		return null;
+	}
+
+	public Boolean addLoja(Loja	loja){
+
+		return null;
+	}
+
+
+	public Boolean addUsuario(Usuario usuario){
+
+		return null;
+	}
+
+
 }
