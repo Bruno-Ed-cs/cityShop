@@ -37,21 +37,25 @@ public class Usuario
 	public Usuario(JSONObject json){
 	
 		// nome do usuario
+
 		this.nome = json.getString("nome"); 
 		
 		// CPF do usuario
+
 		this.cpf = json.getString("cpf");
 		
 		// id do usuario
+
 		this.id = json.getLong("id");
 		
-		// booleano que representa se o usuario e lojista ou nao
+		// booleano que representa se o usuario eh lojista ou nao
+
 		this.lojista = json.getBoolean("lojista");
 		
 		JSONArray favoritosJson = json.getJSONArray("favoritos");
 		this.favoritos = new ArrayList<>();
 
-		for (int i = 0; i < favoritos.length(); i++){
+		for (int i = 0; i < favoritosJson.length(); i++){
 
 			Favoritavel favorito = null;
 
@@ -83,9 +87,14 @@ public class Usuario
 	}
 
 
+	/*
+	 * Adiciona um favorito ao usuario.
+	 * --> idTarget: O id do produto/loja favoritado.
+	 * --> type: O tipo do favorito (produto/loja).
+	 * Caso o tipo seja produto, um novo FavoritoProduto é criado,
+	 * caso seja loja, um novo FavoritoLoja é criado.
+	 */
 
-	//agora, eu adicionei o tipo de favorito que vai ser especificado e adicionado, se é uma loja ou produto
-	
 	public void adicionarFavorito(Long idTarget, FavTypes type){
 
 
@@ -93,12 +102,12 @@ public class Usuario
 	
 		switch(type){
 	
-			case FavTypes.PRODUTO:
+			case PRODUTO:
 	
 				favorito = new FavoritoProduto(idTarget, this.id);
 				break;
 	
-			case FavTypes.LOJA:
+			case LOJA:
 	
 				favorito = new FavoritoLoja(idTarget, this.id);
 
@@ -120,7 +129,7 @@ public class Usuario
 				return favoritos.stream()
 
 		.filter( f -> f instanceof FavoritoProduto && type == FavTypes.PRODUTO || f instanceof FavoritoLoja && type == FavTypes.LOJA)
-			.toArray(Favoritavel[]::new);
+		.toArray(Favoritavel[]::new);
 	}
 
 }
