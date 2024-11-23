@@ -26,33 +26,31 @@ public class Usuario
 	//agora, eu adicionei o tipo de favorito que vai ser especificado, definir se é uma loja ou um produto
 
 	public void adicionarFavorito(Long idTarget, FavType type){
-
-
+	
+	
 		Favoritavel favorito;
-
+	
 		switch(type){
-
+	
 			case FavType.PRODUTO:
-
+	
 				favorito = new FavoritoProduto(idTarget, this.id);
 				break;
-
+	
 			case FavType.LOJA:
-
+	
 				favorito = new FavoritoLoja(idTarget, this.id);
 				break;
-	
+		
 			default:
 				throw new IllegalArgumentException("favorito nao definido");
-
-				
-
+	
 		}
-
-		return;
-
+	
 		favoritos.add(favorito);
 
+		return
+	
 	}
 
 	//funcao para retornar um array com os favoritos de um tipo que específico
@@ -60,7 +58,7 @@ public class Usuario
 	public Favoritavel[] querryFavoritos(FavType type){
 
 		return favoritos.stream()
-		
+
 			.filter( f -> f instanceof FavoritoProduto && type == FavType.PRODUTO || f instanceof FavoritoLoja && type == FavType.LOJA)
 			.toArray(Favoritavel[]::new);
 	}
