@@ -1,20 +1,32 @@
 package org.cityShop.loja;
-import org.cityShop.usuario.*;
+import org.json.JSONObject;
 
 import java.sql.Timestamp;
 
-import org.cityShop.produto.*;
 
 public class Reserva
 {
 
-	public Integer qtdProduto;
+	public Long qtdProduto;
 	public Double precoFinal;
-	public Usuario cliente;
-	public Produto produto;
+	public Long cliente;
+	public Long produto;
 	public Timestamp dataReserva;
-	public Integer expiracaoHora;
+	public Timestamp expiracaoHora;
 	public Boolean concluido;
 	public Boolean pego;
+
+	public Reserva(JSONObject json){
+
+		this.qtdProduto = json.getLong("qtdProduto");
+		this.precoFinal = json.getDouble("precoFinal");
+		this.cliente = json.getLong("cliente");
+		this.produto = json.getLong("produto");
+		this.dataReserva = Timestamp.valueOf(json.getString("dataReserva"));
+		this.expiracaoHora = Timestamp.valueOf(json.getString("expiracaoHora"));
+		this.concluido = json.getBoolean("concluido");
+		this.pego = json.getBoolean("pego");
+
+	}
 
 }

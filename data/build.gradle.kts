@@ -5,6 +5,8 @@
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.10/userguide/building_java_projects.html in the Gradle documentation.
  */
 
+val mainPath: String = "org.cityShop.app.Main"
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -18,7 +20,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.cityShop.app.App"
+    mainClass = mainPath
 }
 
 dependencies {
@@ -30,7 +32,7 @@ tasks.jar {
 
     manifest {
 
-        attributes["Main-Class"] = "org.cityShop.app.App"
+        attributes["Main-Class"] = mainPath
 
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })

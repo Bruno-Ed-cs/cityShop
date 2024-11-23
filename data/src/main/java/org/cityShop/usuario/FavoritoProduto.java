@@ -8,12 +8,24 @@ public class FavoritoProduto implements Favoritavel
 {
 
 	public Long idTarget;
-	public Long idUsuario;
-	public FavType type = FavType.PRODUTO;
+	public FavTypes type = FavTypes.PRODUTO;
 
-	public FavoritoProduto(Long idTarget, Long idUsuario){
+	public FavoritoProduto(){
+
+
+	}
+
+
+	public FavoritoProduto(Long idTarget){
 
 		this.idTarget = idTarget;
-		this.idUsuario = idUsuario;
 	}
+
+	@Override
+	public Long getTarget() {
+		// TODO Auto-generated method stub
+		return this.idTarget;
+	}
+
+
 }

@@ -8,11 +8,11 @@ public class Avaliacao {
 	public String corpo;
 	public Long idUsuario;
 
-	public Avaliacao(Integer nota, String corpo, Usuario autor) {
+	public Avaliacao(Integer nota, String corpo, Long autor) {
 
 		this.nota = nota;
 		this.corpo = corpo;
-		this.idUsuario = autor.id;
+		this.idUsuario = autor;
 	}
 	
 }

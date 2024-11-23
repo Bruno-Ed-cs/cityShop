@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.sound.midi.SoundbankResource;
 import javax.sound.sampled.BooleanControl;
 
 
@@ -21,16 +22,16 @@ public class App {
 	private static App instance;
 
 
-	public static Usuario usuarioLogado;
-	public static Loja loadedShop;
-	public static Produto loadedProduto; //para carregar a pagina do produto em si
+	public Usuario usuarioLogado;
+	public Loja loadedShop;
+	public Produto loadedProduto; //para carregar a pagina do produto em si
 
 
 	//construtor
 
 	private App() {
 
-		App.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
+		this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
 	}
 
 	public static App getInstance() {
@@ -70,12 +71,72 @@ public class App {
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		System.out.println(timestamp);
-	}
 
-	public static void main(String[] args) {
+		Produto[] querry = Database.getInstance().querryProduto();
 
-		App app = App.getInstance();
-		app.run();
+		for (int i = 0; i < querry.length; i++){
+
+			System.out.println("ID = " + querry[i].id);
+			System.out.println("IDLoja = " + querry[i].idLoja);
+			System.out.println("Nome = " + querry[i].descricao.nome);
+			System.out.println("Descricao = " + querry[i].descricao.corpo);
+			System.out.println("Favoritadas = " + querry[i].favoritadas);
+
+
+			System.out.println("Preço = R$ " + querry[i].getPreco());
+
+			System.out.println("Categorias:");
+			for (int j = 0; j < querry[i].categorias.size(); j++){
+
+
+				System.out.println(querry[i].categorias.get(j));
+			}
+
+			System.out.println("");
+		}
+
+
+		System.out.println(FavTypes.PRODUTO);
+
+		Loja[] lojas = Database.getInstance().querryLoja();
+
+		for (int i = 0; i < lojas.length; i++){
+
+			System.out.println(lojas[i].nome);
+			System.out.println(lojas[i].aberto);
+			System.out.println(lojas[i].favoritadas);
+
+			Usuario dono = Database.getInstance().getUser(lojas[i].dono);
+
+			System.out.println("Dono = " + dono.nome);
+
+			System.out.println("");
+		}
+
+		System.out.println(lojas);
+
+		Usuario[] users = Database.getInstance().querryUsuarios();
+
+		for (int i = 0; i < users.length; i++) {
+
+			System.out.println(users[i].nome);
+			System.out.println(users[i].cpf);
+			System.out.println(users[i].id);
+			System.out.println(users[i].lojista);
+
+			System.out.println("Favoritos: ");
+
+			for (int y = 0; y < users[i].favoritos.size(); y++) {
+
+				System.out.println(users[i].favoritos.get(y).getTarget());
+			}
+			
+			System.out.println();
+		}
+
+		System.out.println(Database.getInstance().getProduto(2L).descricao.nome);
+
+
 
 
 	}
@@ -124,7 +185,18 @@ public class App {
 		return null;
 	}
 
-	public Boolean listarFavoritos(FavType type){
+	public Boolean listarFavoritos(FavTypes type){
+
+		return null;
+	}
+
+	public Boolean FavoritarLoja(){
+
+
+		return null;
+	}
+
+	public Boolean favoritarProduto(){
 
 		return null;
 	}
@@ -134,6 +206,24 @@ public class App {
 
 		return null;
 	}
+
+	public Boolean reservarProduto(){
+
+		return null;
+	}
+
+	//modificar loja
+	
+	public Boolean acessLoja(){
+
+		return null;
+	}
+
+	public Boolean acessProduto(){
+
+		return null;
+	}
+
 
 
 }
