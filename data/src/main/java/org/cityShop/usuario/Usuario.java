@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.cityShop.testes.Json;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -47,8 +48,8 @@ public class Usuario
 		// booleano que representa se o usuario e lojista ou nao
 		this.lojista = json.getBoolean("lojista");
 		
-		JSONArray favoritos = new JSONArray(json.getJSONArray("favoritos").toString()); 
-		this.favoritos = new ArrayList<Favoritavel>();
+		JSONArray favoritosJson = json.getJSONArray("favoritos");
+		this.favoritos = new ArrayList<>();
 
 		for (int i = 0; i < favoritos.length(); i++){
 
@@ -56,17 +57,21 @@ public class Usuario
 
 			switch (favoritos.getJSONObject(i).getInt("type")){
 
-				case 1:
+				case 1: //produto
 
 					favorito = new FavoritoProduto(favoritos.getJSONObject(i).getLong("id"));
 
 				break;
 
-				case 0:
+				case 0: //loja
 
 					favorito = new FavoritoLoja(favoritos.getJSONObject(i).getLong("id"));
 
 				break;
+
+				default:
+
+					throw new IllegalArgumentException("favorito nao definido");
 			}
 
 			this.favoritos.add(favorito);
@@ -77,12 +82,10 @@ public class Usuario
 
 	}
 
-}
 
-	//agora, eu adicionei o tipo de favorito que vai ser especificado, definir se é uma loja ou um produto
+
+	//agora, eu adicionei o tipo de favorito que vai ser especificado e adicionado, se é uma loja ou produto
 	
-
-
 	public void adicionarFavorito(Long idTarget, FavTypes type){
 
 
@@ -90,23 +93,15 @@ public class Usuario
 	
 		switch(type){
 	
-			case FavType.PRODUTO:
+			case FavTypes.PRODUTO:
 	
 				favorito = new FavoritoProduto(idTarget, this.id);
 				break;
 	
-			case FavType.LOJA:
+			case FavTypes.LOJA:
 	
 				favorito = new FavoritoLoja(idTarget, this.id);
 
-			case FavTypes.PRODUTO:
-
-				favorito = new FavoritoProduto(idTarget);
-				break;
-
-			case FavTypes.LOJA:
-
-				favorito = new FavoritoLoja(idTarget);
 				break;
 		
 			default:
@@ -116,27 +111,16 @@ public class Usuario
 	
 		favoritos.add(favorito);
 
-		return
-	
-
-
-		favoritos.add(favorito);
-
-		return;
 	}
 
 	//funcao para retornar um array com os favoritos de um tipo que específico
 
 	public Favoritavel[] querryFavoritos(FavTypes type){
 
-		return favoritos.stream()
+				return favoritos.stream()
 
-			.filter( f -> f instanceof FavoritoProduto && type == FavType.PRODUTO || f instanceof FavoritoLoja && type == FavType.LOJA)
-		
-			.filter( f -> f instanceof FavoritoProduto && type == FavTypes.PRODUTO || f instanceof FavoritoLoja && type == FavTypes.LOJA)
+		.filter( f -> f instanceof FavoritoProduto && type == FavTypes.PRODUTO || f instanceof FavoritoLoja && type == FavTypes.LOJA)
 			.toArray(Favoritavel[]::new);
 	}
-}
-
 
 }
