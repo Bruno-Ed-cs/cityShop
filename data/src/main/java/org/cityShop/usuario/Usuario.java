@@ -41,20 +41,20 @@ public class Usuario {
         this.lojista = json.getBoolean("lojista");
 
         // Inicialização da lista de favoritos
-        JSONArray favoritosJson = json.getJSONArray("favoritos");
+        JSONArray favoritos = json.getJSONArray("favoritos");
         this.favoritos = new ArrayList<>();
 
-        for (int i = 0; i < favoritosJson.length(); i++) {
+        for (int i = 0; i < favoritos.length(); i++) {
 
             Favoritavel favorito = null;
-            JSONObject favoritoJson = favoritosJson.getJSONObject(i);
+            JSONObject favoritosJson = favoritos.getJSONObject(i);
 
             switch (favoritoJson.getInt("type")) {
                 case 1: // Produto
-                    favorito = new FavoritoProduto(favoritoJson.getLong("id"));
+                    favorito = new FavoritoProduto(favoritos.getLong("id"));
                     break;
                 case 0: // Loja
-                    favorito = new FavoritoLoja(favoritoJson.getLong("id"));
+                    favorito = new FavoritoLoja(favoritos.getLong("id"));
                     break;
                 default:
                     throw new IllegalArgumentException("Tipo de favorito não definido");
@@ -69,6 +69,7 @@ public class Usuario {
      * @param idTarget O ID do produto/loja favoritado.
      * @param type O tipo do favorito (produto/loja).
      */
+
     public void adicionarFavorito(Long idTarget, FavTypes type) {
 
         Favoritavel favorito;
@@ -96,7 +97,9 @@ public class Usuario {
      */
 
     public Favoritavel[] queryFavoritos(FavTypes type) {
+        
         return favoritos.stream()
+        
             .filter(f -> (f instanceof FavoritoProduto && type == FavTypes.PRODUTO) ||
                          (f instanceof FavoritoLoja && type == FavTypes.LOJA))
             .toArray(Favoritavel[]::new);
