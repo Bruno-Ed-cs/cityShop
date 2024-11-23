@@ -17,7 +17,6 @@ public class Usuario
 	public String cpf;
 	public Long id;
 	public Boolean lojista;
-
 	public ArrayList<Favoritavel> favoritos; 
 
 	//construtor de um usuario
@@ -36,15 +35,6 @@ public class Usuario
 
 	public Usuario(JSONObject json){
 	
-	/*
-	 Adiciona um favorito no usuario
-	  1. idTarget: o id do produto/loja que sera adicionado como favorito
-	  2. type: o tipo do favorito (produto/loja)
-	 */
-
-	public void adicionarFavorito(Long idTarget, FavType type) {
-	
-		
 		// nome do usuario
 		this.nome = json.getString("nome"); 
 		
@@ -56,7 +46,6 @@ public class Usuario
 		
 		// booleano que representa se o usuario e lojista ou nao
 		this.lojista = json.getBoolean("lojista");
-	
 		
 		JSONArray favoritos = new JSONArray(json.getJSONArray("favoritos").toString()); 
 		this.favoritos = new ArrayList<Favoritavel>();
