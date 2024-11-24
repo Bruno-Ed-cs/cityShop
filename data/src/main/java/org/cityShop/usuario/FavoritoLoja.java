@@ -27,7 +27,20 @@ public class FavoritoLoja implements Favoritavel
 	public Long getTarget() {
 		
 		// TODO Auto-generated method stub
-		return this.idTarget;
+
+		return idTarget;
 	}
+
+	@Override
+	public Long getIdTargeLong() {
+
+		return idUsuario;
+
+	}
+
+	@Override
+	public FavTypes getType() {
+
+		return type;
 
 }
