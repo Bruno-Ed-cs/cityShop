@@ -44,3 +44,5 @@ public class FavoritoLoja implements Favoritavel
 		return type;
 
 }
+
+}
