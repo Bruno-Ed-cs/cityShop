@@ -23,7 +23,7 @@ public class FavoritoLoja implements Favoritavel
 		this.idUsuario = idUsuario;
 	}
 
-	@Override
+
 	public Long getTarget() {
 		
 		// TODO Auto-generated method stub
@@ -31,7 +31,7 @@ public class FavoritoLoja implements Favoritavel
 		return idTarget;
 	}
 
-	@Override
+	
 	public Long getIdTargeLong() {
 
 		return idUsuario;
@@ -39,6 +39,7 @@ public class FavoritoLoja implements Favoritavel
 	}
 
 	@Override
+	
 	public FavTypes getType() {
 
 		return type;
