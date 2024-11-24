@@ -8,7 +8,7 @@ import org.cityShop.loja.*;
 
 public class FavoritoLoja implements Favoritavel
 {
-
+	public Long idUsuario;
 	public Long idTarget; //Loja favorita
 	public FavTypes type = FavTypes.LOJA;
 
@@ -17,13 +17,15 @@ public class FavoritoLoja implements Favoritavel
 
 	}
 
-	public FavoritoLoja(Long idTarget){
+	public FavoritoLoja(Long idTarget, Long idUsuario){
 
 		this.idTarget = idTarget;
+		this.idUsuario = idUsuario;
 	}
 
 	@Override
 	public Long getTarget() {
+		
 		// TODO Auto-generated method stub
 		return this.idTarget;
 	}
