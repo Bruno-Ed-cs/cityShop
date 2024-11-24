@@ -11,7 +11,7 @@ public class FavoritoProduto implements Favoritavel
 	public Long idTarget;
 	public FavTypes type = FavTypes.PRODUTO;
 
-	public FavoritoProduto(){
+	public FavoritoProduto(Long idTarget1, Long id){
 
 
 	}

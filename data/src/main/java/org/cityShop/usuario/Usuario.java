@@ -10,6 +10,7 @@ import org.json.JSONObject;
 public class Usuario {
 
     // Atributos de um usuario
+
     public String nome;
     public String cpf;
     public Long id;
@@ -17,7 +18,9 @@ public class Usuario {
     public ArrayList<Favoritavel> favoritos;
 
     // Construtor de um usuario
+
     public Usuario(String nome, String cpf, Long id, Boolean lojista) {
+
         this.nome = nome;
         this.cpf = cpf;
         this.id = id;
@@ -26,21 +29,27 @@ public class Usuario {
     }
 
     // Construtor de um usuario a partir de um JSON
+
     public Usuario(JSONObject json) {
 
         // Nome do usuario
+
         this.nome = json.getString("nome");
 
         // CPF do usuario
+
         this.cpf = json.getString("cpf");
 
         // ID do usuario
+
         this.id = json.getLong("id");
 
         // Booleano que representa se o usuario é lojista ou não
+
         this.lojista = json.getBoolean("lojista");
 
         // Inicialização da lista de favoritos
+
         JSONArray favoritos = json.getJSONArray("favoritos");
         this.favoritos = new ArrayList<>();
 
@@ -49,13 +58,17 @@ public class Usuario {
             Favoritavel favorito = null;
             JSONObject favoritosJson = favoritos.getJSONObject(i);
 
-            switch (favoritoJson.getInt("type")) {
+            switch (favoritos.getInt("type")) {
                 case 1: // Produto
-                    favorito = new FavoritoProduto(favoritos.getLong("id"));
+
+                    favorito = new FavoritoProduto(favoritosJson.getLong("id"));
                     break;
+
                 case 0: // Loja
-                    favorito = new FavoritoLoja(favoritos.getLong("id"));
+
+                    favorito = new FavoritoLoja(favoritosJson.getLong("id"));
                     break;
+
                 default:
                     throw new IllegalArgumentException("Tipo de favorito não definido");
             }
@@ -66,8 +79,8 @@ public class Usuario {
 
     /**
      * Adiciona um favorito ao usuario.
-     * @param idTarget O ID do produto/loja favoritado.
-     * @param type O tipo do favorito (produto/loja).
+     * idTarget: O ID do produto/loja favoritado.
+     * type: O tipo do favorito (produto/loja).
      */
 
     public void adicionarFavorito(Long idTarget, FavTypes type) {
@@ -75,12 +88,17 @@ public class Usuario {
         Favoritavel favorito;
 
         switch (type) {
+
             case PRODUTO:
+            
                 favorito = new FavoritoProduto(idTarget, this.id);
+
                 break;
 
             case LOJA:
+            
                 favorito = new FavoritoLoja(idTarget, this.id);
+
                 break;
 
             default:
