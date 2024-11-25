@@ -1,17 +1,11 @@
 package org.cityShop.app;
 
-import java.util.ArrayList;
 import org.json.JSONObject;
 
 import org.cityShop.usuario.*;
 import org.cityShop.loja.Loja;
 import org.cityShop.produto.*;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.sound.midi.SoundbankResource;
-import javax.sound.sampled.BooleanControl;
 
 
 public class App {
@@ -144,6 +138,23 @@ public class App {
 		nova.nome = "hwlvetica";
 
 		database.database.getJSONArray("Lojas").put(nova.toJSON());
+
+		Produto nuevo = new Produto();
+
+		nuevo.idLoja = 1L;
+		nuevo.favoritadas = 22L;
+		nuevo.id = 44L;
+		nuevo.categorias.add("comida");
+		nuevo.descricao = new Descricao();
+		nuevo.estoque = new ItemEstoque();
+
+		nuevo.descricao.nome = "salsicha";
+		nuevo.descricao.corpo = "saborososssss";
+
+		nuevo.estoque.capacidade = 20;
+		nuevo.estoque.quantidade = 13;
+
+		database.database.getJSONArray("Produtos").put(nuevo.toJSON());
 
 		database.save();
 

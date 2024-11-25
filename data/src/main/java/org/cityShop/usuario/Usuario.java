@@ -55,17 +55,17 @@ public class Usuario {
     private Favoritavel criarFavorito(JSONObject favoritoJson) {
 
         int type = favoritoJson.getInt("type");
-        Long id = favoritoJson.getLong("id");
+        Long idTarget = favoritoJson.getLong("id");
 
         switch (type) {
 
             case 1: // Produto
 
-                return new FavoritoProduto(id);
+                return new FavoritoProduto(this.id, idTarget);
 
             case 0: // Loja
 
-                return new FavoritoLoja(id);
+                return new FavoritoLoja(this.id, idTarget);
 
             default:
 

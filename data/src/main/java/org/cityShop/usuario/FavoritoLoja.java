@@ -1,9 +1,5 @@
 package org.cityShop.usuario;
 
-import org.cityShop.app.*;
-import org.cityShop.loja.*;
-
-
 //classe "FavoritoLoja" adiciona as lojas favoritas do usuário e implementa a interface favoritavel
 
 public class FavoritoLoja implements Favoritavel
@@ -20,7 +16,6 @@ public class FavoritoLoja implements Favoritavel
 
 
 	}
-
 	
 	public FavoritoLoja(Long idTarget, Long idUsuario){
 

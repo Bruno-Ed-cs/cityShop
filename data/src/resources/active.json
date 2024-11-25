@@ -168,6 +168,20 @@
                 "corpo": "A pipa vai subir",
                 "nome": "Viagra"
             }
+        },
+        {
+            "estoque": {
+                "capacidade": 20,
+                "quantidade": 13
+            },
+            "idLoja": 1,
+            "categorias": ["comida"],
+            "favoritadas": 22,
+            "id": 44,
+            "descricao": {
+                "corpo": "saborososssss",
+                "nome": "salsicha"
+            }
         }
     ]
 }

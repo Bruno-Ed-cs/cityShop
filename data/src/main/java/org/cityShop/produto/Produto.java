@@ -1,14 +1,9 @@
 package org.cityShop.produto;
-import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
-import javax.sound.midi.SoundbankResource;
-import javax.xml.crypto.Data;
-
 import org.cityShop.app.Database;
 import org.cityShop.loja.Loja;
-import org.cityShop.usuario.FavoritoProduto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -58,7 +53,31 @@ public class Produto
 
 	}
 
-	public Double getPreco(){
+	public JSONObject toJSON(){
+
+		JSONObject json = new JSONObject();
+
+		json.put("id", this.id);
+		json.put("idLoja", this.idLoja);
+		json.put("favoritadas", this.favoritadas);
+
+		JSONArray categorias = new JSONArray();
+
+		for (String categ : this.categorias){
+
+			categorias.put(categ);
+		}
+
+		json.put("categorias", categorias);
+
+		json.put("descricao", this.descricao.toJSON());
+
+		json.put("estoque", this.estoque.toJSON());
+
+		return json;
+	}
+
+public Double getPreco(){
 
 		Loja loja = Database.getInstance().getLoja(this.idLoja);
 
