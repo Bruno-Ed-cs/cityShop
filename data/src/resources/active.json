@@ -1,47 +1,18 @@
 {
-    "Usuarios": [
-        {
-            "cpf": "223.334.551.90",
-            "nome": "Astoufo",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
-            "id": 2,
-            "lojista": false
-        },
-        {
-            "cpf": "122.334.551.90",
-            "nome": "seu ze",
-            "favoritos": [],
+    "Usuarios": [{
+        "cpf": "223.334.551.90",
+        "nome": "malaquitas",
+        "favoritos": [{
             "id": 1,
-            "lojista": true
-        },
-        {
-            "cpf": "223.334.551.90",
-            "nome": "Juan",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
-            "id": 3,
-            "lojista": true
-        },
-        {
-            "cpf": "223.334.551.90",
-            "nome": "Juan",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
-            "id": 3,
-            "lojista": true
-        }
-    ],
+            "type": "PRODUTO"
+        }],
+        "id": 4,
+        "lojista": false
+    }],
     "Lojas": [
         {
-            "dono": 1,
             "aberto": true,
+            "dono": 1,
             "localizacao": {
                 "endereco": "Rua jonh demagio n1223",
                 "latitude": "5°12'29.0\"S",
@@ -61,54 +32,9 @@
                 "criacao": "2024-11-21 19:07:34.324",
                 "validade": "3024-11-21 19:07:34.324"
             }],
-            "nome": "vendinha de cachorro quente",
+            "nome": "influencer academy",
             "favoritadas": 170,
-            "id": 1
-        },
-        {
-            "dono": 1,
-            "aberto": true,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "latitude": "5°12'29.0\"S",
-                "longitude": "37°21'17.5\"W"
-            },
-            "reservas": [{
-                "qtdProduto": 5,
-                "cliente": 1,
-                "expiracaoHora": "2024-11-22 14:00:00",
-                "produto": 1,
-                "dataReserva": "2024-11-22 10:00:00",
-                "concluido": false,
-                "precoFinal": 120.5,
-                "pego": false
-            }],
-            "avaliacoes": [{
-                "corpo": "Otimo produto",
-                "idUsuario": 1,
-                "nota": 5
-            }],
-            "tabelasPreco": [{
-                "hasDesconto": false,
-                "produtos": [
-                    {
-                        "preco": 200.5,
-                        "idProduto": 2
-                    },
-                    {
-                        "preco": 70.5,
-                        "idProduto": 3
-                    }
-                ],
-                "modificador": 1,
-                "nome": "padrao",
-                "id": 34,
-                "criacao": "2024-11-21 19:07:34.324",
-                "validade": "2024-11-22 14:00:00"
-            }],
-            "nome": "Boticario vigario",
-            "favoritadas": 89,
-            "id": 2
+            "id": 50
         },
         {
             "aberto": true,
@@ -132,35 +58,9 @@
                 "criacao": "2024-11-21 19:07:34.324",
                 "validade": "3024-11-21 19:07:34.324"
             }],
-            "nome": "hwlvetica",
+            "nome": "advocacia",
             "favoritadas": 170,
-            "id": 3
-        },
-        {
-            "aberto": true,
-            "dono": 1,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "latitude": "5°12'29.0\"S",
-                "longitude": "37°21'17.5\"W"
-            },
-            "reservas": [],
-            "avaliacoes": [],
-            "tabelasPreco": [{
-                "hasDesconto": false,
-                "produtos": [{
-                    "preco": 3.77,
-                    "idProduto": 1
-                }],
-                "modificador": 1,
-                "nome": "padrao",
-                "id": 746,
-                "criacao": "2024-11-21 19:07:34.324",
-                "validade": "3024-11-21 19:07:34.324"
-            }],
-            "nome": "hwlvetica",
-            "favoritadas": 170,
-            "id": 3
+            "id": 30
         }
     ],
     "Produtos": [
@@ -213,20 +113,6 @@
             "descricao": {
                 "corpo": "A pipa vai subir",
                 "nome": "Viagra"
-            }
-        },
-        {
-            "estoque": {
-                "capacidade": 20,
-                "quantidade": 13
-            },
-            "idLoja": 1,
-            "categorias": ["comida"],
-            "favoritadas": 22,
-            "id": 44,
-            "descricao": {
-                "corpo": "saborososssss",
-                "nome": "salsicha"
             }
         },
         {

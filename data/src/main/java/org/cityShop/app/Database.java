@@ -4,13 +4,12 @@ import org.cityShop.usuario.*;
 import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
-import org.xml.sax.DTDHandler;
 
-import netscape.javascript.JSObject;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import java.sql.*;
 
 
@@ -257,18 +256,78 @@ public class Database {
 		return querry;
 	}
 
-	public void changeLoja(Loja novaLoja, Long idTarget){
+	private Integer getIndex(String tableName, Long idTarget){
+
+		JSONArray table = this.database.getJSONArray(tableName);
+
+		Integer target = null;
+
+		for (int i = 0; i < table.length(); i++) {
+
+			if (table.getJSONObject(i).getLong("id") == idTarget){
+
+				target = i;
+
+				break;
+			}
+			
+		}
+
+		return target;
+
+	}
+
+	public Boolean changeLoja(Loja novaLoja, Long idTarget){
+
+		Integer index = this.getIndex("Lojas", idTarget);
+
+		if (index != null){
+
+			this.database.getJSONArray("Lojas").put(index, novaLoja.toJSON());
+			this.save();
+
+			return true;
+
+		} else {
+			
+			return false;
+		}
+	}
+
+	public Boolean changeProduto(Produto novoProduto, Long idTarget){
+
+
+		Integer index = this.getIndex("Produtos", idTarget);
+
+		if (index != null){
+
+			this.database.getJSONArray("Produtos").put(index, novoProduto.toJSON());
+			this.save();
+
+			return true;
+
+		} else {
+			
+			return false;
+		}
 
 
 	}
 
-	public void changeProduto(Produto novoProduto, Long idTarget){
+	public Boolean changeUsuario(Usuario novoUsuario, Long idTarget){
 
+		Integer index = this.getIndex("Usuarios", idTarget);
 
+		if (index != null){
 
-	}
+			this.database.getJSONArray("Usuarios").put(index, novoUsuario.toJSON());
+			this.save();
+			return true;
 
-	public void changeUsuario(Usuario novoUsuario, Long idTarget){
+		} else {
+			
+			return false;
+		}
 
 
 	}
@@ -511,6 +570,32 @@ public class Database {
 		
 		database.save();
 
+		Usuario malaquitas = database.getUsuario(2L);
+
+		malaquitas.nome = "malaquitas";
+		malaquitas.id = 4L;
+
+		database.addUsuario(malaquitas);
+
+		database.removeUsuario(2L);
+		database.removeUsuario(3L);
+
+		Loja agiota = database.getLoja(1L);
+
+		agiota.nome = "advocacia";
+		agiota.id = 30L;
+
+		database.addLoja(agiota);
+
+
+		database.removeLoja(2L);
+		database.removeLoja(3L);
+
+
+		agiota.nome = "influencer academy";
+		agiota.id = 50L;
+
+		database.changeLoja(agiota, 1L);
 
 	}
 
