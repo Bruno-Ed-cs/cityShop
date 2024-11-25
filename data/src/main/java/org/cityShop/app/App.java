@@ -136,6 +136,17 @@ public class App {
 
 		System.out.println(Database.getInstance().getProduto(2L).descricao.nome);
 
+		Database database = Database.getInstance();
+
+		Loja nova = database.getLoja(1L);
+
+		nova.id = 3L;
+		nova.nome = "hwlvetica";
+
+		database.database.getJSONArray("Lojas").put(nova.toJSON());
+
+		database.save();
+
 
 
 

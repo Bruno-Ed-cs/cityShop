@@ -6,11 +6,8 @@ import org.cityShop.loja.*;
 import org.json.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-import javax.sound.midi.SoundbankResource;
-import javax.swing.ActionMap;
 
 
 
@@ -20,11 +17,11 @@ public class Database {
 
 	private String path = "./src/resources/";
 
-	private JSONObject database;
+	public JSONObject database;
 
 	private Database(){
 
-		this.loadDatabase();
+		this.load();
 		
 	}
 
@@ -41,8 +38,7 @@ public class Database {
 
 	}
 
-
-	public void loadDatabase(){
+	private File getArchive(){
 
 		File file = new File(this.path + "active.json");
 
@@ -76,7 +72,13 @@ public class Database {
 
 		}
 
+		return file;
+	}
 
+
+	public void load(){
+
+		File file = this.getArchive();
 		String rawData = new String();
 
 		try {
@@ -101,7 +103,20 @@ public class Database {
 
 	}
 
-	public void saveDatabase(){
+	public void save(){
+
+		File file = this.getArchive();
+
+		try{
+
+			FileWriter writer = new FileWriter(file.getPath());
+			writer.write(this.database.toString(4));
+			writer.close();
+
+		} catch (Exception e){
+
+			System.out.println(e);
+		}
 
 
 	}
@@ -224,7 +239,6 @@ public class Database {
 	public Usuario[] querryUsuarios(){
 
 		JSONArray usuarios = new JSONArray(this.database.getJSONArray("Usuarios").toString());
-
 		Usuario[] querry = new Usuario[usuarios.length()];
 
 		for (int i = 0; i < usuarios.length(); i++){
@@ -269,6 +283,24 @@ public class Database {
 
 		return null;
 	}
+
+	public Boolean removeProduto(Produto produto){
+
+		return null;
+	}
+
+	public Boolean removeLoja(Loja	loja){
+
+		return null;
+	}
+
+
+	public Boolean removeUsuario(Usuario usuario){
+
+		return null;
+	}
+
+
 
 
 }
