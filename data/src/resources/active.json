@@ -1,14 +1,26 @@
 {
-    "Usuarios": [{
-        "cpf": "223.334.551.90",
-        "nome": "malaquitas",
-        "favoritos": [{
-            "id": 1,
-            "type": "PRODUTO"
-        }],
-        "id": 4,
-        "lojista": false
-    }],
+    "Usuarios": [
+        {
+            "cpf": "223.334.551.90",
+            "nome": "taguamndapiano",
+            "favoritos": [{
+                "id": 1,
+                "type": "PRODUTO"
+            }],
+            "id": 5,
+            "lojista": false
+        },
+        {
+            "cpf": "223.334.551.90",
+            "nome": "malaquitas",
+            "favoritos": [{
+                "id": 1,
+                "type": "PRODUTO"
+            }],
+            "id": 4,
+            "lojista": false
+        }
+    ],
     "Lojas": [
         {
             "aberto": true,
@@ -83,23 +95,6 @@
         },
         {
             "estoque": {
-                "capacidade": 400,
-                "quantidade": 12
-            },
-            "idLoja": 2,
-            "categorias": [
-                "medicamento",
-                "infecção"
-            ],
-            "favoritadas": 10,
-            "id": 2,
-            "descricao": {
-                "corpo": "O favorito das bacterias",
-                "nome": "Penicilina"
-            }
-        },
-        {
-            "estoque": {
                 "capacidade": 70,
                 "quantidade": 30
             },
@@ -109,10 +104,10 @@
                 "sex"
             ],
             "favoritadas": 1,
-            "id": 3,
+            "id": 1000,
             "descricao": {
-                "corpo": "A pipa vai subir",
-                "nome": "Viagra"
+                "corpo": "O favorito de Kelry",
+                "nome": "Lolita"
             }
         },
         {
@@ -127,6 +122,23 @@
             "descricao": {
                 "corpo": "saborososssss",
                 "nome": "salsicha"
+            }
+        },
+        {
+            "estoque": {
+                "capacidade": 70,
+                "quantidade": 30
+            },
+            "idLoja": 2,
+            "categorias": [
+                "medicamento",
+                "sex"
+            ],
+            "favoritadas": 1,
+            "id": 90,
+            "descricao": {
+                "corpo": "A pipa vai subir",
+                "nome": "Mouse gamer com regb e fpsboost"
             }
         }
     ]

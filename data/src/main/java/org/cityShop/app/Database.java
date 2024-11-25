@@ -4,7 +4,7 @@ import org.cityShop.usuario.*;
 import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
-
+import org.xml.sax.DTDHandler;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -580,6 +580,11 @@ public class Database {
 		database.removeUsuario(2L);
 		database.removeUsuario(3L);
 
+		malaquitas.nome = "taguamndapiano";
+		malaquitas.id = 5L;
+
+		database.changeUsuario(malaquitas, 1L);
+
 		Loja agiota = database.getLoja(1L);
 
 		agiota.nome = "advocacia";
@@ -596,6 +601,22 @@ public class Database {
 		agiota.id = 50L;
 
 		database.changeLoja(agiota, 1L);
+
+		Produto mouse = database.getProduto(3L);
+
+		mouse.descricao.nome = "Mouse gamer com regb e fpsboost";
+		mouse.id = 90L;
+
+		database.addProduto(mouse);
+
+		database.removeProduto(2L);
+
+		mouse.descricao.nome = "Lolita";
+		mouse.descricao.corpo = "O favorito de Kelry";
+		mouse.id = 1000L;
+
+
+		database.changeProduto(mouse, 3L);
 
 	}
 
