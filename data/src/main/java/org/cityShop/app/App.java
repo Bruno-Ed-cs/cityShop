@@ -100,7 +100,7 @@ public class App {
 			System.out.println(lojas[i].aberto);
 			System.out.println(lojas[i].favoritadas);
 
-			Usuario dono = Database.getInstance().getUser(lojas[i].dono);
+			Usuario dono = Database.getInstance().getUsuario(lojas[i].dono);
 
 			System.out.println("Dono = " + dono.nome);
 
@@ -156,10 +156,15 @@ public class App {
 
 		database.database.getJSONArray("Produtos").put(nuevo.toJSON());
 
+		Usuario juan = database.getUsuario(2L);
+
+		juan.nome = "Juan";
+		juan.id = 3L;
+		juan.lojista = true;
+
+		database.database.getJSONArray("Usuarios").put(juan.toJSON());
+		
 		database.save();
-
-
-
 
 	}
 

@@ -50,20 +50,42 @@ public class Usuario {
         }
     }
 
+    public JSONObject toJSON(){
+
+        JSONObject json = new JSONObject();
+
+        json.put("cpf", this.cpf);
+        json.put("nome", this.nome);
+        json.put("id", this.id);
+        json.put("lojista", this.lojista);
+
+        JSONArray favs = new JSONArray();
+
+        for (Favoritavel favorito : this.favoritos){
+
+            favs.put(favorito.toJSON());
+        }
+
+        json.put("favoritos", favs);
+
+        return json;
+    }
+
     // metodo auxiliar para criar o favorito com base no tipo
 
     private Favoritavel criarFavorito(JSONObject favoritoJson) {
+        // favor nao usar json dentro da aplicação em si, nos argumento ou use variaveis normais ou objetos, o json é para ser usado dentro da database
 
-        int type = favoritoJson.getInt("type");
+        String type = favoritoJson.getString("type");
         Long idTarget = favoritoJson.getLong("id");
 
         switch (type) {
 
-            case 1: // Produto
+            case "PRODUTO": // Produto
 
                 return new FavoritoProduto(this.id, idTarget);
 
-            case 0: // Loja
+            case "LOJA": // Loja
 
                 return new FavoritoLoja(this.id, idTarget);
 

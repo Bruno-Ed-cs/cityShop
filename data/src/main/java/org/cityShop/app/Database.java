@@ -121,7 +121,7 @@ public class Database {
 
 	}
 
-	public Usuario getUser(Long idUser){
+	public Usuario getUsuario(Long idUser){
 
 		Usuario[] querry = this.querryUsuarios();
 

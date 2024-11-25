@@ -5,7 +5,7 @@
             "nome": "Astoufo",
             "favoritos": [{
                 "id": 1,
-                "type": 1
+                "type": "PRODUTO"
             }],
             "id": 2,
             "lojista": false
@@ -15,6 +15,16 @@
             "nome": "seu ze",
             "favoritos": [],
             "id": 1,
+            "lojista": true
+        },
+        {
+            "cpf": "223.334.551.90",
+            "nome": "Juan",
+            "favoritos": [{
+                "id": 1,
+                "type": "PRODUTO"
+            }],
+            "id": 3,
             "lojista": true
         }
     ],
