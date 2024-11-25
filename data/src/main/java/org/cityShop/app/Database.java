@@ -4,6 +4,7 @@ import org.cityShop.usuario.*;
 import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
+import org.xml.sax.DTDHandler;
 
 import netscape.javascript.JSObject;
 
@@ -303,21 +304,85 @@ public class Database {
 
 	}
 
-	public void removeProduto(Produto produto){
+	public Boolean removeProduto(Long idProduto){
 
+		JSONArray produtos = this.database.getJSONArray("Produtos");
+
+		Boolean detected = false;
+		Integer target = null;
+
+		for (int i = 0; i < produtos.length(); i++) {
+
+			if (produtos.getJSONObject(i).getLong("id") == idProduto){
+
+				detected = true;
+				target = i;
+
+				break;
+			}
+			
+		}
+
+		if (detected){
+
+			this.database.getJSONArray("Produtos").remove(target);
+			this.save();
+			return true;
+
+		} else {
+
+			return false;
+		}
 
 	}
 
-	public void removeLoja(Loja	loja){
+    public Boolean removeLoja(Long idLoja) {
 
+        JSONArray lojas = this.database.getJSONArray("Lojas");
 
-	}
+        Boolean detected = false;
+        Integer target = null;
 
+        for (int i = 0; i < lojas.length(); i++) {
+            if (lojas.getJSONObject(i).getLong("id") == idLoja) {
+                detected = true;
+                target = i;
+                break;
+            }
+        }
 
-	public void removeUsuario(Usuario usuario){
+        if (detected) {
+            this.database.getJSONArray("Lojas").remove(target);
+            this.save();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public Boolean removeUsuario(Long idUsuario) {
 
-	}
+        JSONArray usuarios = this.database.getJSONArray("Usuarios");
+
+        Boolean detected = false;
+        Integer target = null;
+
+        for (int i = 0; i < usuarios.length(); i++) {
+            if (usuarios.getJSONObject(i).getLong("id") == idUsuario) {
+                detected = true;
+                target = i;
+                break;
+            }
+        }
+
+        if (detected) {
+            this.database.getJSONArray("Usuarios").remove(target);
+            this.save();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	public void teste(){
 
