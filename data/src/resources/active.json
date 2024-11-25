@@ -26,6 +26,16 @@
             }],
             "id": 3,
             "lojista": true
+        },
+        {
+            "cpf": "223.334.551.90",
+            "nome": "Juan",
+            "favoritos": [{
+                "id": 1,
+                "type": "PRODUTO"
+            }],
+            "id": 3,
+            "lojista": true
         }
     ],
     "Lojas": [
@@ -125,6 +135,32 @@
             "nome": "hwlvetica",
             "favoritadas": 170,
             "id": 3
+        },
+        {
+            "aberto": true,
+            "dono": 1,
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "latitude": "5°12'29.0\"S",
+                "longitude": "37°21'17.5\"W"
+            },
+            "reservas": [],
+            "avaliacoes": [],
+            "tabelasPreco": [{
+                "hasDesconto": false,
+                "produtos": [{
+                    "preco": 3.77,
+                    "idProduto": 1
+                }],
+                "modificador": 1,
+                "nome": "padrao",
+                "id": 746,
+                "criacao": "2024-11-21 19:07:34.324",
+                "validade": "3024-11-21 19:07:34.324"
+            }],
+            "nome": "hwlvetica",
+            "favoritadas": 170,
+            "id": 3
         }
     ],
     "Produtos": [
@@ -177,6 +213,20 @@
             "descricao": {
                 "corpo": "A pipa vai subir",
                 "nome": "Viagra"
+            }
+        },
+        {
+            "estoque": {
+                "capacidade": 20,
+                "quantidade": 13
+            },
+            "idLoja": 1,
+            "categorias": ["comida"],
+            "favoritadas": 22,
+            "id": 44,
+            "descricao": {
+                "corpo": "saborososssss",
+                "nome": "salsicha"
             }
         },
         {

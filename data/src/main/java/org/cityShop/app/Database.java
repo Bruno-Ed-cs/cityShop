@@ -4,9 +4,13 @@ import org.cityShop.usuario.*;
 import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
+
+import netscape.javascript.JSObject;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.sql.*;
 
 
 
@@ -17,7 +21,7 @@ public class Database {
 
 	private String path = "./src/resources/";
 
-	public JSONObject database;
+	private JSONObject database;
 
 	private Database(){
 
@@ -252,51 +256,197 @@ public class Database {
 		return querry;
 	}
 
-	public Boolean changeLoja(Loja novaLoja, Long idTarget){
+	public void changeLoja(Loja novaLoja, Long idTarget){
 
-		return null;
+
 	}
 
-	public Boolean changeProduto(Produto novoProduto, Long idTarget){
+	public void changeProduto(Produto novoProduto, Long idTarget){
 
 
-		return null;
+
 	}
 
-	public Boolean changeUsuario(Usuario novoUsuario, Long idTarget){
+	public void changeUsuario(Usuario novoUsuario, Long idTarget){
 
-		return null;
+
 	}
 
-	public Boolean addProduto(Produto produto){
+	public void addProduto(Produto produto){
 
-		return null;
+		JSONObject novo = produto.toJSON();
+
+		this.database.getJSONArray("Produtos").put(novo);
+
+		this.save();
+
+
 	}
 
-	public Boolean addLoja(Loja	loja){
+	public void addLoja(Loja loja){
 
-		return null;
+		JSONObject novo = loja.toJSON();
+
+		this.database.getJSONArray("Lojas").put(novo);
+		
+		this.save();
+
 	}
 
-	public Boolean addUsuario(Usuario usuario){
+	public void addUsuario(Usuario usuario){
 
-		return null;
+		JSONObject novo = usuario.toJSON();
+
+		this.database.getJSONArray("Usuarios").put(novo);
+
+		this.save();
+
 	}
 
-	public Boolean removeProduto(Produto produto){
+	public void removeProduto(Produto produto){
 
-		return null;
+
 	}
 
-	public Boolean removeLoja(Loja	loja){
+	public void removeLoja(Loja	loja){
 
-		return null;
+
 	}
 
 
-	public Boolean removeUsuario(Usuario usuario){
+	public void removeUsuario(Usuario usuario){
 
-		return null;
+
+	}
+
+	public void teste(){
+
+
+		// teste da possivel criação de produto com dados faikes
+
+		Produto prod = new Produto();
+
+		System.out.println("Produto criado " + prod);
+
+		JSONObject json = new JSONObject();
+
+		json.put("Titulo", "bruno eduardo é femboy");
+
+		json.put("Ano", 2069);
+
+		json.put("ana kelry eh linda", true);
+
+		System.out.println("JSON criado" + json.toString());
+
+		Usuario user = App.getInstance().usuarioLogado;
+		System.out.println("Usuário: " + user.nome);
+		System.out.println("Lojas favoritas: " + user.favoritos);
+		System.out.println("Produtos favoritos: " + user.favoritos);
+
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		System.out.println(timestamp);
+
+		Produto[] querry = Database.getInstance().querryProduto();
+
+		for (int i = 0; i < querry.length; i++){
+
+			System.out.println("ID = " + querry[i].id);
+			System.out.println("IDLoja = " + querry[i].idLoja);
+			System.out.println("Nome = " + querry[i].descricao.nome);
+			System.out.println("Descricao = " + querry[i].descricao.corpo);
+			System.out.println("Favoritadas = " + querry[i].favoritadas);
+
+
+			System.out.println("Preço = R$ " + querry[i].getPreco());
+
+			System.out.println("Categorias:");
+			for (int j = 0; j < querry[i].categorias.size(); j++){
+
+
+				System.out.println(querry[i].categorias.get(j));
+			}
+
+			System.out.println("");
+		}
+
+
+		System.out.println(FavTypes.PRODUTO);
+
+		Loja[] lojas = Database.getInstance().querryLoja();
+
+		for (int i = 0; i < lojas.length; i++){
+
+			System.out.println(lojas[i].nome);
+			System.out.println(lojas[i].aberto);
+			System.out.println(lojas[i].favoritadas);
+
+			Usuario dono = Database.getInstance().getUsuario(lojas[i].dono);
+
+			System.out.println("Dono = " + dono.nome);
+
+			System.out.println("");
+		}
+
+		System.out.println(lojas);
+
+		Usuario[] users = Database.getInstance().querryUsuarios();
+
+		for (int i = 0; i < users.length; i++) {
+
+			System.out.println(users[i].nome);
+			System.out.println(users[i].cpf);
+			System.out.println(users[i].id);
+			System.out.println(users[i].lojista);
+
+			System.out.println("Favoritos: ");
+
+			for (int y = 0; y < users[i].favoritos.size(); y++) {
+
+				System.out.println(users[i].favoritos.get(y).getTarget());
+			}
+			
+			System.out.println();
+		}
+
+		System.out.println(Database.getInstance().getProduto(2L).descricao.nome);
+
+		Database database = Database.getInstance();
+
+		Loja nova = database.getLoja(1L);
+
+		nova.id = 3L;
+		nova.nome = "hwlvetica";
+
+		database.database.getJSONArray("Lojas").put(nova.toJSON());
+
+		Produto nuevo = new Produto();
+
+		nuevo.idLoja = 1L;
+		nuevo.favoritadas = 22L;
+		nuevo.id = 44L;
+		nuevo.categorias.add("comida");
+		nuevo.descricao = new Descricao();
+		nuevo.estoque = new ItemEstoque();
+
+		nuevo.descricao.nome = "salsicha";
+		nuevo.descricao.corpo = "saborososssss";
+
+		nuevo.estoque.capacidade = 20;
+		nuevo.estoque.quantidade = 13;
+
+		database.database.getJSONArray("Produtos").put(nuevo.toJSON());
+
+		Usuario juan = database.getUsuario(2L);
+
+		juan.nome = "Juan";
+		juan.id = 3L;
+		juan.lojista = true;
+
+		database.database.getJSONArray("Usuarios").put(juan.toJSON());
+		
+		database.save();
+
+
 	}
 
 }
