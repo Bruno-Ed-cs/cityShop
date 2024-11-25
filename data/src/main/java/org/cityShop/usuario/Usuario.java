@@ -76,16 +76,16 @@ public class Usuario {
     private Favoritavel criarFavorito(JSONObject favoritoJson) {
         // favor nao usar json dentro da aplicação em si, nos argumento ou use variaveis normais ou objetos, o json é para ser usado dentro da database
 
-        String type = favoritoJson.getString("type");
+        FavTypes type = favoritoJson.getEnum(FavTypes.class, "type");
         Long idTarget = favoritoJson.getLong("id");
 
         switch (type) {
 
-            case "PRODUTO": // Produto
+            case PRODUTO: // Produto
 
                 return new FavoritoProduto(this.id, idTarget);
 
-            case "LOJA": // Loja
+            case LOJA: // Loja
 
                 return new FavoritoLoja(this.id, idTarget);
 

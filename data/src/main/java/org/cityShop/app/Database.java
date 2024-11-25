@@ -278,7 +278,6 @@ public class Database {
 		return null;
 	}
 
-
 	public Boolean addUsuario(Usuario usuario){
 
 		return null;
@@ -299,8 +298,5 @@ public class Database {
 
 		return null;
 	}
-
-
-
 
 }
