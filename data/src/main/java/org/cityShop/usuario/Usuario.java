@@ -1,6 +1,9 @@
 package org.cityShop.usuario;
 
 import java.util.ArrayList;
+
+import org.cityShop.app.Database;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
