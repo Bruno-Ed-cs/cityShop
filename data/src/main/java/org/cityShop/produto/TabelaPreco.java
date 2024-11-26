@@ -63,6 +63,30 @@ public class TabelaPreco {
 
 	}
 
+	public JSONObject toJSON(){
+
+		JSONObject json = new JSONObject();
+
+		json.put("id", this.id);
+		json.put("nome", this.nome);
+		json.put("criacao", this.criacao.toString());
+		json.put("validade", this.validade.toString());
+		json.put("modificador", this.modificador);
+		json.put("hasDesconto", this.hasDesconto);
+
+		JSONArray produtos = new JSONArray();
+
+		for (int i = 0; i < this.produtos.size(); i++) {
+
+			produtos.put(this.produtos.get(i).toJSON());
+			
+		}
+
+		json.put("produtos", produtos);
+
+		return json;
+	}
+
 	public void addProduto(Produto produto){
 
 		//o preco vai ser aplicado com base no modificador da tabela

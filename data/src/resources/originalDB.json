@@ -138,7 +138,7 @@
             "cpf" : "223.334.551.90",
             "id" : 2,
             "lojista": false,
-            "favoritos": [{"id": 1, "type": 1}]
+            "favoritos": [{"id": 1, "type": "PRODUTO"}]
         },
 
         {

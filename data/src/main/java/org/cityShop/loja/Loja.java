@@ -83,6 +83,44 @@ public class Loja
 		}
 	}
 
+	public JSONObject toJSON(){
+
+		JSONObject json = new JSONObject();
+
+		json.put("nome", this.nome);
+		json.put("id", this.id);
+		json.put("aberto", this.aberto);
+		json.put("dono", this.dono);
+		json.put("favoritadas", this.favoritadas);
+
+		json.put("localizacao", this.localizacao.toJSON());
+		json.put("reservas", this.reservas.toJSON());
+
+		JSONArray tabelas = new JSONArray();
+
+		for (int i = 0; i < this.tabelasPreco.size(); i++) {
+
+			JSONObject preco = new JSONObject(this.tabelasPreco.get(i).toJSON().toString());
+
+			tabelas.put(preco);
+			
+		}
+
+		json.put("tabelasPreco", tabelas);
+
+		JSONArray avaliacoes = new JSONArray();
+
+		for (Avaliacao rating : this.avaliacoes){
+
+			avaliacoes.put(rating.toJSON());
+		}
+
+		json.put("avaliacoes", avaliacoes);
+
+		return json;
+
+	}
+
 	public TabelaPreco getBaseTabelaPreco(){
 
 		return null;

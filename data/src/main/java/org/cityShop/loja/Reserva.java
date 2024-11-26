@@ -29,4 +29,20 @@ public class Reserva
 
 	}
 
+	public JSONObject toJSON() {
+
+		JSONObject json = new JSONObject();
+
+		json.put("qtdProduto", this.qtdProduto);
+		json.put("precoFinal", this.precoFinal);
+		json.put("cliente", this.cliente);
+		json.put("produto", this.produto);
+		json.put("dataReserva", this.dataReserva.toString());
+		json.put("expiracaoHora", this.expiracaoHora.toString());
+		json.put("concluido", this.concluido);
+		json.put("pego", this.pego);
+
+		return json;
+	}
+
 }

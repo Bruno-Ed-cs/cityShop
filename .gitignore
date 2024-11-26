@@ -13,6 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
-/data/build
+data/build
 app/build
-*/resources/*
+./data/src/resources/active.json
+/app/bin/
+/data/bin/
+
+

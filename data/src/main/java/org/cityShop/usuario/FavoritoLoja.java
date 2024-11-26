@@ -1,8 +1,6 @@
 package org.cityShop.usuario;
 
-import org.cityShop.app.*;
-import org.cityShop.loja.*;
-
+import org.json.JSONObject;
 
 //classe "FavoritoLoja" adiciona as lojas favoritas do usuário e implementa a interface favoritavel
 
@@ -20,7 +18,6 @@ public class FavoritoLoja implements Favoritavel
 
 
 	}
-
 	
 	public FavoritoLoja(Long idTarget, Long idUsuario){
 
@@ -33,6 +30,17 @@ public class FavoritoLoja implements Favoritavel
 		this.idUsuario = idUsuario;
 
 		this.type = FavTypes.LOJA; //Armazena o tipo do favorito (nesse caso, eh a loja)
+	}
+
+	@Override
+	public JSONObject toJSON() {
+
+		JSONObject json = new JSONObject();
+
+		json.put("type", "LOJA");
+		json.put("id", this.idTarget);
+		
+		return json;
 	}
 
 

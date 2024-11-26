@@ -1,6 +1,5 @@
 package org.cityShop.loja;
 
-import java.net.ResponseCache;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -21,7 +20,17 @@ public class TabelaReserva{
 		}
 	}
 
+	public JSONArray toJSON(){
 
+		JSONArray json = new JSONArray();
+
+		for (Reserva reserva : this.reservas){
+
+			json.put(reserva.toJSON());
+		}
+
+		return json;
+	}
 
 	public Integer getQtdVenda() {
 
