@@ -8,9 +8,6 @@ import org.cityShop.produto.*;
 
 import java.util.ArrayList;
 
-import javax.xml.crypto.Data;
-
-
 public class Loja 
 {
 	public String nome;
