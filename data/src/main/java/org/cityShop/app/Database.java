@@ -4,7 +4,6 @@ import org.cityShop.usuario.*;
 import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 import org.json.*;
-import org.xml.sax.DTDHandler;
 
 import java.io.*;
 import java.util.ArrayList;

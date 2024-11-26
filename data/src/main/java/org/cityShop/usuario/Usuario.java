@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.cityShop.app.Database;
 
+import org.cityShop.loja.Loja;
+import org.cityShop.produto.Produto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -106,9 +108,27 @@ public class Usuario {
 
     public void adicionarFavorito(Long idTarget, FavTypes type) {
 
+        Database database = Database.getInstance();
         Favoritavel favorito = criarFavorito(type, idTarget);
 
         favoritos.add(favorito);
+
+        switch (type){
+
+            case PRODUTO:
+                Produto prod = database.getProduto(idTarget);
+                prod.favoritadas++;
+                database.changeProduto(prod, idTarget);
+            break;
+
+            case LOJA:
+                Loja loja = database.getLoja(idTarget);
+                loja.favoritadas++;
+                database.changeLoja(loja, idTarget);
+            break;
+
+                
+        }
     }
 
     // metodo auxiliar para criar o favorito com base no tipo (utilizado no adicionarFavorito)
