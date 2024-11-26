@@ -1,5 +1,8 @@
 package org.cityShop.usuario;
 
+import org.cityShop.produto.*;
+import org.cityShop.loja.*;
+
 import java.util.ArrayList;
 
 import org.cityShop.app.Database;
@@ -47,7 +50,8 @@ public class Usuario {
         for (int i = 0; i < favoritosJson.length(); i++) {
 
             JSONObject favoritoJson = favoritosJson.getJSONObject(i);
-            Favoritavel favorito = criarFavorito(favoritoJson);
+            Favoritavel favorito = this.criarFavorito(favoritoJson.getEnum(FavTypes.class, "type"),
+            favoritoJson.getLong("id"));
 
             this.favoritos.add(favorito);
         }
@@ -76,11 +80,9 @@ public class Usuario {
 
     // metodo auxiliar para criar o favorito com base no tipo
 
-    private Favoritavel criarFavorito(FavType Type, Long idTarget) {
+    private Favoritavel criarFavorito(FavTypes type, Long idTarget) {
         // favor nao usar json dentro da aplicação em si, nos argumento ou use variaveis normais ou objetos, o json é para ser usado dentro da database
 
-        FavTypes type = favoritoJson.getEnum(FavTypes.class, "type");
-        Long idTarget = favoritoJson.getLong("id");
 
         switch (type) {
 
@@ -106,9 +108,31 @@ public class Usuario {
 
     public void adicionarFavorito(Long idTarget, FavTypes type) {
 
+        Database database = Database.getInstance();
+
         Favoritavel favorito = criarFavorito(type, idTarget);
 
         favoritos.add(favorito);
+
+        switch (type){
+
+            case PRODUTO:
+                Produto prod = database.getProduto(idTarget);
+                prod.favoritadas++;
+                database.changeProduto(prod, idTarget);
+            break;
+
+            case LOJA:
+                Loja loja = database.getLoja(idTarget);
+                loja.favoritadas++;
+                database.changeLoja(loja, idTarget);
+            break;
+
+            case UNDEFINED:
+            break;
+
+                
+        }
     }
 
     
