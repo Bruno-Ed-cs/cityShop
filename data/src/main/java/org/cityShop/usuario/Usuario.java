@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import org.cityShop.app.Database;
 
-import org.cityShop.loja.Loja;
-import org.cityShop.produto.Produto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -78,7 +76,7 @@ public class Usuario {
 
     // metodo auxiliar para criar o favorito com base no tipo
 
-    private Favoritavel criarFavorito(JSONObject favoritoJson) {
+    private Favoritavel criarFavorito(FavType Type, Long idTarget) {
         // favor nao usar json dentro da aplicação em si, nos argumento ou use variaveis normais ou objetos, o json é para ser usado dentro da database
 
         FavTypes type = favoritoJson.getEnum(FavTypes.class, "type");
@@ -108,48 +106,12 @@ public class Usuario {
 
     public void adicionarFavorito(Long idTarget, FavTypes type) {
 
-        Database database = Database.getInstance();
         Favoritavel favorito = criarFavorito(type, idTarget);
 
         favoritos.add(favorito);
-
-        switch (type){
-
-            case PRODUTO:
-                Produto prod = database.getProduto(idTarget);
-                prod.favoritadas++;
-                database.changeProduto(prod, idTarget);
-            break;
-
-            case LOJA:
-                Loja loja = database.getLoja(idTarget);
-                loja.favoritadas++;
-                database.changeLoja(loja, idTarget);
-            break;
-
-                
-        }
     }
 
-    // metodo auxiliar para criar o favorito com base no tipo (utilizado no adicionarFavorito)
-
-    private Favoritavel criarFavorito(FavTypes type, Long idTarget) {
-
-        switch (type) {
-
-            case PRODUTO:
-
-                return new FavoritoProduto(idTarget, this.id);
-
-            case LOJA:
-
-                return new FavoritoLoja(idTarget, this.id);
-
-            default:
-
-                throw new IllegalArgumentException("Tipo de favorito não definido");
-        }
-    }
+    
 
     /**
      * Retorna um array com os favoritos de um tipo específico.
