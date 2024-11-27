@@ -134,10 +134,6 @@ public class Usuario {
         }
     }
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 65d3092591ef47eb5bf53d7253ce5e487b877e9f
 
     /**
      * Retorna um array com os favoritos de um tipo específico.
