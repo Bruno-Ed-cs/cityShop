@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import org.cityShop.app.Database;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 public class Usuario {
 
@@ -130,6 +129,7 @@ public class Usuario {
                 throw new IllegalArgumentException("Tipo de favorito não definido");
         }
     }
+
 
     /**
      * Retorna um array com os favoritos de um tipo específico.
