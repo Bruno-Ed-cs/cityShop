@@ -1,140 +1,138 @@
 package org.cityShop.app;
 
 import java.util.Scanner;
-
 import org.cityShop.usuario.Favoritavel;
 import org.cityShop.usuario.Usuario;
 
-// classe para a interface no terminal
-
 public class Tui {
 
-	private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
-	public void mainMenu(){
+    public void mainMenu() {
+        boolean running = true;
 
-		boolean running = true;
+        while (running) {
+            System.out.println("Bem-vindo ao CityShop! :)");
+            System.out.println("Escolha uma opção:");
+            System.out.println("1 - Login");
+            System.out.println("2 - Listar Lojas");
+            System.out.println("3 - Listar Produtos");
+            System.out.println("4 - Listar Favoritos");
+            System.out.println("5 - Favoritar Loja");
+            System.out.println("6 - Favoritar Produto");
+            System.out.println("7 - Sair");
 
-		while (running) {
+            int choice = sc.nextInt();
 
-			System.out.println("bem vindo ao cityshop! :)");
-			System.out.println("Escolha uma opção:");
-			System.out.println("1 - Login");
-			System.out.println("2 - Listar Lojas");
-			System.out.println("3 - Listar Produtos");
-			System.out.println("4 - Listar Favoritos");
-			System.out.println("5 - Favoritar Loja");
-			System.out.println("6 - Favoritar Produto");
-			System.out.println("7 - Sair");
+            switch (choice) {
+                case 1:
+                    loginMenu();
+                    break;
 
-			int choice = sc.nextInt();
+                case 2:
+                    listarLojas();
+                    break;
 
-			switch (choice) {
-				case 1:
+                case 3:
+                    listarProdutos();
+                    break;
 
-				loginMenu();
+                case 4:
+                    listarFavoritos();
+                    break;
 
-					break;
+                case 5:
+                    favoritarProduto();
+                    break;
 
-				case 2:
+                case 6:
+                    favoritarLoja();
+                    break;
 
-				listarLojas();
+                case 7:
+                    System.out.println("Aff, saindo...");
+                    running = false;
+                    break;
 
-					break;
+                default:
+                    System.out.println("Não tem essa opção, analfabeto. Obrigado :)");
+                    break;
+            }
+        }
+    }
 
-				case 3:
+    private void loginMenu() {
+        System.out.println("Digite o nome do usuário: ");
+        sc.nextLine();  // Consume the newline character
+        String nomeUsuario = sc.nextLine();
 
-				listarProdutos();
+        System.out.println("Digite a senha: ");
+        String senha = sc.nextLine();
 
-				break;
+        App app = App.getInstance();
+        Boolean sucesso = app.login(nomeUsuario, senha);
 
-				case 4:
+        if (sucesso) {
+            System.out.println("Login bem-sucedido!");
+        } else {
+            System.out.println("Falha ao logar!");
+        }
+    }
 
-				listarFavoritos();
+    private void listarLojas() {
+        App app = App.getInstance();
+        Boolean sucesso = app.listarLojas();
+        if (!sucesso) {
+            System.out.println("Nenhuma loja cadastrada ainda :(");
+        }
+    }
 
-				break;
+    private void listarProdutos() {
+        App app = App.getInstance();
+        Boolean sucesso = app.listarProdutos();
+        if (!sucesso) {
+            System.out.println("Nenhum produto cadastrado ainda :(");
+        }
+    }
 
-				case 5:
+    private void listarFavoritos() {
+        App app = App.getInstance();
+        Boolean sucesso = app.listarFavoritos();
+        if (!sucesso) {
+            System.out.println("Você precisa logar para ver seus favoritos :(");
+        }
+    }
 
-				favoritarProduto();
+    private void favoritarProduto() {
+        System.out.println("Digite o ID do produto para favoritar: ");
+        Long idProduto = sc.nextLong();
 
-				break;
+        App app = App.getInstance();
+        Boolean sucesso = app.favoritarProduto(idProduto);
 
-				case 6:
+        if (!sucesso) {
+            System.out.println("Você precisa logar para favoritar um produto :(");
+        } else {
+            System.out.println("Produto favoritado com sucesso!");
+        }
+    }
 
-				favoritarLoja();
+    private void favoritarLoja() {
+        System.out.println("Digite o ID da loja para favoritar: ");
+        Long idLoja = sc.nextLong();
 
-				break;
+        App app = App.getInstance();
+        Boolean sucesso = app.favoritarLoja(idLoja);
 
-				case 7:
+        if (!sucesso) {
+            System.out.println("Você precisa logar para favoritar uma loja :(");
+        } else {
+            System.out.println("Loja favoritada com sucesso!");
+        }
+    }
 
-				System.out.println("aff, saindo...");
-
-				running = false;
-
-				break;
-
-				default:
-					System.out.println("NAO TEM ESSA OPÇÃO, ANALFABETO. obrigado :)");
-
-		}
-		
-
-	}
-
+    public static void clearTerminal() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
-
-	private void loginMenu() {
-
-		System.out.println("digite o nome do usuario: ");
-		sc.nextLine();
-		String nomeUsuario = sc.nextLine();
-
-		System.out.println("digite a senha: ");
-		String senha = sc.nextLine();
-
-		App app = App.getInstance();
-		Usuario usuario = app.usuarioLogado;
-
-		
-	}
-
-	private void listarLojas() {
-
-		
-	}
-
-	private void ListarProdutos() {
-
-		
-
-	}
-
-	private void listarFavoritos() {
-
-		
-	}
-
-	private void favoritarProduto() {
-
-		
-	}
-
-	private void favoritarLoja() {
-
-		
-	}
-
-	public static void clearTerminal(){
-
-		System.out.print("\033[H\033[2J");
-	}
-
-		
-
-
-
-}
-
-
-
