@@ -68,20 +68,65 @@ public class Tui {
 				case 7:
 
 				System.out.println("aff, saindo...");
-				
+
+				running = false;
+
+				break;
+
+				default:
+					System.out.println("NAO TEM ESSA OPÇÃO, ANALFABETO. obrigado :)");
+
 		}
 		
 
 	}
+
+}
+
+	private void loginMenu() {
+
+		System.out.println("digite o nome do usuario: ");
+		String nomeUsuario = sc.nextLine();
+
+		System.out.println("digite a senha: ");
+		String senha = sc.nextLine();
+
+		App app = App.getInstance();
+		Usuario usuario = app.login(nomeUsuario, senha);
+
+		if (usuario != null && usuario.getNome().equals(nomeUsuario)) {
+
+			System.out.println("logado com sucesso! :)");
+
+		} else {
+
+			System.out.println("falha ao logar!");
+		}
 
 	public static void clearTerminal(){
 
 		System.out.print("\033[H\033[2J");
 	}
 
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 }
 
 
 
-
-}
