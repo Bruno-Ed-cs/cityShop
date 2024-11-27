@@ -9,7 +9,7 @@ public class Main {
 		App app = App.getInstance();
 		Database database = Database.getInstance();
 
-		// Chamada de teste para o 
+		// Chamada de teste
 		
 		database.teste();
 
@@ -21,8 +21,8 @@ public class Main {
 
 		Tui.clearTerminal();
 
-		// Exibir o menu para o usuário interagir
-		
+		// Exibir o menu 
+
 		tui.mainMenu();
 	}
 }
