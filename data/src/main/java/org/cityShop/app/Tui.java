@@ -92,7 +92,7 @@ public class Tui {
 		String senha = sc.nextLine();
 
 		App app = App.getInstance();
-		Usuario usuario = app.login(nomeUsuario, senha);
+		Usuario usuario = app.usuarioLogado;
 
 		if (usuario != null && usuario.getNome().equals(nomeUsuario)) {
 
@@ -102,30 +102,60 @@ public class Tui {
 
 			System.out.println("falha ao logar!");
 		}
+	
+	}
+
+	private void listarLojas() {
+
+		Database database = Database.getInstance();
+
+		Loja[] lojas = database.querryLojas();
+
+		if(lojas.length == 0) {
+
+			System.out.println("nenhuma loja cadastrada ainda :(");
+
+		} else {
+
+			for (Loja loja : lojas) {
+
+				System.out.println("Loja: " + loja.getNome());
+		}
+
+		}
+
+	}
+
+
+
+
+
+
+
 
 	public static void clearTerminal(){
 
 		System.out.print("\033[H\033[2J");
 	}
 
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
