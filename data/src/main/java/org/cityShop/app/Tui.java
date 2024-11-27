@@ -228,6 +228,7 @@ public class Tui {
 
 		System.out.println("digite ID da loja p/a favoritar: ");
 		Long idLoja = sc.nextLong();
+		sc.nextLine();
 
 		sc.nextLine();
 
