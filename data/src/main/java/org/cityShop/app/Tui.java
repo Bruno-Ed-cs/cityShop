@@ -171,6 +171,7 @@ public class Tui {
 		if(!encontrouLojaFavorita) {
 
 			System.out.println("Nenhuma loja favorita ainda :(");
+
 		}
 
 		System.out.println("\n--- Produtos Favoritos ---");
@@ -198,12 +199,50 @@ public class Tui {
 		}
 	}
 
+	private void favoritarProduto() {
 
+		System.out.println("digite o ID do produto p/a favoritar: ");
+		Long idProduto = sc.nextLong();
 
+		Produto idProduto = Scanner.nextLong();
+		scanner.nextLine();
 
+		Usuario usuario = App.getInstance().usuarioLogado;
 
+		if (usuario != null) {
 
+			FavoritoPorduto favorito = new FavoritoProduto(idProduto, usuario.getId());
 
+			usuario.addFavorito(favorito);
+			System.out.println("Produto favoritado com sucesso!");
+		} else {
+
+			System.out.println("voce precisa logar para favoritar um produto :(");
+		} 
+
+	}
+
+	private void favoritarLoja() {
+
+		System.out.println("digite ID da loja p/a favoritar: ");
+		Long idLoja = sc.nextLong();
+
+		Loja idLoja = Scanner.nextLong();
+
+		scanner.nextLine();
+		Usuario usuario = App.getInstance().usuarioLogado;
+
+		if (usuario != null) {
+
+			FavoritoLoja favorito = new FavoritoLoja(idLoja, usuario.getId());
+
+			usuario.addFavorito(favorito);
+			System.out.println("Loja favoritada com sucesso!");
+		} else {
+
+			System.out.println("voce precisa logar para favoritar uma loja :(");
+		}
+	}
 
 	public static void clearTerminal(){
 
@@ -211,20 +250,6 @@ public class Tui {
 	}
 
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
