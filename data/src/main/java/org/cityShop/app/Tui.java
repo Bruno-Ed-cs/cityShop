@@ -96,56 +96,17 @@ public class Tui {
 		App app = App.getInstance();
 		Usuario usuario = app.usuarioLogado;
 
-		if (usuario != null && usuario.getNome().equals(nomeUsuario)) {
-
-			System.out.println("logado com sucesso! :)");
-			app.run();
-
-		} else {
-
-			System.out.println("falha ao logar!");
-		}
-	
+		
 	}
 
 	private void listarLojas() {
 
-		Database database = Database.getInstance();
-
-		Loja[] lojas = database.querryLojas();
-
-		if(lojas.length == 0) {
-
-			System.out.println("nenhuma loja cadastrada ainda :(");
-
-		} else {
-
-			for (Loja loja : lojas) {
-
-				System.out.println("Loja: " + loja.getNome());
-		}
-
-		}
-
+		
 	}
 
 	private void ListarProdutos() {
 
-		Database database = Database.getInstance();
-
-		Produto[] produtos = database.querryProdutos();
-
-		if(produtos.length == 0) {
-
-			System.out.println("nenhum produto cadastrado ainda :(");
-
-		} else {
-
-			for (Produto produto : produtos) {
-
-				System.out.println("Produto: " + produto.getNome());
-		}
-	}
+		
 
 	}
 

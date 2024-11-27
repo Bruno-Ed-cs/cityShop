@@ -79,12 +79,52 @@ public class App {
 
 	public Boolean listarProdutos(){
 
-		return null;
+		Database database = Database.getInstance();
+
+		Produto[] produtos = database.querryProdutos();
+
+		if(produtos.length == 0) {
+
+			System.out.println("nenhum produto cadastrado ainda :(");
+
+			return false;
+
+		} else {
+
+			for (Produto produto : produtos) {
+
+				System.out.println("Produto: " + produto.getNome());
+		}
+
+		return true;
+	}
+	
 	}
 
 	public Boolean listarLojas(){
 
-		return null;
+		Database database = Database.getInstance();
+
+		Loja[] lojas = database.querryLojas();
+
+		if(lojas.length == 0) {
+
+			System.out.println("nenhuma loja cadastrada ainda :(");
+
+			return false;
+
+		} else {
+
+			for (Loja loja : lojas) {
+
+				System.out.println("Loja: " + loja.getNome());
+				
+		}
+
+			return true;
+
+		}
+;
 	}
 
 	public Boolean listarFavoritos(FavTypes type){
