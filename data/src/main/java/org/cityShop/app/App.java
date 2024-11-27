@@ -7,7 +7,8 @@ import org.cityShop.database.Database;
 
 public class App {
 
-    // Aplicação do singleton
+    // singleton
+	
     private static App instance;
 
     public Usuario usuarioLogado;
@@ -15,20 +16,25 @@ public class App {
     public Produto loadedProduto;
 
     // Construtor
+
     private App() {
-        // Inicialização do usuário de teste (isso pode ser substituído por um login real)
+        //teste
+
         this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
     }
 
     // Método para garantir que apenas uma instância do App seja criada
+
     public static App getInstance() {
         if (instance == null) {
+
             instance = new App();
         }
         return instance;
     }
 
     // Função de login
+	
     public Boolean login(String nomeUsuario, String senha) {
         
         if (usuarioLogado != null && usuarioLogado.getNome().equals(nomeUsuario)) {
