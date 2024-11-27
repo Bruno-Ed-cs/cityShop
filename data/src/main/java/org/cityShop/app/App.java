@@ -98,7 +98,7 @@ public class App {
 
 		return true;
 	}
-	
+
 	}
 
 	public Boolean listarLojas(){
@@ -129,18 +129,126 @@ public class App {
 
 	public Boolean listarFavoritos(FavTypes type){
 
-		return null;
+		Usuario usuario = App.getInstance().usuarioLogado;
+		
+
+		if (usuario != null) {
+
+			System.out.println("Favoritos de: " + usuario.getNome() + ":");
+
+			boolean encontrouLojaFavorita = false;
+			boolean encontrouProdutoFavorito = false;
+
+			System.out.println("\n--- Lojas Favoritas ---");
+
+			for ( Favoritavel favorito : usuario.getFavoritos()) {
+
+				if (favorito.getType() == FavTypes.LOJA) {
+
+					System.out.println(favorito.toJSON());
+
+					encontrouLojaFavorita = true;
+
+				}
+
+					return true;
+		}
+
+		if(!encontrouLojaFavorita) {
+
+			System.out.println("Nenhuma loja favorita ainda :(");
+
+			return false;
+
+		}
+
+		System.out.println("\n--- Produtos Favoritos ---");
+
+		for ( Favoritavel favorito : usuario.getFavoritos()) {
+
+			if (favorito.getType() == FavTypes.PRODUTO) {
+
+				System.out.println(favorito.toJSON());
+
+				encontrouProdutoFavorito = true;
+
+				
+			}
+
+				return true;
+		}
+
+		if(!encontrouProdutoFavorito) {
+
+			System.out.println("Nenhum produto favorito ainda :(");
+
+			return false;
+		} 
+
+		else {
+
+			System.out.println("voce precisa logar para ver seus favoritos :(");
+
+			return false;
+		}
+
+		}
 	}
 
 	public Boolean FavoritarLoja(){
 
 
-		return null;
+		System.out.println("digite ID da loja p/a favoritar: ");
+		Long idLoja = sc.nextLong();
+		sc.nextLine();
+
+		sc.nextLine();
+
+		Usuario usuario = App.getInstance().usuarioLogado;
+
+		if (usuario != null) {
+
+			FavoritoLoja favorito = new FavoritoLoja(idLoja, usuario.getId());
+
+			usuario.addFavorito(favorito);
+			System.out.println("Loja favoritada com sucesso!");
+
+			return true;
+
+		} else {
+
+			System.out.println("voce precisa logar para favoritar uma loja :(");
+
+			return false;
+		}
 	}
 
 	public Boolean favoritarProduto(){
 
-		return null;
+		System.out.println("digite o ID do produto p/a favoritar: ");
+		Long idProduto = sc.nextLong();
+		sc.nextLine();
+
+		sc.nextLine();
+
+		Usuario usuario = App.getInstance().usuarioLogado;
+
+		if (usuario != null) {
+
+			FavoritoPorduto favorito = new FavoritoProduto(idProduto, usuario.getId());
+
+			usuario.addFavorito(favorito);
+			System.out.println("Produto favoritado com sucesso!");
+
+			return true;
+
+		} else {
+
+			System.out.println("voce precisa logar para favoritar um produto :(");
+
+			return false;
+		} 
+
 	}
 
 	public Boolean showUsuario(){

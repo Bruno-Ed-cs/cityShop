@@ -112,102 +112,17 @@ public class Tui {
 
 	private void listarFavoritos() {
 
-		Usuario usuario = App.getInstance().usuarioLogado;
 		
-
-		if (usuario != null) {
-
-			System.out.println("Favoritos de: " + usuario.getNome() + ":");
-
-			boolean encontrouLojaFavorita = false;
-			boolean encontrouProdutoFavorito = false;
-
-			System.out.println("\n--- Lojas Favoritas ---");
-
-			for ( Favoritavel favorito : usuario.getFavoritos()) {
-
-				if (favorito.getType() == FavTypes.LOJA) {
-
-					System.out.println(favorito.toJSON());
-
-					encontrouLojaFavorita = true;
-				}
-		}
-
-		if(!encontrouLojaFavorita) {
-
-			System.out.println("Nenhuma loja favorita ainda :(");
-
-		}
-
-		System.out.println("\n--- Produtos Favoritos ---");
-
-		for ( Favoritavel favorito : usuario.getFavoritos()) {
-
-			if (favorito.getType() == FavTypes.PRODUTO) {
-
-				System.out.println(favorito.toJSON());
-
-				encontrouProdutoFavorito = true;
-			}
-		}
-
-		if(!encontrouProdutoFavorito) {
-
-			System.out.println("Nenhum produto favorito ainda :(");
-		} 
-
-		else {
-
-			System.out.println("voce precisa logar para ver seus favoritos :(");
-		}
-
-		}
 	}
 
 	private void favoritarProduto() {
 
-		System.out.println("digite o ID do produto p/a favoritar: ");
-		Long idProduto = sc.nextLong();
-		sc.nextLine();
-
-		sc.nextLine();
-
-		Usuario usuario = App.getInstance().usuarioLogado;
-
-		if (usuario != null) {
-
-			FavoritoPorduto favorito = new FavoritoProduto(idProduto, usuario.getId());
-
-			usuario.addFavorito(favorito);
-			System.out.println("Produto favoritado com sucesso!");
-		} else {
-
-			System.out.println("voce precisa logar para favoritar um produto :(");
-		} 
-
+		
 	}
 
 	private void favoritarLoja() {
 
-		System.out.println("digite ID da loja p/a favoritar: ");
-		Long idLoja = sc.nextLong();
-		sc.nextLine();
-
-		sc.nextLine();
-
-		Usuario usuario = App.getInstance().usuarioLogado;
-
-		if (usuario != null) {
-
-			FavoritoLoja favorito = new FavoritoLoja(idLoja, usuario.getId());
-
-			usuario.addFavorito(favorito);
-			System.out.println("Loja favoritada com sucesso!");
-		} else {
-
-			System.out.println("voce precisa logar para favoritar uma loja :(");
-		}
+		
 	}
 
 	public static void clearTerminal(){
