@@ -96,25 +96,44 @@ public class Tui {
     }
 
     private void listarFavoritos() {
-        App app = App.getInstance();
-        Boolean sucesso = app.listarFavoritos();
-        if (!sucesso) {
-            System.out.println("Você precisa logar para ver seus favoritos :(");
-        }
+
+		App app = App.getInstance();
+
+		if (app.usuarioLogado == null) {
+
+			System.out.println("Você precisa logar para ver seus favoritos :(");
+
+			return;
+		}
+		Boolean sucesso = app.listarFavoritos();
+
+		if (!sucesso) {
+			System.out.println("Nenhum favorito encontrado.");
+		}
     }
 
     private void favoritarProduto() {
+
         System.out.println("Digite o ID do produto para favoritar: ");
-        Long idProduto = sc.nextLong();
 
-        App app = App.getInstance();
-        Boolean sucesso = app.favoritarProduto(idProduto);
+    	Long idProduto = null;
+		
+    try {
+        idProduto = sc.nextLong();
+    } catch (Exception e) {
+        System.out.println("Entrada inválida. Tente novamente.");
+        sc.nextLine(); // limpar buffer de entrada
+        return;
+    }
 
-        if (!sucesso) {
-            System.out.println("Você precisa logar para favoritar um produto :(");
-        } else {
-            System.out.println("Produto favoritado com sucesso!");
-        }
+    App app = App.getInstance();
+    Boolean sucesso = app.favoritarProduto(idProduto);
+
+    if (!sucesso) {
+        System.out.println("Você precisa logar para favoritar um produto :(");
+    } else {
+        System.out.println("Produto favoritado com sucesso!");
+    }
     }
 
     private void favoritarLoja() {
