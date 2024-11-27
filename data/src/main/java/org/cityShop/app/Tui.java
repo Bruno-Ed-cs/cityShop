@@ -23,6 +23,7 @@ public class Tui {
             System.out.println("7 - Sair");
 
             int choice = sc.nextInt();
+			sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -62,7 +63,8 @@ public class Tui {
     }
 
     private void loginMenu() {
-        System.out.println("Digite o nome do usuário: ");
+
+        System.out.println("Digite o nome do usuario: ");
         sc.nextLine();  // Consume the newline character
         String nomeUsuario = sc.nextLine();
 
@@ -73,24 +75,32 @@ public class Tui {
         Boolean sucesso = app.login(nomeUsuario, senha);
 
         if (sucesso) {
-            System.out.println("Login bem-sucedido!");
+            System.out.println("Login bem-sucedido :D");
         } else {
-            System.out.println("Falha ao logar!");
+            System.out.println("Falha ao logar >:()");
         }
     }
 
     private void listarLojas() {
+
         App app = App.getInstance();
+
         Boolean sucesso = app.listarLojas();
+
         if (!sucesso) {
+
             System.out.println("Nenhuma loja cadastrada ainda :(");
         }
     }
 
     private void listarProdutos() {
+
         App app = App.getInstance();
+
         Boolean sucesso = app.listarProdutos();
+
         if (!sucesso) {
+
             System.out.println("Nenhum produto cadastrado ainda :(");
         }
     }
@@ -117,12 +127,18 @@ public class Tui {
         System.out.println("Digite o ID do produto para favoritar: ");
 
     	Long idProduto = null;
-		
+
     try {
+
         idProduto = sc.nextLong();
+		sc.nextLine();
+
     } catch (Exception e) {
+
         System.out.println("Entrada inválida. Tente novamente.");
-        sc.nextLine(); // limpar buffer de entrada
+        sc.nextLine(); 
+		
+
         return;
     }
 
@@ -130,27 +146,50 @@ public class Tui {
     Boolean sucesso = app.favoritarProduto(idProduto);
 
     if (!sucesso) {
+
         System.out.println("Você precisa logar para favoritar um produto :(");
+
     } else {
+
         System.out.println("Produto favoritado com sucesso!");
     }
+
     }
 
     private void favoritarLoja() {
-        System.out.println("Digite o ID da loja para favoritar: ");
-        Long idLoja = sc.nextLong();
+
+ 	System.out.println("Digite o ID da loja para favoritar: ");
+
+        Long idLoja = null;
+
+        try {
+
+            idLoja = sc.nextLong();
+            sc.nextLine();  
+
+        } catch (Exception e) {
+
+            System.out.println("Entrada inválida. Tente novamente.");
+            sc.nextLine(); 
+            return;
+
+        }
 
         App app = App.getInstance();
         Boolean sucesso = app.favoritarLoja(idLoja);
 
         if (!sucesso) {
+
             System.out.println("Você precisa logar para favoritar uma loja :(");
+
         } else {
+
             System.out.println("Loja favoritada com sucesso!");
         }
     }
 
     public static void clearTerminal() {
+		
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
