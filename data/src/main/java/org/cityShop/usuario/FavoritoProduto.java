@@ -6,7 +6,6 @@ import org.json.*;
 //classe "FavoritoProduto" adiciona os produtos favoritos do usuário e tambem implementa a interface favoritavel
 
 public class FavoritoProduto implements Favoritavel
-
 {
 
 	public Long idUsuario;

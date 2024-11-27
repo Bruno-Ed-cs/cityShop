@@ -1,16 +1,12 @@
 package org.cityShop.loja;
 
 
-import org.cityShop.app.*;
-import org.cityShop.usuario.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.cityShop.loja.*;
+import org.cityShop.app.Database;
 import org.cityShop.produto.*;
 
 import java.util.ArrayList;
-
-import javax.swing.text.TabSet;
 
 public class Loja 
 {
@@ -27,6 +23,38 @@ public class Loja
 	public ArrayList<Avaliacao> avaliacoes;
 
 	public Loja(){
+
+
+	}
+
+	public Loja(String nome, Long idDono, Local localizacao){
+
+		Database database = Database.getInstance();
+
+		this.nome = nome;
+		this.dono = idDono;
+		this.localizacao = localizacao;
+		this.aberto = false;
+		this.favoritadas = 0L;
+
+		Loja[] lojas = database.querryLoja();
+
+		Long maior = 0L;
+
+		for (Loja loja : lojas){
+
+			if (loja.id > maior){
+
+				maior = loja.id;
+			}
+
+		}
+
+		this.id = maior +1;
+
+		this.reservas = new TabelaReserva();
+		this.tabelasPreco = new ArrayList<TabelaPreco>();
+		this.avaliacoes = new ArrayList<Avaliacao>();
 
 
 	}
@@ -135,10 +163,6 @@ public class Loja
 
 
 		return null;
-	}
-
-	public void addFavorito(Long idUsuario){
-
 	}
 	
 }

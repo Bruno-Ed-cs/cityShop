@@ -8,6 +8,11 @@ public class TabelaReserva{
 	
 	public ArrayList<Reserva> reservas;
 
+	public TabelaReserva(){
+
+
+	}
+
 	public TabelaReserva(JSONArray array){
 
 		this.reservas = new ArrayList<Reserva>();
@@ -43,5 +48,6 @@ public class TabelaReserva{
 		return null;
 		
 	}
+
 
 }

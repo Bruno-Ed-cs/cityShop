@@ -1,5 +1,8 @@
 package org.cityShop.usuario;
 
+import org.cityShop.produto.*;
+import org.cityShop.loja.*;
+
 import java.util.ArrayList;
 
 import org.cityShop.app.Database;
@@ -46,7 +49,8 @@ public class Usuario {
         for (int i = 0; i < favoritosJson.length(); i++) {
 
             JSONObject favoritoJson = favoritosJson.getJSONObject(i);
-            Favoritavel favorito = criarFavorito(favoritoJson);
+            Favoritavel favorito = this.criarFavorito(favoritoJson.getEnum(FavTypes.class, "type"),
+            favoritoJson.getLong("id"));
 
             this.favoritos.add(favorito);
         }
@@ -75,11 +79,9 @@ public class Usuario {
 
     // metodo auxiliar para criar o favorito com base no tipo
 
-    private Favoritavel criarFavorito(JSONObject favoritoJson) {
+    private Favoritavel criarFavorito(FavTypes type, Long idTarget) {
         // favor nao usar json dentro da aplicação em si, nos argumento ou use variaveis normais ou objetos, o json é para ser usado dentro da database
 
-        FavTypes type = favoritoJson.getEnum(FavTypes.class, "type");
-        Long idTarget = favoritoJson.getLong("id");
 
         switch (type) {
 
@@ -105,31 +107,37 @@ public class Usuario {
 
     public void adicionarFavorito(Long idTarget, FavTypes type) {
 
+        Database database = Database.getInstance();
+
         Favoritavel favorito = criarFavorito(type, idTarget);
 
         favoritos.add(favorito);
-    }
 
-    // metodo auxiliar para criar o favorito com base no tipo (utilizado no adicionarFavorito)
-
-    private Favoritavel criarFavorito(FavTypes type, Long idTarget) {
-
-        switch (type) {
+        switch (type){
 
             case PRODUTO:
-
-                return new FavoritoProduto(idTarget, this.id);
+                Produto prod = database.getProduto(idTarget);
+                prod.favoritadas++;
+                database.changeProduto(prod, idTarget);
+            break;
 
             case LOJA:
+                Loja loja = database.getLoja(idTarget);
+                loja.favoritadas++;
+                database.changeLoja(loja, idTarget);
+            break;
 
-                return new FavoritoLoja(idTarget, this.id);
+            case UNDEFINED:
+            break;
 
-            default:
-
-                throw new IllegalArgumentException("Tipo de favorito não definido");
+                
         }
     }
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 65d3092591ef47eb5bf53d7253ce5e487b877e9f
 
     /**
      * Retorna um array com os favoritos de um tipo específico.

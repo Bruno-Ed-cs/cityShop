@@ -7,6 +7,5 @@ t 6 - listar produtos
 7 - favoritar produtos
 8 - favoritar loja
 t 9 - acessar loja
+11 - acessar produto
 10 - reservar produto
-t 11 - acessar produto
-
