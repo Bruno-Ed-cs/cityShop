@@ -152,12 +152,14 @@ public class Tui {
 	private void listarFavoritos() {
 
 		Usuario usuario = App.getInstance().usuarioLogado;
-		boolean encontrouLojaFavorita = false;
-		boolean encontrouProdutoFavorito = false;
+		
 
 		if (usuario != null) {
 
 			System.out.println("Favoritos de: " + usuario.getNome() + ":");
+
+			boolean encontrouLojaFavorita = false;
+			boolean encontrouProdutoFavorito = false;
 
 			System.out.println("\n--- Lojas Favoritas ---");
 
@@ -206,6 +208,7 @@ public class Tui {
 
 		System.out.println("digite o ID do produto p/a favoritar: ");
 		Long idProduto = sc.nextLong();
+		sc.nextLine();
 
 		sc.nextLine();
 
