@@ -2,6 +2,8 @@ package org.cityShop.app;
 
 import java.util.Scanner;
 
+import org.cityShop.usuario.Favoritavel;
+
 import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 // classe para a interface no terminal
@@ -124,6 +126,76 @@ public class Tui {
 
 		}
 
+	}
+
+	private void ListarProdutos() {
+
+		Database database = Database.getInstance();
+
+		Produto[] produtos = database.querryProdutos();
+
+		if(produtos.length == 0) {
+
+			System.out.println("nenhum produto cadastrado ainda :(");
+
+		} else {
+
+			for (Produto produto : produtos) {
+
+				System.out.println("Produto: " + produto.getNome());
+		}
+	}
+
+	}
+
+	private void listarFavoritos() {
+
+		Usuario usuario = App.getInstance().usuarioLogado;
+
+		if (usuario != null) {
+
+			System.out.println("Favoritos de: " + usuario.getNome() + ":");
+
+			System.out.println("\n--- Lojas Favoritas ---");
+
+			for ( Favoritavel favorito : usuario.getFavoritos()) {
+
+				if (favorito.getType() == FavTypes.LOJA) {
+
+					System.out.println(favorito.toJSON());
+
+					encontrouLojaFavorita = true;
+				}
+		}
+
+		if(!encontrouLojaFavorita) {
+
+			System.out.println("Nenhuma loja favorita ainda :(");
+		}
+
+		System.out.println("\n--- Produtos Favoritos ---");
+
+		for ( Favoritavel favorito : usuario.getFavoritos()) {
+
+			if (favorito.getType() == FavTypes.PRODUTO) {
+
+				System.out.println(favorito.toJSON());
+
+				encontrouProdutoFavorito = true;
+			}
+		}
+
+		if(!encontrouProdutoFavorito) {
+
+			System.out.println("Nenhum produto favorito ainda :(");
+		} 
+
+		else {
+
+			System.out.println("voce precisa logar para ver seus favoritos :(");
+		}
+
+		}
 	}
 
 
