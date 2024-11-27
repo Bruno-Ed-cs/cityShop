@@ -51,7 +51,7 @@ public class Tui {
 
 				case 4:
 
-				listarFavoritos();ç
+				listarFavoritos();
 
 				break;
 

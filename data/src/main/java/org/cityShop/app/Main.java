@@ -8,6 +8,10 @@ public class Main {
 
 		App app = App.getInstance();
 		Database database = Database.getInstance();
+
+		Tui tui = new Tui();
+		tui.mainMenu();
+		
 		app.run();
 		database.teste();
 
