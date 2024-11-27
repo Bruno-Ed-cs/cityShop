@@ -9,11 +9,10 @@ public class Main {
 		App app = App.getInstance();
 		Database database = Database.getInstance();
 
+		database.teste();
+
 		Tui tui = new Tui();
 		tui.mainMenu();
-		
-		app.run();
-		database.teste();
 
 		Tui.clearTerminal();
 

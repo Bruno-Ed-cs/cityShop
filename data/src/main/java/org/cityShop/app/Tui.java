@@ -3,8 +3,7 @@ package org.cityShop.app;
 import java.util.Scanner;
 
 import org.cityShop.usuario.Favoritavel;
-
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
+import org.cityShop.usuario.Usuario;
 
 // classe para a interface no terminal
 
@@ -88,6 +87,7 @@ public class Tui {
 	private void loginMenu() {
 
 		System.out.println("digite o nome do usuario: ");
+		sc.nextLine();
 		String nomeUsuario = sc.nextLine();
 
 		System.out.println("digite a senha: ");
@@ -99,6 +99,7 @@ public class Tui {
 		if (usuario != null && usuario.getNome().equals(nomeUsuario)) {
 
 			System.out.println("logado com sucesso! :)");
+			app.run();
 
 		} else {
 
@@ -151,6 +152,8 @@ public class Tui {
 	private void listarFavoritos() {
 
 		Usuario usuario = App.getInstance().usuarioLogado;
+		boolean encontrouLojaFavorita = false;
+		boolean encontrouProdutoFavorito = false;
 
 		if (usuario != null) {
 
@@ -204,8 +207,7 @@ public class Tui {
 		System.out.println("digite o ID do produto p/a favoritar: ");
 		Long idProduto = sc.nextLong();
 
-		Produto idProduto = Scanner.nextLong();
-		scanner.nextLine();
+		sc.nextLine();
 
 		Usuario usuario = App.getInstance().usuarioLogado;
 
@@ -227,9 +229,8 @@ public class Tui {
 		System.out.println("digite ID da loja p/a favoritar: ");
 		Long idLoja = sc.nextLong();
 
-		Loja idLoja = Scanner.nextLong();
+		sc.nextLine();
 
-		scanner.nextLine();
 		Usuario usuario = App.getInstance().usuarioLogado;
 
 		if (usuario != null) {
