@@ -1,5 +1,11 @@
 package org.cityShop.app;
 
+import java.io.Console;
+import java.io.InputStream;
+import java.lang.reflect.Executable;
+
+import com.sun.source.doctree.SystemPropertyTree;
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -7,6 +13,7 @@ public class Main {
 		// Obter as instâncias únicas de App e Database
 
 		App app = App.getInstance();
+
 		Database database = Database.getInstance();
 
 		// Chamada de teste
@@ -22,6 +29,8 @@ public class Main {
 		Tui.clearTerminal();
 
 		// Exibir o menu 
+
+		Console console = System.console();
 
 		tui.mainMenu();
 	}

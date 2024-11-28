@@ -87,9 +87,29 @@ public class TabelaPreco {
 		return json;
 	}
 
-	public void addProduto(Produto produto){
+	public void addProduto(Produto produto, Double precoOriginal){
 
-		//o preco vai ser aplicado com base no modificador da tabela
+		ItemProduto prod = new ItemProduto();
+
+		prod.idProduto = produto.id;
+
+		prod.preco = precoOriginal * this.modificador;
+
+		this.produtos.add(prod);
+
+	}
+
+	public void removeProduto(Long idProduto){
+
+		for (ItemProduto item : this.produtos){
+
+			if (item.idProduto == idProduto){
+
+				this.produtos.remove(item);
+				
+			}
+		}
+
 	}
 
 	

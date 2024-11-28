@@ -77,7 +77,7 @@ public class Produto
 		return json;
 	}
 
-public Double getPreco(){
+	public Double getPreco(){
 
 		Loja loja = Database.getInstance().getLoja(this.idLoja);
 
@@ -89,7 +89,7 @@ public Double getPreco(){
 
 				return tPreco.produtos.get(i).preco;
 			}
-			
+
 		}
 
 		return null;
