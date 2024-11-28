@@ -96,4 +96,9 @@ public class Produto
 
 	}
 
+	public String getNome(){
+
+		return this.descricao.nome;
+		
+	}
 }

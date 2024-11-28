@@ -3,7 +3,7 @@ package org.cityShop.app;
 import org.cityShop.usuario.*;
 import org.cityShop.loja.Loja;
 import org.cityShop.produto.*;
-import org.cityShop.database.Database;
+import org.cityShop.app.Database;
 
 public class App {
 
@@ -37,7 +37,7 @@ public class App {
 	
     public Boolean login(String nomeUsuario, String senha) {
         
-        if (usuarioLogado != null && usuarioLogado.getNome().equals(nomeUsuario)) {
+        if (usuarioLogado != null && usuarioLogado.nome.equals(nomeUsuario)) {
             System.out.println("Logado com sucesso!");
             return true;
         }
@@ -55,7 +55,7 @@ public class App {
     // Listar produtos
     public Boolean listarProdutos() {
         Database database = Database.getInstance();
-        Produto[] produtos = database.querryProdutos();
+        Produto[] produtos = database.querryProduto();
 
         if (produtos.length == 0) {
             System.out.println("Nenhum produto cadastrado ainda :(");
@@ -71,14 +71,14 @@ public class App {
     // Listar lojas
     public Boolean listarLojas() {
         Database database = Database.getInstance();
-        Loja[] lojas = database.querryLojas();
+        Loja[] lojas = database.querryLoja();
 
         if (lojas.length == 0) {
             System.out.println("Nenhuma loja cadastrada ainda :(");
             return false;
         } else {
             for (Loja loja : lojas) {
-                System.out.println("Loja: " + loja.getNome());
+                System.out.println("Loja: " + loja.nome);
             }
             return true;
         }
@@ -87,13 +87,13 @@ public class App {
     // Listar favoritos
     public Boolean listarFavoritos() {
         if (usuarioLogado != null) {
-            System.out.println("Favoritos de: " + usuarioLogado.getNome() + ":");
+            System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
 
             boolean encontrouLojaFavorita = false;
             boolean encontrouProdutoFavorito = false;
 
             System.out.println("\n--- Lojas Favoritas ---");
-            for (Favoritavel favorito : usuarioLogado.getFavoritos()) {
+            for (Favoritavel favorito : usuarioLogado.favoritos) {
                 if (favorito.getType() == FavTypes.LOJA) {
                     System.out.println(favorito.toJSON());
                     encontrouLojaFavorita = true;
@@ -105,7 +105,7 @@ public class App {
             }
 
             System.out.println("\n--- Produtos Favoritos ---");
-            for (Favoritavel favorito : usuarioLogado.getFavoritos()) {
+            for (Favoritavel favorito : usuarioLogado.favoritos) {
                 if (favorito.getType() == FavTypes.PRODUTO) {
                     System.out.println(favorito.toJSON());
                     encontrouProdutoFavorito = true;
@@ -126,8 +126,7 @@ public class App {
     // Favoritar loja
     public Boolean favoritarLoja(Long idLoja) {
         if (usuarioLogado != null) {
-            FavoritoLoja favorito = new FavoritoLoja(idLoja, usuarioLogado.getId());
-            usuarioLogado.addFavorito(favorito);
+            usuarioLogado.adicionarFavorito(idLoja, FavTypes.LOJA);
             System.out.println("Loja favoritada com sucesso!");
             return true;
         } else {
@@ -139,8 +138,7 @@ public class App {
     // Favoritar produto
     public Boolean favoritarProduto(Long idProduto) {
         if (usuarioLogado != null) {
-            FavoritoProduto favorito = new FavoritoProduto(idProduto, usuarioLogado.getId());
-            usuarioLogado.addFavorito(favorito);
+            usuarioLogado.adicionarFavorito(idProduto, FavTypes.PRODUTO);
             System.out.println("Produto favoritado com sucesso!");
             return true;
         } else {
@@ -186,7 +184,7 @@ public class App {
     // Acessar loja
     public Boolean acessarLoja() {
         if (loadedShop != null) {
-            System.out.println("Acessando a loja: " + loadedShop.getNome());
+            System.out.println("Acessando a loja: " + loadedShop.nome);
             return true;
         }
         System.out.println("Nenhuma loja carregada.");
