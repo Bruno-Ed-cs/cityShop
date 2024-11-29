@@ -8,20 +8,30 @@ public class Tui {
 
     private static Scanner sc = new Scanner(System.in);
 
+    public void mainMenu(App app) {
+
+    System.out.println("Bem-vindo ao CityShop! :)");
+    System.out.println("Escolha uma opção:");
+    System.out.println("1 - Login");
+    System.out.println("2 - Listar Lojas");
+    System.out.println("3 - Listar Produtos");
+    System.out.println("4 - Listar Favoritos");
+    System.out.println("5 - Favoritar Loja");
+    System.out.println("6 - Favoritar Produto");
+    System.out.println("7 - Sair");
+
+    }
+
+        public int getChoice() {
+            
+            int choice = sc.nextInt();
+            sc. nextLine();
+        }
+
     public void mainMenu() {
         boolean running = true;
 
-        while (running) {
-            System.out.println("Bem-vindo ao CityShop! :)");
-            System.out.println("Escolha uma opção:");
-            System.out.println("1 - Login");
-            System.out.println("2 - Listar Lojas");
-            System.out.println("3 - Listar Produtos");
-            System.out.println("4 - Listar Favoritos");
-            System.out.println("5 - Favoritar Loja");
-            System.out.println("6 - Favoritar Produto");
-            System.out.println("7 - Sair");
-
+          
             int choice = sc.nextInt();
 			sc.nextLine();
 
@@ -65,7 +75,7 @@ public class Tui {
     private void loginMenu() {
 
         System.out.println("Digite o nome do usuario: ");
-        sc.nextLine();  // Consume the newline character
+        sc.nextLine();  
         String nomeUsuario = sc.nextLine();
 
         System.out.println("Digite a senha: ");
@@ -194,3 +204,4 @@ public class Tui {
         System.out.flush();
     }
 }
+
