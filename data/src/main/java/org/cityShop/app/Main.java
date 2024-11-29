@@ -15,11 +15,7 @@ public class Main {
         App app = App.getInstance();
         Database database = Database.getInstance();
 
-        // Chamada de teste no banco de dados
-        //database.teste();
         Boolean running = true;
-
-        // Instanciar a interface com o usuário (Tui)
 
         while (running){
 
@@ -44,13 +40,8 @@ public class Main {
                     running = false;
                 }
 
-                default -> System.out.println("NAO TEM ESSA OPÇAO");
             }
 
-            // Limpar o terminal antes de exibir o menu
-
-
-            // Exibir o menu 
         }
 
 

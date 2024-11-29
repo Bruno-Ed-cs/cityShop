@@ -52,7 +52,7 @@ public class Tui {
                 }
             } catch (Exception e) {
 
-                System.out.println("Entrada inválida. Por favor, insira um número.");
+                System.out.println("VOCE NUM TA VENDO QUE SO TEM 7 OPÇÕES SEU ABESTALHADO >:(");
                 sc.nextLine();  
                 
             }
@@ -126,7 +126,10 @@ public class Tui {
     }
 
     private static  void favoritarProduto() {
-        // o usuario normal nao deveria se preocupar com ids, isso deve ser aplicado quando o usuario estiver em uma pagina de loja ou produto e selecionar uma opcao de favoritar
+
+        // o usuario normal nao deveria se preocupar com ids, isso deve ser aplicado quando o usuario estiver em
+        // uma pagina de loja ou produto e selecionar uma opcao de favoritar
+
         System.out.println("Digite o ID do produto para favoritar: ");
 
         Long idProduto = null;
