@@ -25,12 +25,39 @@ public class Tui {
 
     }
 
-        public int getChoice() {
+    public int getChoice() {
+        int choice = -1;
+        boolean validChoice = false;
+        
+        while (!validChoice) {
+
+            System.out.print("Digite sua escolha: ");
             
-            int choice = sc.nextInt();
-            sc.nextLine();
-            return choice;
+            try {
+
+                choice = sc.nextInt();  
+                sc.nextLine(); 
+                
+                if (choice >= 1 && choice <= 7) {
+
+                    validChoice = true;  
+
+                } else {
+
+                    System.out.println("Opção inválida. Por favor, escolha uma opção entre 1 e 7.");
+
+                }
+            } catch (Exception e) {
+
+                System.out.println("Entrada inválida. Por favor, insira um número.");
+                sc.nextLine();  
+                
+            }
         }
+        
+        return choice;
+    }
+    
 
         public void login(App app){
 

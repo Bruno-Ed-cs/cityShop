@@ -6,63 +6,40 @@ import java.lang.reflect.Executable;
 
 import com.sun.source.doctree.SystemPropertyTree;
 
+
 public class Main {
-	
-	public static void main(String[] args) {
 
-		// Obter as instâncias únicas de App e Database
+    public static void main(String[] args) {
 
-		App app = App.getInstance();
+        // Obter as instâncias únicas de App e Database
+        App app = App.getInstance();
+        Database database = Database.getInstance();
 
-		Database database = Database.getInstance();
+        // Chamada de teste no banco de dados
+        database.teste();
 
-		// Chamada de teste
-		
-		database.teste();
+        // Instanciar a interface com o usuário (Tui)
+        Tui tui = new Tui();
 
-		// Instanciar a interface com o usuário (Tui)
+        boolean running = true;
 
-		Tui tui = new Tui();
+        while (running) {
+            Tui.clearTerminal(); // Limpa o terminal antes de exibir o menu
 
-		boolean running = true;
+            tui.mainMenu(app); // Exibe o menu principal
 
-		while (running) {
+            int choice = tui.getChoice(); // Obtém a escolha do usuário
 
-			Tui.clearTerminal();
-
-			tui.mainMenu(app);
-
-			int choice = tui.getChoice();
-
-			switch (choice) {
-
-				case 1 -> tui.login(app);
-				case 2 -> tui.listarLojas(app);
-				case 3 -> tui.listarProdutos(app);
-				case 4 -> tui.listarFavoritos(app);
-				case 5 -> tui.favoritarLoja(app);
-				case 6 -> tui.favoritarProduto(app);
-				case 7 -> {
-
-					System.out.println("Saindo...");
-
-					running = false;
-				}
-
-				default -> System.out.println("NAO TEM ESSA OPÇAO")
-		}
-
-		// Limpar o terminal antes de exibir o menu
-
-		Tui.clearTerminal();
-
-		// Exibir o menu 
-
-		Console console = System.console();
-
-		tui.mainMenu();
-	}
-}
-
-
+            switch (choice) {
+                case 1 -> tui.login(app); // Realiza login
+                case 2 -> tui.listarLojas(app); // Lista lojas
+                case 3 -> tui.listarProdutos(app); // Lista produtos
+                case 4 -> tui.listarFavoritos(app); // Lista favoritos
+                case 5 -> tui.favoritarLoja(app); // Favorita uma loja
+                case 6 -> tui.favoritarProduto(app); // Favorita um produto
+                case 7 -> running = false; // Encerra o loop
+                default -> {} // Não precisa mais de código para tratar opção inválida aqui
+            }
+        }
+    }
 }
