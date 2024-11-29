@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.lang.reflect.Executable;
 
 import javax.sound.sampled.BooleanControl;
+import javax.swing.text.AbstractDocument.BranchElement;
 
 import com.sun.source.doctree.SystemPropertyTree;
 
@@ -44,7 +45,7 @@ public class Main {
                 case 6 -> Tui.favoritarProduto(app);
 
                 case 0 -> {
-
+                    return;
                 } 
 
             }
