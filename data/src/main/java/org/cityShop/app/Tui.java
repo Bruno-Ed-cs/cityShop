@@ -49,6 +49,56 @@ public class Tui {
 
         }
 
+        public void favoritarLoja(App app) {
+
+            System.out.println("digite o id da loja: ");
+            Long idLoja = sc.nextLong();
+
+            try {
+                
+            Long idLoja = sc.nextLong();
+            sc.nextLine();
+
+            if(app.favoritarLoja(idLoja) ) {
+
+                System.out.println("loja favoritada com sucesso :)");
+            } else {
+
+                System.out.println("falha ao favoritar loja :(");
+            }
+
+            } catch (Exception e) {
+
+                System.out.println("Entrada inválida. Tente novamente.");
+                sc.nextLine();
+            }
+        }
+
+        public void favoritarProduto(App app) {
+
+            System.out.println("digite o id do produto: ");
+            Long idProduto = sc.nextLong();
+
+            try {
+                
+            Long idProduto = sc.nextLong();
+            sc.nextLine();
+
+            if(app.favoritarProduto(idProduto) ) {
+
+                System.out.println("produto favoritado com sucesso :)");
+            } else {
+
+                System.out.println("falha ao favoritar produto :(");
+            }
+
+            } catch (Exception e) {
+
+                System.out.println("Entrada inválida. Tente novamente.");
+                sc.nextLine();
+            }
+        }
+
     public void mainMenu() {
         boolean running = true;
 
