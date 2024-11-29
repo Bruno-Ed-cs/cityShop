@@ -151,7 +151,16 @@ public class Loja
 
 	public TabelaPreco getBaseTabelaPreco(){
 
-		return null;
+		TabelaPreco tabela = tabelasPreco.get(0);
+
+		if (tabela == null){
+
+			return null;
+		} else {
+
+			return tabela;
+		}
+
 	}
 
 	public TabelaPreco getActiveTabelaPreco(){
@@ -159,10 +168,31 @@ public class Loja
 		return null;
 	}
 
-	public Boolean addProduto(Produto produto){
+	public void addProduto(Produto produto, Double precoOriginal){
 
+		Database database = Database.getInstance();
 
-		return null;
+		database.addProduto(produto);
+
+		for (TabelaPreco tabela : this.tabelasPreco){
+
+			tabela.addProduto(produto, precoOriginal);
+		}
+
 	}
+
+	public void removeProduto(Produto produto, Double precoOriginal){
+
+		Database database = Database.getInstance();
+
+		database.removeProduto(produto.id);
+
+		for (TabelaPreco tabela : this.tabelasPreco){
+
+			tabela.removeProduto(produto.id);
+		}
+
+	}
+
 	
 }

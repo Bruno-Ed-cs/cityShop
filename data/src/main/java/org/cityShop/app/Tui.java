@@ -1,4 +1,5 @@
 package org.cityShop.app;
+import java.io.*;
 
 import java.util.Scanner;
 import org.cityShop.usuario.Favoritavel;
@@ -33,7 +34,7 @@ public class Tui {
 
           
             int choice = sc.nextInt();
-			sc.nextLine();
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -203,5 +204,16 @@ public class Tui {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+	public static void hold(){
+
+		System.out.println("Pressione qualquer tecla");
+
+		try {
+			System.in.read();
+		} catch (Exception e){ 
+			System.out.println(e);
+		}
+	}
+
 }
 
