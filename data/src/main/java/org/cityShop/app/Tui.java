@@ -164,7 +164,10 @@ public class Tui {
 
     private static  void favoritarLoja() {
 
-        // o usuario normal nao deveria se preocupar com ids, isso deve ser aplicado quando o usuario estiver em uma pagina de loja ou produto e selecionar uma opcao de favoritar
+        // o usuario normal nao deveria se preocupar com ids, isso
+        // deve ser aplicado quando o usuario estiver em uma pagina de loja ou produto e selecionar
+        // uma opcao de favoritar
+        
         System.out.println("Digite o ID da loja para favoritar: ");
 
         Long idLoja = null;

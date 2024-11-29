@@ -33,14 +33,10 @@ public class Main {
                 case 4 -> Tui.listarFavoritos(app);
                 case 5 -> Tui.favoritarLoja(app);
                 case 6 -> Tui.favoritarProduto(app);
-                case 7 -> {
+                case 7 ->  running = false;
+                
 
-                    System.out.println("Saindo...");
-
-                    running = false;
-                }
-
-            }
+            } 
 
         }
 
