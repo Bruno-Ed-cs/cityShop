@@ -26,7 +26,27 @@ public class Tui {
         public int getChoice() {
             
             int choice = sc.nextInt();
-            sc. nextLine();
+            sc.nextLine();
+            return choice;
+        }
+
+        public void login(App app){
+
+        System.out.println("digite o nome do usuario: ");
+        String nomeUsuario = sc.nextLine();
+
+        System.out.println("digite a senha: ");
+        String senha = sc.nextLine();
+
+        if(app.login (nomeUsuario, senha)) {
+
+            System.out.println("logado com sucesso :D")
+        } else {
+
+            System.out.println("falha ao logar :(");
+        }
+
+
         }
 
     public void mainMenu() {
