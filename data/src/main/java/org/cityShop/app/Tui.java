@@ -6,7 +6,6 @@ import java.util.Scanner;
 import org.cityShop.usuario.Favoritavel;
 import org.cityShop.usuario.Usuario;
 
-import sun.swing.LightweightContent;
 
 public class Tui {
 
@@ -82,7 +81,6 @@ public class Tui {
         public void favoritarLoja(App app) {
 
             System.out.println("digite o id da loja: ");
-            Long idLoja = sc.nextLong();
 
             try {
                 
@@ -108,7 +106,6 @@ public class Tui {
         public void favoritarProduto(App app) {
 
             System.out.println("digite o id do produto: ");
-            Long idProduto = sc.nextLong();
 
             try {
                 
