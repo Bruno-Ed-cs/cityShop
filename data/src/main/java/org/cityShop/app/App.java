@@ -53,18 +53,36 @@ public class App {
     }
 
     // Listar produtos
-    public Boolean listarProdutos() {
+    public void listarProdutos() {
         Database database = Database.getInstance();
         Produto[] produtos = database.querryProduto();
 
-        if (produtos.length == 0) {
-            System.out.println("Nenhum produto cadastrado ainda :(");
-            return false;
-        } else {
-            for (Produto produto : produtos) {
-                System.out.println("Produto: " + produto.getNome());
+        Boolean running = true;
+
+        while (running){
+
+
+            if (produtos.length == 0) {
+                System.out.println("Nenhum produto cadastrado ainda :(");
+                
+            } else {
+
+                Tui.listarProdutos(produtos);
+                
             }
-            return true;
+
+            int opt = Tui.getChoice(produtos.length, 0);
+
+            if (opt == 0){
+
+                break;
+            } else {
+
+                loadedProduto = produtos[opt -1];
+                this.acessarProduto();
+            }
+
+
         }
     }
 
@@ -198,12 +216,34 @@ public class App {
     }
 
     // Acessar produto
-    public Boolean acessarProduto() {
-        if (loadedProduto != null) {
-            System.out.println("Acessando o produto: " + loadedProduto.getNome());
-            return true;
+    public void acessarProduto() {
+
+        if (loadedProduto == null) {
+
+            System.out.println("Nenhum produto carregado.");
         }
-        System.out.println("Nenhum produto carregado.");
-        return false;
+
+        Boolean running = true;
+
+        while (running){
+
+            Tui.menuProduto(this.loadedProduto);
+
+            int opt = Tui.getChoice(2, 0);
+
+            if (opt == 0){
+
+                break;
+            }
+
+            switch (opt){
+
+                case 1 -> this.favoritarProduto(loadedProduto.id) ;
+
+            }
+
+        }
+
+
     }
 }

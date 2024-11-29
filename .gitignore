@@ -18,5 +18,6 @@ app/build
 ./data/src/resources/active.json
 /app/bin/
 /data/bin/
+/.settings/
 
 

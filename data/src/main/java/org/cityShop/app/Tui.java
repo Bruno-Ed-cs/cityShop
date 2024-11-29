@@ -3,6 +3,7 @@ import java.io.*;
 
 import java.util.Scanner;
 
+import org.cityShop.produto.Produto;
 import org.cityShop.usuario.Favoritavel;
 import org.cityShop.usuario.Usuario;
 
@@ -24,11 +25,11 @@ public class Tui {
         System.out.println("4 - Listar Favoritos");
         System.out.println("5 - Favoritar Loja");
         System.out.println("6 - Favoritar Produto");
-        System.out.println("7 - Sair");
+        System.out.println("0 - Sair");
 
     }
 
-    public static int getChoice() {
+    public static int getChoice(int max, int min) {
         int choice = -1;
         boolean validChoice = false;
         
@@ -41,13 +42,13 @@ public class Tui {
                 choice = sc.nextInt();  
                 sc.nextLine(); 
                 
-                if (choice >= 1 && choice <= 7) {
+                if (choice >= min && choice <= max) {
 
                     validChoice = true;  
 
                 } else {
 
-                    System.out.println("Opção inválida. Por favor, escolha uma opção entre 1 e 7.");
+                    System.out.println("Opção inválida. Por favor, escolha uma opção entre " + min +" e " + max);
 
                 }
             } catch (Exception e) {
@@ -90,18 +91,6 @@ public class Tui {
         if (!sucesso) {
 
             System.out.println("Nenhuma loja cadastrada ainda :(");
-        }
-    }
-
-    private static void listarProdutos() {
-
-        App app = App.getInstance();
-
-        Boolean sucesso = app.listarProdutos();
-
-        if (!sucesso) {
-
-            System.out.println("Nenhum produto cadastrado ainda :(");
         }
     }
 
@@ -207,13 +196,37 @@ public class Tui {
     }
 
 
-    public static void listarProdutos(App app) {
+    public static void listarProdutos(Produto[] produtos) {
 
-        if(!app.listarProdutos()) {
+        int count = 1;
+
+        if(produtos == null) {
 
             System.out.println("falha ao listar produtos :(");
+            return;
 
         }
+
+        Tui.clearTerminal();
+        System.out.println("=====================Produtos====================");
+
+        for (Produto prod : produtos){
+
+            System.out.println();
+            System.out.println("Opiton => " + count);
+            System.out.println(prod.getNome());
+            System.out.println(prod.descricao.corpo);
+            System.out.println(prod.categorias);
+            System.out.println("R$ " + prod.getPreco());
+            System.out.println("Favoritos: " + prod.favoritadas);
+
+            count++;
+
+        }
+
+        System.out.println();
+        System.out.println("< 0 - Back");
+        return; 
 
     }
 
@@ -274,6 +287,34 @@ public class Tui {
             System.out.println("Entrada inválida. Tente novamente.");
             sc.nextLine();
         }
+    }
+
+    public static void menuProduto(Produto produto){
+
+        Tui.clearTerminal();
+
+        System.out.println();
+        System.out.println("Nome: " + produto.getNome());
+        System.out.println();
+        System.out.println("Descrição : " + produto.descricao.corpo);
+        System.out.println("Tags: " + produto.categorias);
+        System.out.println("Favoritos: " + produto.favoritadas);
+        System.out.println("R$ " + produto.getPreco());
+        System.out.println();
+        System.out.println("Capacidade: " + produto.estoque.capacidade);
+        System.out.println("Quandtidade disponível: " + produto.estoque.quantidade);
+        System.out.println();
+
+        System.out.println("Opções");
+        System.out.println("1 => Favoritar");
+        System.out.println("2 => Reservar");
+
+        System.out.println();
+
+        System.out.println("0 => Voltar");
+
+
+
     }
 
 

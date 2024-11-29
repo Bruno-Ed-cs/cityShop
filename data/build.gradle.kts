@@ -43,6 +43,8 @@ tasks.jar {
 
 tasks.named<JavaExec>("run") {
 
+    standardInput = System.`in`
+
     doFirst{
         val activeDB = file("./src/resources/active.json");
 
@@ -57,7 +59,6 @@ tasks.named<JavaExec>("run") {
 
     }
 
-    standardInput = System.`in`
 
 }
 
