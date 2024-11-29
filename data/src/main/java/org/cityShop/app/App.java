@@ -87,6 +87,8 @@ public class App {
     // Listar favoritos
     public Boolean listarFavoritos() {
         if (usuarioLogado != null) {
+            Tui.clearTerminal();
+
             System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
 
             boolean encontrouLojaFavorita = false;
@@ -116,9 +118,13 @@ public class App {
                 System.out.println("Nenhum produto favorito ainda :(");
             }
 
+            Tui.hold();
+
             return true;
         } else {
+            Tui.clearTerminal();
             System.out.println("Você precisa logar para ver seus favoritos.");
+            Tui.hold();
             return false;
         }
     }

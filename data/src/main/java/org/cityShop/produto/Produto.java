@@ -81,7 +81,7 @@ public class Produto
 
 		Loja loja = Database.getInstance().getLoja(this.idLoja);
 
-		TabelaPreco tPreco = loja.tabelasPreco.getLast();
+		TabelaPreco tPreco = loja.getActiveTabelaPreco();
 
 		for (int i = 0; i < tPreco.produtos.size(); i++) {
 

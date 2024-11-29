@@ -16,32 +16,45 @@ public class Main {
         Database database = Database.getInstance();
 
         // Chamada de teste no banco de dados
-        database.teste();
+        //database.teste();
+        Boolean running = true;
 
         // Instanciar a interface com o usuário (Tui)
-        Tui tui = new Tui();
 
-        boolean running = true;
+        while (running){
 
-        while (running) {
+            Tui.clearTerminal();
 
-            Tui.clearTerminal(); 
+            Tui.mainMenu();
 
-            tui.mainMenu(app); 
-
-            int choice = tui.getChoice(); 
+            int choice = Tui.getChoice();
 
             switch (choice) {
 
-                case 1 -> tui.login(app); // Realiza login
-                case 2 -> tui.listarLojas(app); // Lista lojas
-                case 3 -> tui.listarProdutos(app); // Lista produtos
-                case 4 -> tui.listarFavoritos(app); // Lista favoritos
-                case 5 -> tui.favoritarLoja(app); // Favorita uma loja
-                case 6 -> tui.favoritarProduto(app); // Favorita um produto
-                case 7 -> running = false; // Encerra o loop
-			
+                case 1 -> Tui.login(app);
+                case 2 -> Tui.listarLojas(app);
+                case 3 -> Tui.listarProdutos(app);
+                case 4 -> Tui.listarFavoritos(app);
+                case 5 -> Tui.favoritarLoja(app);
+                case 6 -> Tui.favoritarProduto(app);
+                case 7 -> {
+
+                    System.out.println("Saindo...");
+
+                    running = false;
+                }
+
+                default -> System.out.println("NAO TEM ESSA OPÇAO");
             }
+
+            // Limpar o terminal antes de exibir o menu
+
+
+            // Exibir o menu 
         }
+
+
     }
 }
+
+

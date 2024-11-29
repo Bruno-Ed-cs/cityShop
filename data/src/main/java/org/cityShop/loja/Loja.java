@@ -6,7 +6,14 @@ import org.json.JSONObject;
 import org.cityShop.app.Database;
 import org.cityShop.produto.*;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+
+import javax.xml.crypto.Data;
+
+//TODO
+//criar os metodos de controle de reservas
 
 public class Loja 
 {
@@ -165,14 +172,27 @@ public class Loja
 
 	public TabelaPreco getActiveTabelaPreco(){
 
-		return null;
+		TabelaPreco tabela = this.tabelasPreco.get(0);
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+
+		for (int i = this.tabelasPreco.size() -1; i >= 0; i--){
+
+			TabelaPreco current = this.tabelasPreco.get(i);
+
+			if (current.validade.compareTo(time) < 0){
+
+				continue;
+			} else {
+
+				tabela = current;
+				break;
+			}
+		}
+
+		return tabela;
 	}
 
 	public void addProduto(Produto produto, Double precoOriginal){
-
-		Database database = Database.getInstance();
-
-		database.addProduto(produto);
 
 		for (TabelaPreco tabela : this.tabelasPreco){
 
@@ -183,14 +203,26 @@ public class Loja
 
 	public void removeProduto(Produto produto, Double precoOriginal){
 
-		Database database = Database.getInstance();
-
-		database.removeProduto(produto.id);
-
 		for (TabelaPreco tabela : this.tabelasPreco){
 
 			tabela.removeProduto(produto.id);
 		}
+
+	}
+
+	public Produto[] getProdutos(){
+
+		Produto[] produtos = new Produto[this.getBaseTabelaPreco().produtos.size()];
+		Database database = Database.getInstance();
+		int index = 0;
+
+		for (ItemProduto item : this.getBaseTabelaPreco().produtos){
+
+			produtos[index] = database.getProduto(item.idProduto);
+			index++;
+		}
+
+		return produtos;
 
 	}
 

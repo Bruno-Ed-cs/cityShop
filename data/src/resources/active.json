@@ -1,145 +1,155 @@
 {
-    "Usuarios": [
+    "Produtos" : [
         {
-            "cpf": "223.334.551.90",
-            "nome": "taguamndapiano",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
-            "id": 5,
-            "lojista": false
-        },
-        {
-            "cpf": "223.334.551.90",
-            "nome": "malaquitas",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
-            "id": 4,
-            "lojista": false
-        }
-    ],
-    "Lojas": [
-        {
-            "aberto": true,
-            "dono": 1,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "latitude": "5°12'29.0\"S",
-                "longitude": "37°21'17.5\"W"
+            "id": 1,
+            "idLoja": 1,
+            "descricao": {
+                "nome": "Hotdog",
+                "corpo": "O favorito dos ouriços"
             },
-            "reservas": [],
-            "avaliacoes": [],
-            "tabelasPreco": [{
-                "hasDesconto": false,
-                "produtos": [{
-                    "preco": 3.77,
-                    "idProduto": 1
-                }],
-                "modificador": 1,
-                "nome": "padrao",
-                "id": 746,
-                "criacao": "2024-11-21 19:07:34.324",
-                "validade": "3024-11-21 19:07:34.324"
-            }],
-            "nome": "influencer academy",
-            "favoritadas": 170,
-            "id": 50
-        },
-        {
-            "aberto": true,
-            "dono": 1,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "latitude": "5°12'29.0\"S",
-                "longitude": "37°21'17.5\"W"
-            },
-            "reservas": [],
-            "avaliacoes": [],
-            "tabelasPreco": [{
-                "hasDesconto": false,
-                "produtos": [{
-                    "preco": 3.77,
-                    "idProduto": 1
-                }],
-                "modificador": 1,
-                "nome": "padrao",
-                "id": 746,
-                "criacao": "2024-11-21 19:07:34.324",
-                "validade": "3024-11-21 19:07:34.324"
-            }],
-            "nome": "advocacia",
-            "favoritadas": 170,
-            "id": 30
-        }
-    ],
-    "Produtos": [
-        {
+            "categorias": ["comida", "referencia"],
+            "favoritadas": 20,
             "estoque": {
                 "capacidade": 50,
                 "quantidade": 40
+            }
+
+        },
+        {
+
+            "id": 2,
+            "idLoja": 2,
+            "descricao": {
+                "nome": "Penicilina",
+                "corpo": "O favorito das bacterias"
             },
-            "idLoja": 1,
-            "categorias": [
-                "comida",
-                "referencia"
-            ],
-            "favoritadas": 20,
+            "categorias": ["medicamento", "infecção"],
+            "favoritadas": 10,
+            "estoque": {
+                "capacidade": 400,
+                "quantidade": 12
+            }
+        },
+        {
+
+            "id": 3,
+            "idLoja": 2,
+            "descricao": {
+                "nome": "Viagra",
+                "corpo": "A pipa vai subir"
+            },
+            "categorias": ["medicamento", "sex"],
+            "favoritadas": 1, 
+            "estoque": {
+                "capacidade": 70,
+                "quantidade": 30
+            }
+
+        }
+ 
+    ],
+
+    "Lojas" : [
+
+        {
+
+            "nome": "vendinha de cachorro quente",
+            "dono": 1,
             "id": 1,
-            "descricao": {
-                "corpo": "O favorito dos ouriços",
-                "nome": "Hotdog"
-            }
-        },
-        {
-            "estoque": {
-                "capacidade": 70,
-                "quantidade": 30
+            "aberto": true,
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "longitude": "37°21'17.5\"W",
+                "latitude": "5°12'29.0\"S"
             },
-            "idLoja": 2,
-            "categorias": [
-                "medicamento",
-                "sex"
+            "reservas": [],
+            "tabelasPreco": [
+                {
+                    "id": 746,
+                    "nome": "padrao",
+                    "criacao": "2024-11-21 19:07:34.324",
+                    "validade": "3024-11-21 19:07:34.324",
+                    "modificador": 1.0,
+                    "hasDesconto": false,
+
+                    "produtos": [{"idProduto": 1, "preco": 3.77}]
+
+
+                }
             ],
-            "favoritadas": 1,
-            "id": 1000,
-            "descricao": {
-                "corpo": "O favorito de Kelry",
-                "nome": "Lolita"
-            }
+            "avaliacoes": [],
+            "favoritadas": 170
+
         },
         {
-            "estoque": {
-                "capacidade": 20,
-                "quantidade": 13
+
+            "nome": "Boticario vigario",
+            "dono": 1,
+            "id": 2,
+            "aberto": true,
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "longitude": "37°21'17.5\"W",
+                "latitude": "5°12'29.0\"S"
             },
-            "idLoja": 1,
-            "categorias": ["comida"],
-            "favoritadas": 22,
-            "id": 44,
-            "descricao": {
-                "corpo": "saborososssss",
-                "nome": "salsicha"
-            }
-        },
-        {
-            "estoque": {
-                "capacidade": 70,
-                "quantidade": 30
-            },
-            "idLoja": 2,
-            "categorias": [
-                "medicamento",
-                "sex"
+            "reservas": [
+                {
+                    "qtdProduto": 5,
+                    "precoFinal": 120.50,
+                    "cliente": 1,
+                    "produto": 1,
+                    "dataReserva": "2024-11-22 10:00:00",
+                    "expiracaoHora": "2024-11-22 14:00:00",
+                    "concluido": false,
+                    "pego": false
+                }
             ],
-            "favoritadas": 1,
-            "id": 90,
-            "descricao": {
-                "corpo": "A pipa vai subir",
-                "nome": "Mouse gamer com regb e fpsboost"
-            }
+            "tabelasPreco": [
+                {
+                    "id": 34,
+                    "nome": "padrao",
+                    "criacao": "2024-11-21 19:07:34.324",
+                    "validade": "2024-11-22 14:00:00",
+                    "modificador": 1.0,
+                    "hasDesconto": false,
+
+                    "produtos": [{"idProduto": 2, "preco": 200.50}, {"idProduto": 3, "preco": 70.50 }]
+
+
+                }
+            ],
+            "avaliacoes":[
+                {
+                    "nota": 5,
+                    "corpo": "Otimo produto",
+                    "idUsuario": 1;
+                }
+            ],
+            "favoritadas": 89
+
+
+        }
+
+    ],
+
+    "Usuarios" : [
+        {
+            "nome": "Astoufo",
+            "cpf" : "223.334.551.90",
+            "id" : 2,
+            "lojista": false,
+            "favoritos": [{"id": 1, "type": "PRODUTO"}]
+        },
+
+        {
+            "nome": "seu ze",
+            "cpf" : "122.334.551.90",
+            "id" : 1,
+            "lojista": true,
+            "favoritos": []
         }
     ]
+
+
+
 }
