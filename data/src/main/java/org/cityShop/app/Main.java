@@ -24,13 +24,15 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            Tui.clearTerminal(); // Limpa o terminal antes de exibir o menu
 
-            tui.mainMenu(app); // Exibe o menu principal
+            Tui.clearTerminal(); 
 
-            int choice = tui.getChoice(); // Obtém a escolha do usuário
+            tui.mainMenu(app); 
+
+            int choice = tui.getChoice(); 
 
             switch (choice) {
+
                 case 1 -> tui.login(app); // Realiza login
                 case 2 -> tui.listarLojas(app); // Lista lojas
                 case 3 -> tui.listarProdutos(app); // Lista produtos
@@ -38,7 +40,7 @@ public class Main {
                 case 5 -> tui.favoritarLoja(app); // Favorita uma loja
                 case 6 -> tui.favoritarProduto(app); // Favorita um produto
                 case 7 -> running = false; // Encerra o loop
-                default -> {} // Não precisa mais de código para tratar opção inválida aqui
+			
             }
         }
     }
