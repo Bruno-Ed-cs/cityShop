@@ -45,7 +45,8 @@ public class Main {
                 case 6 -> Tui.favoritarProduto(app);
 
                 case 0 -> {
-                    return;
+                    System.out.println("Saindo............................................");
+                    running = false;
                 } 
 
             }
