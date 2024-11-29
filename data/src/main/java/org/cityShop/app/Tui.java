@@ -49,6 +49,7 @@ public class Tui {
 
             System.out.println("falha ao logar :(");
         }
+ }
 
         public void listarLojas(App app) {
             
@@ -57,15 +58,25 @@ public class Tui {
                 System.out.println("falha ao listar lojas :(");
         }
     }
+    
 
         public void listarProdutos(App app) {
 
             if(!app.listarProdutos()) {
 
                 System.out.println("falha ao listar produtos :(");
-                
+
             }
 
+        }
+
+        public void listarFavoritos(App app) {
+
+            if(!app.listarFavoritos()) {
+
+                System.out.println("falha ao listar favoritos :(");
+
+            }
         }
 
         public void favoritarLoja(App app) {
@@ -126,19 +137,10 @@ public class Tui {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-	public static void hold(){
-
-		System.out.println("Pressione qualquer tecla");
-
-		try {
-			System.in.read();
-		} catch (Exception e){ 
-			System.out.println(e);
-		}
-	}
-
-
-
 
 }
+
+
+
+
 
