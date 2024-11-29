@@ -2,8 +2,11 @@ package org.cityShop.app;
 import java.io.*;
 
 import java.util.Scanner;
+
 import org.cityShop.usuario.Favoritavel;
 import org.cityShop.usuario.Usuario;
+
+import sun.swing.LightweightContent;
 
 public class Tui {
 
@@ -40,12 +43,28 @@ public class Tui {
 
         if(app.login (nomeUsuario, senha)) {
 
-            System.out.println("logado com sucesso :D")
+            System.out.println("logado com sucesso :D");
+
         } else {
 
             System.out.println("falha ao logar :(");
         }
 
+        public void listarLojas(App app) {
+            
+            if(!app.listarLojas()) {
+
+                System.out.println("falha ao listar lojas :(");
+        }
+    }
+
+        public void listarProdutos(App app) {
+
+            if(!app.listarProdutos()) {
+
+                System.out.println("falha ao listar produtos :(");
+                
+            }
 
         }
 
@@ -62,6 +81,7 @@ public class Tui {
             if(app.favoritarLoja(idLoja) ) {
 
                 System.out.println("loja favoritada com sucesso :)");
+
             } else {
 
                 System.out.println("falha ao favoritar loja :(");
@@ -87,6 +107,7 @@ public class Tui {
             if(app.favoritarProduto(idProduto) ) {
 
                 System.out.println("produto favoritado com sucesso :)");
+
             } else {
 
                 System.out.println("falha ao favoritar produto :(");
@@ -118,6 +139,6 @@ public class Tui {
 
 
 
-    
+
 }
 
