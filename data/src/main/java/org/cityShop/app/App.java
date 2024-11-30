@@ -58,30 +58,28 @@ public class App {
 
         Database database = Database.getInstance();
         Produto[] produtos = database.querryProduto();
+    
+        if (produtos.length == 0) {
 
+            System.out.println("Nenhum produto cadastrado ainda :(");
 
-            if (produtos.length == 0) {
+            return false;
+        }
+    
+        Tui.listarProdutos(produtos);  
+        int opt = Tui.getChoice(produtos.length, 0);
+    
+        if (opt == 0) {
 
-                System.out.println("Nenhum produto cadastrado ainda :(");
+            return false;
 
-                return false;
-                
-            } 
+        }
+    
+        loadedProduto = produtos[opt - 1];
 
-            Tui.listarProdutos(produtos);
-            int opt = Tui.getChoice(produtos.length, 0);
+        acessarProduto();  // Acessar o produto
 
-            if (opt == 0){
-
-                return false;
-
-            } 
-
-                loadedProduto = produtos[opt -1];
-
-                acessarProduto();
-
-                return true;
+        return true;
             
         
     }
@@ -115,63 +113,80 @@ public class App {
     }
 
     // Listar favoritos
+
     public Boolean listarFavoritos() {
-        if (usuarioLogado != null) {
+
+         if (usuarioLogado != null) {
+
             Tui.clearTerminal();
 
-            System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
+        System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
 
-            boolean encontrouLojaFavorita = false;
-            boolean encontrouProdutoFavorito = false;
+        boolean encontrouLojaFavorita = false;
+        boolean encontrouProdutoFavorito = false;
 
-            System.out.println("\n--- Lojas Favoritas ---");
-            for (Favoritavel favorito : usuarioLogado.favoritos) {
-                if (favorito.getType() == FavTypes.LOJA) {
-                    System.out.println(favorito.toJSON());
-                    encontrouLojaFavorita = true;
-                }
+        System.out.println("\n--- Lojas Favoritas ---");
+
+        for (Favoritavel favorito : usuarioLogado.favoritos) {
+
+            if (favorito.getType() == FavTypes.LOJA) {
+                System.out.println(favorito.toJSON());
+                encontrouLojaFavorita = true;
+
             }
-
-            if (!encontrouLojaFavorita) {
-                System.out.println("Nenhuma loja favorita ainda :(");
-            }
-
-            System.out.println("\n--- Produtos Favoritos ---");
-            for (Favoritavel favorito : usuarioLogado.favoritos) {
-                if (favorito.getType() == FavTypes.PRODUTO) {
-                    System.out.println(favorito.toJSON());
-                    encontrouProdutoFavorito = true;
-                }
-            }
-
-            if (!encontrouProdutoFavorito) {
-                System.out.println("Nenhum produto favorito ainda :(");
-            }
-
-            Tui.hold();
-
-            return true;
-        } else {
-            Tui.clearTerminal();
-            System.out.println("Você precisa logar para ver seus favoritos.");
-            Tui.hold();
-            return false;
         }
+
+        if (!encontrouLojaFavorita) {
+
+            System.out.println("Nenhuma loja favorita ainda :(");
+        }
+
+        System.out.println("\n--- Produtos Favoritos ---");
+
+        for (Favoritavel favorito : usuarioLogado.favoritos) {
+
+            if (favorito.getType() == FavTypes.PRODUTO) {
+                System.out.println(favorito.toJSON());
+                encontrouProdutoFavorito = true;
+            }
+        }
+
+        if (!encontrouProdutoFavorito) {
+
+            System.out.println("Nenhum produto favorito ainda :(");
+        }
+
+        Tui.hold();
+
+        return true;
+
+    } else {
+
+        Tui.clearTerminal();
+        System.out.println("Você precisa logar para ver seus favoritos.");
+        Tui.hold();
+        return false;
+    }
+}
+
     }
 
     // Favoritar loja
 
     public Boolean favoritarLoja(Long idLoja) {
 
-      Produto produto = getProdutoById(idLoja);
+      Loja loja = getLojaById(idLoja);  
 
-      if (produto != null) {
-        usuarioLogado.addFavorito(produto);
+        if (loja != null) {
+
+        usuarioLogado.addFavorito(loja);  // Adicione a loja aos favoritos do usuário
+        
         return true;
-      }
-
-      return false;
     }
+
+    return false;
+}
+    
 
     // Favoritar produto
 
