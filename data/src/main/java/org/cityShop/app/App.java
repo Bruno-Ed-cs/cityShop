@@ -169,7 +169,7 @@ public class App {
     }
 }
 
-    }
+    
 
     // Favoritar loja
 
@@ -180,7 +180,7 @@ public class App {
         if (loja != null) {
 
         usuarioLogado.addFavorito(loja);  // Adicione a loja aos favoritos do usuário
-        
+
         return true;
     }
 
@@ -195,7 +195,9 @@ public class App {
         Produto produto = getProdutoById(idProduto);
 
         if (produto != null) {
-            usuarioLogado.addFavorito(produto);
+
+            usuarioLogado.addFavorito(produto);  // Adicione o produto aos favoritos do usuário
+
             return true;
         }
     
@@ -206,6 +208,7 @@ public class App {
 
 
     // Mostrar usuário
+    
     public Boolean showUsuario() {
         if (usuarioLogado != null) {
             System.out.println(usuarioLogado.toString());
@@ -280,4 +283,10 @@ public class App {
 
 
     }
+
+
+
+
+
+
 }

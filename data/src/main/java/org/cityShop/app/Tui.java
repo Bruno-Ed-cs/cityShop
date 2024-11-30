@@ -29,6 +29,26 @@ public class Tui {
 
     }
 
+    public static void login(App app){
+
+        Tui.clearTerminal();
+
+        System.out.println("digite o nome do usuario: ");
+        String nomeUsuario = sc.nextLine();
+
+        System.out.println("digite a senha: ");
+        String senha = sc.nextLine();
+
+        if(app.login(nomeUsuario, senha)) {
+
+            System.out.println("logado com sucesso :D");
+        } else {
+            System.out.println("Falha ao logar >:()");
+        }
+
+        Tui.hold();
+    }
+
     public static int getChoice(int max, int min) {
 
         int choice = -1;
@@ -63,25 +83,6 @@ public class Tui {
         return choice;
     }
     
-    public static void login(App app){
-
-        Tui.clearTerminal();
-
-        System.out.println("digite o nome do usuario: ");
-        String nomeUsuario = sc.nextLine();
-
-        System.out.println("digite a senha: ");
-        String senha = sc.nextLine();
-
-        if(app.login(nomeUsuario, senha)) {
-
-            System.out.println("logado com sucesso :D");
-        } else {
-            System.out.println("Falha ao logar >:()");
-        }
-
-        Tui.hold();
-    }
 
     private static  void listarFavoritos() {
 
@@ -256,55 +257,6 @@ public class Tui {
         }
     }
 
-    public static void favoritarLoja(App app) {
-
-        System.out.println("digite o id da loja: ");
-
-        try {
-
-            Long idLoja = sc.nextLong();
-            sc.nextLine();
-
-            if(app.favoritarLoja(idLoja) ) {
-
-                System.out.println("loja favoritada com sucesso :)");
-
-            } else {
-
-                System.out.println("falha ao favoritar loja :(");
-            }
-
-        } catch (Exception e) {
-
-            System.out.println("Entrada inválida. Tente novamente.");
-            sc.nextLine();
-        }
-    }
-
-    public static void favoritarProduto(App app) {
-
-        System.out.println("digite o id do produto: ");
-
-        try {
-
-            Long idProduto = sc.nextLong();
-            sc.nextLine();
-
-            if(app.favoritarProduto(idProduto) ) {
-
-                System.out.println("produto favoritado com sucesso :)");
-
-            } else {
-
-                System.out.println("falha ao favoritar produto :(");
-            }
-
-        } catch (Exception e) {
-
-            System.out.println("Entrada inválida. Tente novamente.");
-            sc.nextLine();
-        }
-    }
 
     public static void menuProduto(Produto produto){
 
