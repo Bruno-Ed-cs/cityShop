@@ -54,6 +54,7 @@ public class App {
 
     // Listar produtos
     public void listarProdutos() {
+
         Database database = Database.getInstance();
         Produto[] produtos = database.querryProduto();
 
@@ -63,6 +64,7 @@ public class App {
 
 
             if (produtos.length == 0) {
+                
                 System.out.println("Nenhum produto cadastrado ainda :(");
                 
             } else {
@@ -76,9 +78,11 @@ public class App {
             if (opt == 0){
 
                 break;
+
             } else {
 
                 loadedProduto = produtos[opt -1];
+
                 this.acessarProduto();
             }
 
@@ -148,28 +152,35 @@ public class App {
     }
 
     // Favoritar loja
+
     public Boolean favoritarLoja(Long idLoja) {
-        if (usuarioLogado != null) {
-            usuarioLogado.adicionarFavorito(idLoja, FavTypes.LOJA);
-            System.out.println("Loja favoritada com sucesso!");
-            return true;
-        } else {
-            System.out.println("Você precisa logar para favoritar uma loja.");
-            return false;
-        }
+
+      Produto produto = getProdutoById(idLoja);
+
+      if (produto != null) {
+        usuarioLogado.addFavorito(produto);
+        return true;
+      }
+
+      return false;
     }
 
     // Favoritar produto
+
     public Boolean favoritarProduto(Long idProduto) {
-        if (usuarioLogado != null) {
-            usuarioLogado.adicionarFavorito(idProduto, FavTypes.PRODUTO);
-            System.out.println("Produto favoritado com sucesso!");
+
+        Produto produto = getProdutoById(idProduto);
+
+        if (produto != null) {
+            usuarioLogado.addFavorito(produto);
             return true;
-        } else {
-            System.out.println("Você precisa logar para favoritar um produto.");
-            return false;
         }
+    
+        return false;
+
     }
+
+
 
     // Mostrar usuário
     public Boolean showUsuario() {

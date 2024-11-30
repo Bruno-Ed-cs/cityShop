@@ -83,19 +83,8 @@ public class Tui {
         Tui.hold();
     }
 
-    private static void listarLojas() {
-
-        App app = App.getInstance();
-
-        Boolean sucesso = app.listarLojas();
-
-        if (!sucesso) {
-
-            System.out.println("Nenhuma loja cadastrada ainda :(");
-        }
-    }
-
     private static  void listarFavoritos() {
+
         Tui.clearTerminal();
 
         App app = App.getInstance();
@@ -117,45 +106,45 @@ public class Tui {
 
     private static  void favoritarProduto() {
 
-        // o usuario normal nao deveria se preocupar com ids, isso deve ser aplicado quando o usuario estiver em
-        // uma pagina de loja ou produto e selecionar uma opcao de favoritar
+        Tui.clearTerminal();
 
-        System.out.println("Digite o ID do produto para favoritar: ");
+        Produtos[] produtos = app.getProdutosDisponiveis();
 
-        Long idProduto = null;
-
-        try {
-
-            idProduto = sc.nextLong();
-            sc.nextLine();
-
-        } catch (Exception e) {
-
-            System.out.println("Entrada inválida. Tente novamente.");
-            sc.nextLine(); 
-
-
+        if(produtos == null || produtos.length == 0) {
+            
+            System.out.println("Nenhum produto cadastrado ainda :(");
+            Tui.hold();
             return;
         }
 
-        App app = App.getInstance();
-        Boolean sucesso = app.favoritarProduto(idProduto);
+        System.out.println("Escolha um produto p/ favoritar: ");
 
-        if (!sucesso) {
+        for (int i = 0; i < produtos.length; i++) {
 
-            System.out.println("Você precisa logar para favoritar um produto :(");
-
-        } else {
-
-            System.out.println("Produto favoritado com sucesso!");
+            System.out.println(produtos[i].id + " - " + produtos[i].nome);
         }
+
+        System.out.println("< 0 - Voltar");
+
+        int choice = Tui.getChoice(produtos.length, 0);
+
+        if (choice == 0) {
+            	
+            return;
+        }
+
+        Produto produtoSelecionado = produtos[choice - 1];
+        boolean sucesso = app.favoritarProduto(produtoSelecionado.id);
+        System.out.println(sucesso ? "Produto favoritado com sucesso!" : "Falha ao favoritar produto");
+        Tui.hold();
 
     }
 
     private static  void favoritarLoja() {
 
-        Lojas[] lojas = app.getLojasDisponiveis();
+        Tui.clearTerminal();
 
+        Lojas[] lojas = app.getLojasDisponiveis();
 
         if(lojas == null || lojas.length == 0) {
             
@@ -179,35 +168,12 @@ public class Tui {
             	
             return;
         }
-         
-        System.out.println("Digite o ID da loja para favoritar: ");
 
-        Long idLoja = null;
+        Loja lojaSelecionada = lojas[choice - 1];
+        boolean sucesso = app.favoritarLoja(lojaSelecionada.id);
+        System.out.println(sucesso ? "Loja favoritada com sucesso!" : "Falha ao favoritar loja");
+        Tui.hold();
 
-        try {
-
-            idLoja = sc.nextLong();
-            sc.nextLine();  
-
-        } catch (Exception e) {
-
-            System.out.println("Entrada inválida. Tente novamente.");
-            sc.nextLine(); 
-            return;
-
-        }
-
-        App app = App.getInstance();
-        Boolean sucesso = app.favoritarLoja(idLoja);
-
-        if (!sucesso) {
-
-            System.out.println("Você precisa logar para favoritar uma loja :(");
-
-        } else {
-
-            System.out.println("falha ao logar :(");
-        }
     }
 
     public static void listarLojas(Loja[] lojas) {
@@ -221,6 +187,7 @@ public class Tui {
             }
 
             Tui.clearTerminal();
+
             System.out.println("=====================Lojas====================");
 
             for (Loja loja : lojas) {
@@ -367,6 +334,32 @@ public class Tui {
 
     }
 
+    public static void menuLoja(Loja loja){
+
+        Tui.clearTerminal();
+
+        System.out.println();
+        System.out.println("Nome: " + loja.getNome());
+        System.out.println();
+        System.out.println("Descrição : " + loja.descricao.corpo);
+        System.out.println("Tags: " + loja.categorias);
+        System.out.println("Favoritos: " + loja.favoritadas);
+        System.out.println("R$ " + loja.getPreco());
+        System.out.println();
+        System.out.println("Capacidade: " + loja.estoque.capacidade);
+        System.out.println("Quandtidade disponível: " + loja.estoque.quantidade);
+        System.out.println();
+
+        System.out.println("Opções");
+        System.out.println("1 => Favoritar");
+        System.out.println("2 => Reservar");
+
+        System.out.println();
+
+        System.out.println("0 => Voltar");
+
+    }
+
 
     public static void clearTerminal() {
 
@@ -376,13 +369,13 @@ public class Tui {
 
     public static void hold(){
 
-        System.out.println("Pressione qualquer tecla");
+        System.out.println("Pressione Enter para continuar...");
 
         try {
 
             System.in.read();
 
-        } catch (Exception e){ 
+        } catch (IOException e){ 
 
             System.out.println(e);
 
