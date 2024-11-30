@@ -20,7 +20,7 @@ public class App {
     private App() {
         //teste
 
-        this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true);
+        this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true, "12345");
     }
 
     // Método para garantir que apenas uma instância do App seja criada
@@ -31,6 +31,18 @@ public class App {
             instance = new App();
         }
         return instance;
+    }
+
+    public Boolean isLogged(){
+
+        if (this.usuarioLogado != null){
+
+            return true;
+
+        } else {
+
+            return false;
+        }
     }
 
     // Função de login
@@ -63,7 +75,6 @@ public class App {
 
             System.out.println("Nenhum produto cadastrado ainda :(");
 
-            return false;
         }
     
         Tui.listarProdutos(produtos);  
@@ -71,7 +82,7 @@ public class App {
     
         if (opt == 0) {
 
-            return false;
+            return;
 
         }
     
@@ -79,7 +90,6 @@ public class App {
 
         acessarProduto();  // Acessar o produto
 
-        return true;
             
         
     }
@@ -168,36 +178,32 @@ public class App {
         return false;
     }
 }
-
-    
-
     // Favoritar loja
 
     public Boolean favoritarLoja(Long idLoja) {
 
-      Loja loja = getLojaById(idLoja);  
+        Loja loja = Database.getInstance().getLoja(idLoja);  
 
         if (loja != null) {
 
-        usuarioLogado.addFavorito(loja);  // Adicione a loja aos favoritos do usuário
+            usuarioLogado.adicionarFavorito(loja.id, FavTypes.LOJA);  // Adicione a loja aos favoritos do usuário
 
-        return true;
+            return true;
+        }
+
+        return false;
     }
 
-    return false;
-}
-    
 
     // Favoritar produto
 
     public Boolean favoritarProduto(Long idProduto) {
 
-        Produto produto = getProdutoById(idProduto);
+        Produto produto = Database.getInstance().getProduto(idProduto);
 
         if (produto != null) {
 
-            usuarioLogado.addFavorito(produto);  // Adicione o produto aos favoritos do usuário
-
+            usuarioLogado.adicionarFavorito(produto.id, FavTypes.PRODUTO);
             return true;
         }
     
@@ -275,7 +281,12 @@ public class App {
 
             switch (opt){
 
-                case 1 -> this.favoritarProduto(loadedProduto.id) ;
+                case 1 -> {
+                    this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
+                    Tui.clearTerminal();
+                    System.out.println("Favorito adicionado =)");
+                    Tui.hold();
+                }
 
             }
 

@@ -31,14 +31,28 @@ public class Main {
 
             Tui.clearTerminal();
 
+
             Tui.mainMenu();
 
-            int choice = Tui.getChoice(6, 0);
+            int choice;
+
+            if (app.isLogged()){
+
+                System.out.println();
+                System.out.println("Usuario Logado = " + app.usuarioLogado.nome);
+                System.out.println();
+                choice = Tui.getChoice(6, 0);
+
+            } else {
+
+                choice = Tui.getChoice(1, 0);
+
+            }
 
             switch (choice) {
 
                 case 1 -> Tui.login(app);
-                case 2 -> Tui.listarLojas(app);
+                case 2 -> app.listarLojas();
                 case 3 -> app.listarProdutos();
                 case 4 -> Tui.listarFavoritos(app);
                 case 5 -> Tui.favoritarLoja(app);

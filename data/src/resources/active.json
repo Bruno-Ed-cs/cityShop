@@ -1,155 +1,149 @@
 {
-    "Produtos" : [
+    "Usuarios": [
         {
+            "senha": "12345",
+            "cpf": "223.334.551.90",
+            "nome": "Astoufo",
+            "favoritos": [{
+                "id": 1,
+                "type": "PRODUTO"
+            }],
+            "id": 2,
+            "lojista": false
+        },
+        {
+            "senha": "12345",
+            "cpf": "122.334.551.90",
+            "nome": "seu ze",
+            "favoritos": [],
             "id": 1,
-            "idLoja": 1,
-            "descricao": {
-                "nome": "Hotdog",
-                "corpo": "O favorito dos ouriços"
+            "lojista": true
+        }
+    ],
+    "Lojas": [
+        {
+            "dono": 1,
+            "aberto": true,
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "latitude": "5°12'29.0\"S",
+                "longitude": "37°21'17.5\"W"
             },
-            "categorias": ["comida", "referencia"],
-            "favoritadas": 20,
+            "reservas": [],
+            "avaliacoes": [],
+            "tabelasPreco": [{
+                "hasDesconto": false,
+                "produtos": [{
+                    "preco": 3.77,
+                    "idProduto": 1
+                }],
+                "modificador": 1,
+                "nome": "padrao",
+                "id": 746,
+                "criacao": "2024-11-21 19:07:34.324",
+                "validade": "3024-11-21 19:07:34.324"
+            }],
+            "nome": "vendinha de cachorro quente",
+            "favoritadas": 170,
+            "id": 1
+        },
+        {
+            "dono": 1,
+            "aberto": true,
+            "localizacao": {
+                "endereco": "Rua jonh demagio n1223",
+                "latitude": "5°12'29.0\"S",
+                "longitude": "37°21'17.5\"W"
+            },
+            "reservas": [{
+                "qtdProduto": 5,
+                "cliente": 1,
+                "expiracaoHora": "2024-11-22 14:00:00",
+                "produto": 1,
+                "dataReserva": "2024-11-22 10:00:00",
+                "concluido": false,
+                "precoFinal": 120.5,
+                "pego": false
+            }],
+            "avaliacoes": [{
+                "corpo": "Otimo produto",
+                "idUsuario": 1,
+                "nota": 5
+            }],
+            "tabelasPreco": [{
+                "hasDesconto": false,
+                "produtos": [
+                    {
+                        "preco": 200.5,
+                        "idProduto": 2
+                    },
+                    {
+                        "preco": 70.5,
+                        "idProduto": 3
+                    }
+                ],
+                "modificador": 1,
+                "nome": "padrao",
+                "id": 34,
+                "criacao": "2024-11-21 19:07:34.324",
+                "validade": "2024-11-22 14:00:00"
+            }],
+            "nome": "Boticario vigario",
+            "favoritadas": 89,
+            "id": 2
+        }
+    ],
+    "Produtos": [
+        {
             "estoque": {
                 "capacidade": 50,
                 "quantidade": 40
+            },
+            "idLoja": 1,
+            "categorias": [
+                "comida",
+                "referencia"
+            ],
+            "favoritadas": 20,
+            "id": 1,
+            "descricao": {
+                "corpo": "O favorito dos ouriços",
+                "nome": "Hotdog"
             }
-
         },
         {
-
-            "id": 2,
-            "idLoja": 2,
-            "descricao": {
-                "nome": "Penicilina",
-                "corpo": "O favorito das bacterias"
-            },
-            "categorias": ["medicamento", "infecção"],
-            "favoritadas": 10,
             "estoque": {
                 "capacidade": 400,
                 "quantidade": 12
+            },
+            "idLoja": 2,
+            "categorias": [
+                "medicamento",
+                "infecção"
+            ],
+            "favoritadas": 10,
+            "id": 2,
+            "descricao": {
+                "corpo": "O favorito das bacterias",
+                "nome": "Penicilina"
             }
         },
         {
-
-            "id": 3,
-            "idLoja": 2,
-            "descricao": {
-                "nome": "Viagra",
-                "corpo": "A pipa vai subir"
-            },
-            "categorias": ["medicamento", "sex"],
-            "favoritadas": 1, 
             "estoque": {
                 "capacidade": 70,
                 "quantidade": 30
+            },
+            "idLoja": 2,
+            "categorias": [
+                "medicamento",
+                "sex"
+            ],
+            "favoritadas": 2,
+            "id": 3,
+            "descricao": {
+                "corpo": "A pipa vai subir",
+                "nome": "Viagra"
             }
-
-        }
- 
-    ],
-
-    "Lojas" : [
-
-        {
-
-            "nome": "vendinha de cachorro quente",
-            "dono": 1,
-            "id": 1,
-            "aberto": true,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "longitude": "37°21'17.5\"W",
-                "latitude": "5°12'29.0\"S"
-            },
-            "reservas": [],
-            "tabelasPreco": [
-                {
-                    "id": 746,
-                    "nome": "padrao",
-                    "criacao": "2024-11-21 19:07:34.324",
-                    "validade": "3024-11-21 19:07:34.324",
-                    "modificador": 1.0,
-                    "hasDesconto": false,
-
-                    "produtos": [{"idProduto": 1, "preco": 3.77}]
-
-
-                }
-            ],
-            "avaliacoes": [],
-            "favoritadas": 170
-
-        },
-        {
-
-            "nome": "Boticario vigario",
-            "dono": 1,
-            "id": 2,
-            "aberto": true,
-            "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
-                "longitude": "37°21'17.5\"W",
-                "latitude": "5°12'29.0\"S"
-            },
-            "reservas": [
-                {
-                    "qtdProduto": 5,
-                    "precoFinal": 120.50,
-                    "cliente": 1,
-                    "produto": 1,
-                    "dataReserva": "2024-11-22 10:00:00",
-                    "expiracaoHora": "2024-11-22 14:00:00",
-                    "concluido": false,
-                    "pego": false
-                }
-            ],
-            "tabelasPreco": [
-                {
-                    "id": 34,
-                    "nome": "padrao",
-                    "criacao": "2024-11-21 19:07:34.324",
-                    "validade": "2024-11-22 14:00:00",
-                    "modificador": 1.0,
-                    "hasDesconto": false,
-
-                    "produtos": [{"idProduto": 2, "preco": 200.50}, {"idProduto": 3, "preco": 70.50 }]
-
-
-                }
-            ],
-            "avaliacoes":[
-                {
-                    "nota": 5,
-                    "corpo": "Otimo produto",
-                    "idUsuario": 1;
-                }
-            ],
-            "favoritadas": 89
-
-
-        }
-
-    ],
-
-    "Usuarios" : [
-        {
-            "nome": "Astoufo",
-            "cpf" : "223.334.551.90",
-            "id" : 2,
-            "lojista": false,
-            "favoritos": [{"id": 1, "type": "PRODUTO"}]
-        },
-
-        {
-            "nome": "seu ze",
-            "cpf" : "122.334.551.90",
-            "id" : 1,
-            "lojista": true,
-            "favoritos": []
         }
     ]
-
-
-
 }

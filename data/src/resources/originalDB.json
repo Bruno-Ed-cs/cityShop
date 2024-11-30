@@ -137,6 +137,7 @@
             "nome": "Astoufo",
             "cpf" : "223.334.551.90",
             "id" : 2,
+            "senha" : "12345",
             "lojista": false,
             "favoritos": [{"id": 1, "type": "PRODUTO"}]
         },
@@ -144,6 +145,7 @@
         {
             "nome": "seu ze",
             "cpf" : "122.334.551.90",
+            "senha" : "12345",
             "id" : 1,
             "lojista": true,
             "favoritos": []

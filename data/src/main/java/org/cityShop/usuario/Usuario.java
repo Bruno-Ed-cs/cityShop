@@ -17,16 +17,18 @@ public class Usuario {
     public String nome;
     public String cpf;
     public Long id;
+    public String senha;
     public Boolean lojista;
     public ArrayList<Favoritavel> favoritos;
 
     // Construtor de um usuario
 
-    public Usuario(String nome, String cpf, Long id, Boolean lojista) {
+    public Usuario(String nome, String cpf, Long id, Boolean lojista, String senha) {
 
         this.nome = nome;
         this.cpf = cpf;
         this.id = id;
+        this.senha = senha;
         this.lojista = lojista;
         this.favoritos = new ArrayList<>();
     }
@@ -41,6 +43,7 @@ public class Usuario {
         this.cpf = json.getString("cpf");
         this.id = json.getLong("id");
         this.lojista = json.getBoolean("lojista");
+        this.senha = json.getString("senha");
         this.favoritos = new ArrayList<>();
 
         // Preenchendo a lista de favoritos a partir do JSON
@@ -65,6 +68,7 @@ public class Usuario {
         json.put("nome", this.nome);
         json.put("id", this.id);
         json.put("lojista", this.lojista);
+        json.put("senha", this.senha);
 
         JSONArray favs = new JSONArray();
 

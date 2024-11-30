@@ -3,9 +3,11 @@ import java.io.*;
 
 import java.util.Scanner;
 
-import org.cityShop.produto.Produto;
-import org.cityShop.usuario.Favoritavel;
-import org.cityShop.usuario.Usuario;
+import javax.xml.crypto.Data;
+
+import org.cityShop.loja.*;
+import org.cityShop.produto.*;
+import org.cityShop.usuario.*;
 
 
 public class Tui {
@@ -15,16 +17,28 @@ public class Tui {
     public static void mainMenu() {
 
 
+        App app = App.getInstance();
 
         Tui.clearTerminal();
         System.out.println("Bem-vindo ao CityShop! :)");
         System.out.println("Escolha uma opção:");
         System.out.println("1 - Login");
-        System.out.println("2 - Listar Lojas");
-        System.out.println("3 - Listar Produtos");
-        System.out.println("4 - Listar Favoritos");
-        System.out.println("5 - Favoritar Loja");
-        System.out.println("6 - Favoritar Produto");
+
+        if (app.isLogged()){
+
+            System.out.println("2 - Listar Lojas");
+            System.out.println("3 - Listar Produtos");
+            System.out.println("4 - Listar Favoritos");
+            System.out.println("5 - Favoritar Loja");
+            System.out.println("6 - Favoritar Produto");
+
+
+        } else {
+
+            System.out.println();
+            System.out.println("!! Para acessar o app completo, pro favoe entre com um usuario !!");
+            System.out.println();
+        }
         System.out.println("0 - Sair");
 
     }
@@ -109,7 +123,9 @@ public class Tui {
 
         Tui.clearTerminal();
 
-        Produtos[] produtos = app.getProdutosDisponiveis();
+        Database database = Database.getInstance();
+
+        Produto[] produtos = database.querryProduto();
 
         if(produtos == null || produtos.length == 0) {
             
@@ -122,7 +138,7 @@ public class Tui {
 
         for (int i = 0; i < produtos.length; i++) {
 
-            System.out.println(produtos[i].id + " - " + produtos[i].nome);
+            System.out.println(produtos[i].id + " - " + produtos[i].getNome());
         }
 
         System.out.println("< 0 - Voltar");
@@ -135,6 +151,8 @@ public class Tui {
         }
 
         Produto produtoSelecionado = produtos[choice - 1];
+
+        App app = App.getInstance();
         boolean sucesso = app.favoritarProduto(produtoSelecionado.id);
         System.out.println(sucesso ? "Produto favoritado com sucesso!" : "Falha ao favoritar produto");
         Tui.hold();
@@ -145,7 +163,9 @@ public class Tui {
 
         Tui.clearTerminal();
 
-        Lojas[] lojas = app.getLojasDisponiveis();
+        Database database = Database.getInstance();
+
+        Loja[] lojas = database.querryLoja();
 
         if(lojas == null || lojas.length == 0) {
             
@@ -171,6 +191,7 @@ public class Tui {
         }
 
         Loja lojaSelecionada = lojas[choice - 1];
+        App app = App.getInstance();
         boolean sucesso = app.favoritarLoja(lojaSelecionada.id);
         System.out.println(sucesso ? "Loja favoritada com sucesso!" : "Falha ao favoritar loja");
         Tui.hold();
@@ -195,10 +216,7 @@ public class Tui {
 
                 System.out.println();
                 System.out.println("opções => " + count);
-                System.out.println(loja.getNome());
-                System.out.println(loja.descricao.corpo);
-                System.out.println(loja.categorias);
-                System.out.println("R$ " + loja.getPreco());
+                System.out.println(loja.nome);
                 System.out.println("Favoritos: " + loja.favoritadas);
 
                 count++;
@@ -224,16 +242,21 @@ public class Tui {
 
         }
 
+        Database database = Database.getInstance();
+
         Tui.clearTerminal();
         System.out.println("=====================Produtos====================");
 
         for (Produto prod : produtos){
+
+            Local place = database.getLoja(prod.idLoja).localizacao;
 
             System.out.println();
             System.out.println("opções => " + count);
             System.out.println(prod.getNome());
             System.out.println(prod.descricao.corpo);
             System.out.println(prod.categorias);
+            System.out.println("Localização: " + place.endereco);
             System.out.println("R$ " + prod.getPreco());
             System.out.println("Favoritos: " + prod.favoritadas);
 
@@ -242,8 +265,7 @@ public class Tui {
         }
 
         System.out.println();
-        System.out.println("< 0 - voltar");
-
+        System.out.println("<<<< 0 => Back");
         return; 
 
     }
@@ -291,20 +313,14 @@ public class Tui {
         Tui.clearTerminal();
 
         System.out.println();
-        System.out.println("Nome: " + loja.getNome());
+        System.out.println("Nome: " + loja.nome);
         System.out.println();
-        System.out.println("Descrição : " + loja.descricao.corpo);
-        System.out.println("Tags: " + loja.categorias);
         System.out.println("Favoritos: " + loja.favoritadas);
-        System.out.println("R$ " + loja.getPreco());
         System.out.println();
-        System.out.println("Capacidade: " + loja.estoque.capacidade);
-        System.out.println("Quandtidade disponível: " + loja.estoque.quantidade);
         System.out.println();
 
         System.out.println("Opções");
         System.out.println("1 => Favoritar");
-        System.out.println("2 => Reservar");
 
         System.out.println();
 
