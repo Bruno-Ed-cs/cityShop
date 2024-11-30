@@ -53,57 +53,65 @@ public class App {
     }
 
     // Listar produtos
+
     public void listarProdutos() {
 
         Database database = Database.getInstance();
         Produto[] produtos = database.querryProduto();
 
-        Boolean running = true;
-
-        while (running){
-
 
             if (produtos.length == 0) {
-                
+
                 System.out.println("Nenhum produto cadastrado ainda :(");
-                
-            } else {
 
-                Tui.listarProdutos(produtos);
+                return false;
                 
-            }
+            } 
 
+            Tui.listarProdutos(produtos);
             int opt = Tui.getChoice(produtos.length, 0);
 
             if (opt == 0){
 
-                break;
+                return false;
 
-            } else {
+            } 
 
                 loadedProduto = produtos[opt -1];
 
-                this.acessarProduto();
-            }
+                acessarProduto();
 
-
-        }
+                return true;
+            
+        
     }
 
     // Listar lojas
     public Boolean listarLojas() {
+
         Database database = Database.getInstance();
         Loja[] lojas = database.querryLoja();
 
         if (lojas.length == 0) {
-            System.out.println("Nenhuma loja cadastrada ainda :(");
+
+            System.out.println("Nenhuma loja cadastrada.");
             return false;
-        } else {
-            for (Loja loja : lojas) {
-                System.out.println("Loja: " + loja.nome);
-            }
-            return true;
+
         }
+
+        Tui.listarLojas(lojas);
+        int opt = Tui.getChoice(lojas.length, 0);
+
+        if (opt == 0) {
+
+            return false;
+            
+        }
+
+        loadedShop = lojas[opt - 1];
+        acessarLoja();
+        return true;
+
     }
 
     // Listar favoritos
