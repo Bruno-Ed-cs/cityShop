@@ -187,12 +187,38 @@ public class Tui {
         }
     }
 
-    public static void listarLojas(App app) {
+    public static void listarLojas(Loja[] lojas) {
 
-        if(!app.listarLojas()) {
+       int count = 1;
 
-            System.out.println("falha ao listar lojas :(");
-        }
+            if (lojas == null) {
+
+                System.out.println("falha ao listar lojas :(");
+                return;
+            }
+
+            Tui.clearTerminal();
+            System.out.println("=====================Lojas====================");
+
+            for (Loja loja : lojas) {
+
+                System.out.println();
+                System.out.println("Opiton => " + count);
+                System.out.println(loja.getNome());
+                System.out.println(loja.descricao.corpo);
+                System.out.println(loja.categorias);
+                System.out.println("R$ " + loja.getPreco());
+                System.out.println("Favoritos: " + loja.favoritadas);
+
+                count++;
+
+            }
+
+            System.out.println();
+            System.out.println("< 0 - Back");
+
+            return;
+           
     }
 
 
@@ -226,6 +252,7 @@ public class Tui {
 
         System.out.println();
         System.out.println("< 0 - Back");
+
         return; 
 
     }
@@ -329,9 +356,13 @@ public class Tui {
         System.out.println("Pressione qualquer tecla");
 
         try {
+
             System.in.read();
+
         } catch (Exception e){ 
+
             System.out.println(e);
+            
         }
     }
 
