@@ -30,6 +30,7 @@ public class Tui {
     }
 
     public static int getChoice(int max, int min) {
+
         int choice = -1;
         boolean validChoice = false;
         
@@ -153,10 +154,32 @@ public class Tui {
 
     private static  void favoritarLoja() {
 
-        // o usuario normal nao deveria se preocupar com ids, isso
-        // deve ser aplicado quando o usuario estiver em uma pagina de loja ou produto e selecionar
-        // uma opcao de favoritar
-        
+        Lojas[] lojas = app.getLojasDisponiveis();
+
+
+        if(lojas == null || lojas.length == 0) {
+            
+            System.out.println("Nenhuma loja cadastrada ainda :(");
+            Tui.hold();
+            return;
+        }
+
+        System.out.println("Escolha uma loja p/ favoritar: ");
+
+        for (int i = 0; i < lojas.length; i++) {
+
+            System.out.println(lojas[i].id + " - " + lojas[i].nome);
+        }
+
+        System.out.println("< 0 - Voltar");
+
+        int choice = Tui.getChoice(lojas.length, 0);
+
+        if (choice == 0) {
+            	
+            return;
+        }
+         
         System.out.println("Digite o ID da loja para favoritar: ");
 
         Long idLoja = null;
@@ -203,7 +226,7 @@ public class Tui {
             for (Loja loja : lojas) {
 
                 System.out.println();
-                System.out.println("Opiton => " + count);
+                System.out.println("opções => " + count);
                 System.out.println(loja.getNome());
                 System.out.println(loja.descricao.corpo);
                 System.out.println(loja.categorias);
@@ -215,7 +238,7 @@ public class Tui {
             }
 
             System.out.println();
-            System.out.println("< 0 - Back");
+            System.out.println("< 0 - voltar");
 
             return;
            
@@ -239,7 +262,7 @@ public class Tui {
         for (Produto prod : produtos){
 
             System.out.println();
-            System.out.println("Opiton => " + count);
+            System.out.println("opções => " + count);
             System.out.println(prod.getNome());
             System.out.println(prod.descricao.corpo);
             System.out.println(prod.categorias);
@@ -251,7 +274,7 @@ public class Tui {
         }
 
         System.out.println();
-        System.out.println("< 0 - Back");
+        System.out.println("< 0 - voltar");
 
         return; 
 
@@ -362,7 +385,7 @@ public class Tui {
         } catch (Exception e){ 
 
             System.out.println(e);
-            
+
         }
     }
 
