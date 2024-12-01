@@ -5,6 +5,8 @@ import org.cityShop.loja.*;
 
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
+
 import org.cityShop.app.Database;
 import org.json.*;
 
@@ -104,6 +106,8 @@ public class Usuario {
         }
     }
 
+
+
     /**
      * Adiciona um favorito ao usuario.
      * para idTarget O ID do produto/loja favoritado.
@@ -137,6 +141,52 @@ public class Usuario {
 
                 
         }
+
+        database.changeUsuario(this, this.id);
+    }
+
+    public void removerFavorito(Long id){
+
+        Favoritavel target = null;
+        Database database = Database.getInstance();
+
+        for (Favoritavel favorito : this.favoritos){
+
+            if (favorito.getTarget() == id){
+
+
+                switch (favorito.getType()){
+
+                    case PRODUTO:
+                    Produto prod = database.getProduto(id);
+                    prod.favoritadas--;
+                    database.changeProduto(prod, id);
+                    break;
+
+                    case LOJA:
+                    Loja loja = database.getLoja(id);
+                    loja.favoritadas--;
+                    database.changeLoja(loja, id);
+                    break;
+
+                    case UNDEFINED:
+                    break;
+
+
+                }
+
+                target = favorito;
+
+                break;
+
+            }
+        }
+
+        this.favoritos.remove(target);
+
+        database.changeUsuario(this, this.id);
+
+
     }
 
 
@@ -153,5 +203,18 @@ public class Usuario {
             .filter(f -> (type == FavTypes.PRODUTO && f instanceof FavoritoProduto) ||
                          (type == FavTypes.LOJA && f instanceof FavoritoLoja))
             .toArray(Favoritavel[]::new);
+    }
+
+    public Boolean hasFavorito(Long id){
+
+        for (Favoritavel favorito : this.favoritos){
+
+            if (favorito.getTarget() == id){
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

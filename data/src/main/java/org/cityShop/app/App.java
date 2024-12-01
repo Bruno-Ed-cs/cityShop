@@ -270,7 +270,7 @@ public class App {
 
         while (running){
 
-            Tui.menuProduto(this.loadedProduto);
+            Tui.menuProduto(this.loadedProduto, usuarioLogado.hasFavorito(this.loadedProduto.id));
 
             int opt = Tui.getChoice(2, 0);
 
@@ -282,10 +282,26 @@ public class App {
             switch (opt){
 
                 case 1 -> {
-                    this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
-                    Tui.clearTerminal();
-                    System.out.println("Favorito adicionado =)");
-                    Tui.hold();
+                    if (this.usuarioLogado.hasFavorito(loadedProduto.id)){
+
+                        this.usuarioLogado.removerFavorito(this.loadedProduto.id);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito removido =)");
+                        Tui.hold();
+
+
+
+
+                    } else {
+
+                        this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito adicionado =)");
+                        Tui.hold();
+
+                    }
                 }
 
             }

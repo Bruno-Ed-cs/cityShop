@@ -280,7 +280,7 @@ public class Tui {
     }
 
 
-    public static void menuProduto(Produto produto){
+    public static void menuProduto(Produto produto, Boolean isFavorito){
 
         Tui.clearTerminal();
 
@@ -296,8 +296,23 @@ public class Tui {
         System.out.println("Quandtidade disponível: " + produto.estoque.quantidade);
         System.out.println();
 
+        if (isFavorito){
+
+            System.out.println("Favorito: ");
+        } else {
+
+            System.out.println("Favorito: ");
+        }
+
         System.out.println("Opções");
-        System.out.println("1 => Favoritar");
+        if (isFavorito){
+
+            System.out.println("1 => Remover Favorito");
+        } else {
+
+            System.out.println("1 => Favoritar");
+        }
+
         System.out.println("2 => Reservar");
 
         System.out.println();

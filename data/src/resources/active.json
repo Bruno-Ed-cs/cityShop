@@ -121,7 +121,7 @@
                 "medicamento",
                 "infecção"
             ],
-            "favoritadas": 10,
+            "favoritadas": 11,
             "id": 2,
             "descricao": {
                 "corpo": "O favorito das bacterias",
@@ -138,7 +138,7 @@
                 "medicamento",
                 "sex"
             ],
-            "favoritadas": 2,
+            "favoritadas": 4,
             "id": 3,
             "descricao": {
                 "corpo": "A pipa vai subir",

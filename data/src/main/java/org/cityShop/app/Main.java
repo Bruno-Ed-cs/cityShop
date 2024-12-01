@@ -55,8 +55,8 @@ public class Main {
                 case 2 -> app.listarLojas();
                 case 3 -> app.listarProdutos();
                 case 4 -> Tui.listarFavoritos(app);
-                case 5 -> Tui.favoritarLoja(app);
-                case 6 -> Tui.favoritarProduto(app);
+                //case 5 -> app.favoritarLoja();
+                //case 6 -> app.favoritarProduto();
 
                 case 0 -> {
                     System.out.println("Saindo...");
