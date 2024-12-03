@@ -16,6 +16,8 @@ public class Reserva
 	public Boolean concluido;
 	public Boolean pego;
 
+	
+
 	public Reserva(JSONObject json){
 
 		this.qtdProduto = json.getLong("qtdProduto");

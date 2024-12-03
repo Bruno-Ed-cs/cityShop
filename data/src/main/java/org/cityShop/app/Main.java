@@ -1,15 +1,5 @@
 package org.cityShop.app;
 
-import java.io.Console;
-import java.io.InputStream;
-import java.lang.reflect.Executable;
-
-import javax.sound.sampled.BooleanControl;
-import javax.swing.text.AbstractDocument.BranchElement;
-
-import com.sun.source.doctree.SystemPropertyTree;
-
-
 public class Main {
 
     public static App app = App.getInstance();
@@ -41,7 +31,16 @@ public class Main {
                 System.out.println();
                 System.out.println("Usuario Logado = " + app.usuarioLogado.nome);
                 System.out.println();
-                choice = Tui.getChoice(6, 0);
+
+                if (app.isLojista()){
+
+                    choice = Tui.getChoice(7, 0);
+
+                } else {
+
+
+                    choice = Tui.getChoice(6, 0);
+                }
 
             } else {
 
@@ -52,16 +51,24 @@ public class Main {
             switch (choice) {
 
                 case 1 -> Tui.login(app);
-                case 2 -> app.listarLojas();
-                case 3 -> app.listarProdutos();
-                case 4 -> Tui.listarFavoritos(app);
-                //case 5 -> app.favoritarLoja();
-                //case 6 -> app.favoritarProduto();
+                case 4 -> app.listarLojas();
+                case 5 -> app.listarProdutos();
+                case 6 -> Tui.listarFavoritos(app);
+                //case 5 -> app.favoritarLoja(); //adicionar na loja em si
+                //case 6 -> app.favoritarProduto(); // opcao presente no produto
+                //
+
 
                 case 0 -> {
                     System.out.println("Saindo...");
                     running = false;
                 } 
+
+                default -> {
+
+                    System.out.println("Funcao ainda nao implementada");
+                    Tui.hold();
+                }
 
             }
 

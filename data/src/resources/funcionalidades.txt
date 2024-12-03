@@ -1,11 +1,11 @@
-1 - cadastrar usuario
-2 - cadastrar loja
+v 1 - cadastrar usuario
+v 2 - cadastrar loja
 3 - cadastrar produtos
-4 - logar usuario
+v 4 - logar usuario
 5 - alterar loja
-t 6 - listar produtos
-7 - favoritar produtos
-8 - favoritar loja
-t 9 - acessar loja
-11 - acessar produto
-10 - reservar produto
+v t 6 - listar produtos
+v 7 - favoritar produtos
+v 8 - favoritar loja
+v t 9 - acessar loja
+v 11 - acessar produto
+v 10 - reservar produto

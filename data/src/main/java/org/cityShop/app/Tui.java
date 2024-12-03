@@ -23,15 +23,19 @@ public class Tui {
         System.out.println("Bem-vindo ao CityShop! :)");
         System.out.println("Escolha uma opção:");
         System.out.println("1 - Login");
+        System.out.println("2 - Cadastro");
 
         if (app.isLogged()){
 
-            System.out.println("2 - Listar Lojas");
-            System.out.println("3 - Listar Produtos");
-            System.out.println("4 - Listar Favoritos");
-            System.out.println("5 - Favoritar Loja");
-            System.out.println("6 - Favoritar Produto");
+            System.out.println("3 - Logout");
+            System.out.println("4 - Listar Lojas");
+            System.out.println("5 - Listar Produtos");
+            System.out.println("6 - Listar Favoritos");
 
+            if (app.isLojista()){
+
+                System.out.println("7 - Gerenciar Lojas");
+            }
 
         } else {
 

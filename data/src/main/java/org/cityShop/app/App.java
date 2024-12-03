@@ -8,7 +8,7 @@ import org.cityShop.app.Database;
 public class App {
 
     // singleton
-	
+
     private static App instance;
 
     public Usuario usuarioLogado;
@@ -33,6 +33,13 @@ public class App {
         return instance;
     }
 
+    public Boolean isLojista(){
+
+        return this.usuarioLogado.lojista;
+
+
+    }
+
     public Boolean isLogged(){
 
         if (this.usuarioLogado != null){
@@ -46,9 +53,9 @@ public class App {
     }
 
     // Função de login
-	
+
     public Boolean login(String nomeUsuario, String senha) {
-        
+
         if (usuarioLogado != null && usuarioLogado.nome.equals(nomeUsuario)) {
             System.out.println("Logado com sucesso!");
             return true;
@@ -70,28 +77,28 @@ public class App {
 
         Database database = Database.getInstance();
         Produto[] produtos = database.querryProduto();
-    
+
         if (produtos.length == 0) {
 
             System.out.println("Nenhum produto cadastrado ainda :(");
 
         }
-    
+
         Tui.listarProdutos(produtos);  
         int opt = Tui.getChoice(produtos.length, 0);
-    
+
         if (opt == 0) {
 
             return;
 
         }
-    
+
         loadedProduto = produtos[opt - 1];
 
         acessarProduto();  // Acessar o produto
 
-            
-        
+
+
     }
 
     // Listar lojas
@@ -113,7 +120,7 @@ public class App {
         if (opt == 0) {
 
             return false;
-            
+
         }
 
         loadedShop = lojas[opt - 1];
@@ -126,58 +133,58 @@ public class App {
 
     public Boolean listarFavoritos() {
 
-         if (usuarioLogado != null) {
+        if (usuarioLogado != null) {
 
             Tui.clearTerminal();
 
-        System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
+            System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
 
-        boolean encontrouLojaFavorita = false;
-        boolean encontrouProdutoFavorito = false;
+            boolean encontrouLojaFavorita = false;
+            boolean encontrouProdutoFavorito = false;
 
-        System.out.println("\n--- Lojas Favoritas ---");
+            System.out.println("\n--- Lojas Favoritas ---");
 
-        for (Favoritavel favorito : usuarioLogado.favoritos) {
+            for (Favoritavel favorito : usuarioLogado.favoritos) {
 
-            if (favorito.getType() == FavTypes.LOJA) {
-                System.out.println(favorito.toJSON());
-                encontrouLojaFavorita = true;
+                if (favorito.getType() == FavTypes.LOJA) {
+                    System.out.println(favorito.toJSON());
+                    encontrouLojaFavorita = true;
 
+                }
             }
-        }
 
-        if (!encontrouLojaFavorita) {
+            if (!encontrouLojaFavorita) {
 
-            System.out.println("Nenhuma loja favorita ainda :(");
-        }
-
-        System.out.println("\n--- Produtos Favoritos ---");
-
-        for (Favoritavel favorito : usuarioLogado.favoritos) {
-
-            if (favorito.getType() == FavTypes.PRODUTO) {
-                System.out.println(favorito.toJSON());
-                encontrouProdutoFavorito = true;
+                System.out.println("Nenhuma loja favorita ainda :(");
             }
+
+            System.out.println("\n--- Produtos Favoritos ---");
+
+            for (Favoritavel favorito : usuarioLogado.favoritos) {
+
+                if (favorito.getType() == FavTypes.PRODUTO) {
+                    System.out.println(favorito.toJSON());
+                    encontrouProdutoFavorito = true;
+                }
+            }
+
+            if (!encontrouProdutoFavorito) {
+
+                System.out.println("Nenhum produto favorito ainda :(");
+            }
+
+            Tui.hold();
+
+            return true;
+
+        } else {
+
+            Tui.clearTerminal();
+            System.out.println("Você precisa logar para ver seus favoritos.");
+            Tui.hold();
+            return false;
         }
-
-        if (!encontrouProdutoFavorito) {
-
-            System.out.println("Nenhum produto favorito ainda :(");
-        }
-
-        Tui.hold();
-
-        return true;
-
-    } else {
-
-        Tui.clearTerminal();
-        System.out.println("Você precisa logar para ver seus favoritos.");
-        Tui.hold();
-        return false;
     }
-}
     // Favoritar loja
 
     public Boolean favoritarLoja(Long idLoja) {
@@ -206,7 +213,7 @@ public class App {
             usuarioLogado.adicionarFavorito(produto.id, FavTypes.PRODUTO);
             return true;
         }
-    
+
         return false;
 
     }
@@ -214,7 +221,7 @@ public class App {
 
 
     // Mostrar usuário
-    
+
     public Boolean showUsuario() {
         if (usuarioLogado != null) {
             System.out.println(usuarioLogado.toString());
@@ -289,10 +296,6 @@ public class App {
                         Tui.clearTerminal();
                         System.out.println("Favorito removido =)");
                         Tui.hold();
-
-
-
-
                     } else {
 
                         this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
@@ -310,10 +313,6 @@ public class App {
 
 
     }
-
-
-
-
 
 
 }
