@@ -18,6 +18,14 @@
             "favoritos": [],
             "id": 1,
             "lojista": true
+        },
+        {
+            "senha": "123456",
+            "cpf": "323.44.5-1",
+            "nome": "rogerio",
+            "favoritos": [],
+            "id": 3,
+            "lojista": true
         }
     ],
     "Lojas": [

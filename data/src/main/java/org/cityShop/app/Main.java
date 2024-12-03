@@ -51,6 +51,7 @@ public class Main {
             switch (choice) {
 
                 case 1 -> Tui.login(app);
+                case 2 -> app.cadastro();
                 case 4 -> app.listarLojas();
                 case 5 -> app.listarProdutos();
                 case 6 -> Tui.listarFavoritos(app);

@@ -15,7 +15,7 @@
 local.properties
 data/build
 app/build
-./data/src/resources/active.json
+/data/src/resources/active.json
 /app/bin/
 /data/bin/
 /.settings/
