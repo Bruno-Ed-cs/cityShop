@@ -3,6 +3,9 @@ package org.cityShop.app;
 import org.cityShop.usuario.*;
 import org.cityShop.loja.Loja;
 import org.cityShop.produto.*;
+
+import java.util.Scanner;
+
 import org.cityShop.app.Database;
 
 public class App {
@@ -33,12 +36,75 @@ public class App {
         return instance;
     }
 
+    public static void cadastro() {
+
+        Database database = Database.getInstance();
+        Scanner sc = new Scanner(System.in);
+
+        Tui.clearTerminal();
+       
+        System.out.println("digite o nome do usuario: ");
+        String nome = sc.nextLine();
+
+        System.out.println("Digite a sua senha: ");
+        String senha = sc.nextLine();
+
+        System.out.println("digite o seu cpf uWu");
+        String cpf = sc.nextLine();
+
+        Usuario [] usuarios = database.querryUsuarios();
+
+        Long maior = 0L;
+
+        for (Usuario usuario: usuarios) {
+
+            if (usuario.id > maior) {
+
+                maior = usuario.id;
+            }
+        }
+
+        long Novoid = maior + 1;
+
+        Boolean IsLojista = null;
+
+        while (IsLojista == null) {
+
+        System.out.println("voce eh lojista? (sim/nao)");
+
+        String resposta = sc.nextLine().toLowerCase();
+
+        String lojista = sc.nextLine().toLowerCase();
+
+        if(resposta == "sim") {
+
+         isLojista = true;
+
+        } else if (resposta == "nao") { 
+
+            isLojista = false;
+        
+        } else {
+
+            System.out.println("NAO TA CERTO.");
+        }
+       
+     }
+
+        Usuario user = new Usuario(nome, cpf, Novoid, isLojista, senha );
+
+        database.addUsuario(user);
+
+            
+    }
+
     public Boolean isLojista(){
 
         return this.usuarioLogado.lojista;
 
 
     }
+
 
     public Boolean isLogged(){
 
@@ -128,6 +194,8 @@ public class App {
         return true;
 
     }
+
+
 
     // Listar favoritos
 
