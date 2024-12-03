@@ -37,13 +37,13 @@ public class App {
         return instance;
     }
 
-    public static void cadastro() {
+    public void cadastro() {
 
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
 
         Tui.clearTerminal();
-       
+
         System.out.println("digite o nome do usuario: ");
         String nome = sc.nextLine();
 
@@ -67,42 +67,40 @@ public class App {
 
         long Novoid = maior + 1;
 
-        Boolean IsLojista = null;
+        Boolean isLojista = null;
 
-        while (IsLojista == null) {
+        while (isLojista == null) {
 
-        System.out.println("voce eh lojista? (sim/nao)");
+            System.out.println("voce eh lojista? (sim/nao)");
 
-        String resposta = sc.nextLine().toLowerCase();
+            String resposta = sc.nextLine().toLowerCase();
 
-        String lojista = sc.nextLine().toLowerCase();
 
-        if(resposta == "sim") {
+            if(resposta.compareToIgnoreCase("sim") == 0) {
 
-         isLojista = true;
+                isLojista = true;
 
-        } else if (resposta == "nao") { 
+            } else if (resposta.compareToIgnoreCase("nao") == 0) { 
 
-            isLojista = false;
-        
-        } else {
+                isLojista = false;
 
-            System.out.println("NAO TA CERTO.");
+            } else {
+
+                System.out.println("NAO TA CERTO.");
+            }
+
         }
-       
-     }
 
         Usuario user = new Usuario(nome, cpf, Novoid, isLojista, senha );
 
         database.addUsuario(user);
 
-            
+
     }
 
     public Boolean isLojista(){
 
         return this.usuarioLogado.lojista;
-
 
     }
 
