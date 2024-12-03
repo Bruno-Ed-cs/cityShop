@@ -313,7 +313,7 @@ public class Tui {
 
         for (Reserva reserva : loja.reservas.reservas){
 
-            if (reserva.cliente == idUsuario && reserva.isActive()){
+            if (!reserva.concluido && reserva.cliente == idUsuario && reserva.isActive()){
 
                 System.out.println("Id: " + reserva.id);
                 System.out.println("Válido até: " + reserva.expiracaoHora.toString());
