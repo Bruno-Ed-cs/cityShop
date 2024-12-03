@@ -101,7 +101,8 @@
                     "dataReserva": "2024-11-22 10:00:00",
                     "expiracaoHora": "2024-11-22 14:00:00",
                     "concluido": false,
-                    "pego": false
+                    "pego": false,
+                    "id" : 23
                 }
             ],
             "tabelasPreco": [

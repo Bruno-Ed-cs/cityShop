@@ -1,12 +1,18 @@
 package org.cityShop.loja;
+import org.cityShop.produto.Produto;
+import org.cityShop.usuario.Usuario;
 import org.json.JSONObject;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+
+import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 
 
 public class Reserva
 {
 
+	public Long id;
 	public Long qtdProduto;
 	public Double precoFinal;
 	public Long cliente;
@@ -16,7 +22,22 @@ public class Reserva
 	public Boolean concluido;
 	public Boolean pego;
 
-	
+	public Reserva(Produto produto, Usuario usuario, Long qtdProduto, Long prazoHoras, Long id){
+
+		this.qtdProduto = qtdProduto;
+		this.id = id;
+
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+		this.dataReserva = curtime;
+		this.expiracaoHora = new Timestamp(curtime.getTime() + 1000 * (3600L * prazoHoras));
+
+		this.cliente = usuario.id;
+		this.produto = produto.id;
+		this.precoFinal = produto.getPreco();
+
+		this.concluido = false;
+		this.pego = false;
+	}
 
 	public Reserva(JSONObject json){
 
@@ -28,6 +49,7 @@ public class Reserva
 		this.expiracaoHora = Timestamp.valueOf(json.getString("expiracaoHora"));
 		this.concluido = json.getBoolean("concluido");
 		this.pego = json.getBoolean("pego");
+		this.id = json.getLong("id");
 
 	}
 
@@ -43,8 +65,24 @@ public class Reserva
 		json.put("expiracaoHora", this.expiracaoHora.toString());
 		json.put("concluido", this.concluido);
 		json.put("pego", this.pego);
+		json.put("id", this.id);
 
 		return json;
+	}
+
+	public Boolean isActive(){
+
+		Timestamp curtime = new Timestamp(System.currentTimeMillis());
+
+		if (!this.expiracaoHora.after(curtime)){
+
+			this.concluido = false;
+
+			return false;
+		} else {
+
+			return true;
+		}
 	}
 
 }

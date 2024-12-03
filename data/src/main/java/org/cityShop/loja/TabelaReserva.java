@@ -1,5 +1,6 @@
 package org.cityShop.loja;
 
+import java.beans.Introspector;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -39,15 +40,22 @@ public class TabelaReserva{
 
 	public Integer getQtdVenda() {
 
-		return null;
+		Integer vendas = 0;
+
+		for (Reserva reserva : this.reservas){
+
+			vendas++;
+		}
+
+
+		return vendas;
 
 	}
 
-	public Reserva getReserva(Long id) {
+	public void addReserva(Reserva reserva){
 
-		return null;
-		
+		this.reservas.add(reserva);
+
 	}
-
 
 }

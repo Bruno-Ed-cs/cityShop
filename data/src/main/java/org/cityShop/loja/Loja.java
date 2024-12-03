@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.cityShop.app.Database;
 import org.cityShop.produto.*;
+import org.cityShop.usuario.Usuario;
 
 import java.sql.Time;
 import java.sql.Timestamp;

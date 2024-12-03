@@ -79,7 +79,6 @@ public class Tui {
             try {
 
                 choice = sc.nextInt();  
-                sc.nextLine(); 
                 
                 if (choice >= min && choice <= max) {
 
@@ -284,11 +283,12 @@ public class Tui {
     }
 
 
-    public static void menuProduto(Produto produto, Boolean isFavorito){
+    public static void menuProduto(Produto produto, Boolean isFavorito, Loja loja, Long idUsuario){
 
         Tui.clearTerminal();
 
         System.out.println();
+        System.out.println("Loja: " + loja.nome);
         System.out.println("Nome: " + produto.getNome());
         System.out.println();
         System.out.println("Descrição : " + produto.descricao.corpo);
@@ -306,6 +306,21 @@ public class Tui {
         } else {
 
             System.out.println("Favorito: ");
+
+        }
+
+        System.out.println("Reservas: ");
+
+        for (Reserva reserva : loja.reservas.reservas){
+
+            if (reserva.cliente == idUsuario && reserva.isActive()){
+
+                System.out.println("Id: " + reserva.id);
+                System.out.println("Válido até: " + reserva.expiracaoHora.toString());
+                System.out.println("Quandtidade: " + reserva.qtdProduto);
+                System.out.println();
+            }
+
         }
 
         System.out.println("Opções");
@@ -318,6 +333,8 @@ public class Tui {
         }
 
         System.out.println("2 => Reservar");
+
+        System.out.println("3 => Acessar loja");
 
         System.out.println();
 

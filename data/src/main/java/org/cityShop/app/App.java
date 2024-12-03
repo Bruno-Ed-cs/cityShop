@@ -2,7 +2,11 @@ package org.cityShop.app;
 
 import org.cityShop.usuario.*;
 import org.cityShop.loja.Loja;
+import org.cityShop.loja.Reserva;
 import org.cityShop.produto.*;
+
+import java.util.Scanner;
+
 import org.cityShop.app.Database;
 
 public class App {
@@ -277,7 +281,13 @@ public class App {
 
         while (running){
 
-            Tui.menuProduto(this.loadedProduto, usuarioLogado.hasFavorito(this.loadedProduto.id));
+            Database database = Database.getInstance();
+            this.loadedShop = database.getLoja(this.loadedProduto.idLoja);
+
+            Tui.menuProduto(this.loadedProduto, 
+                usuarioLogado.hasFavorito(this.loadedProduto.id), 
+                this.loadedShop, 
+                usuarioLogado.id);
 
             int opt = Tui.getChoice(2, 0);
 
@@ -305,6 +315,45 @@ public class App {
                         Tui.hold();
 
                     }
+                }
+
+                case 2 -> {
+
+                    Scanner sc = new Scanner(System.in);
+                    Loja loja = database.getLoja(this.loadedProduto.idLoja);
+
+                    Tui.clearTerminal();
+
+                    System.out.println("Quantos " + loadedProduto.getNome() + " você deseja reservar : ");
+                    Long quantidade = 0L;
+                    quantidade = (long)sc.nextInt();
+
+                    System.out.println("Por quantas horas deseja Reservar: ");
+                    Long prazo = 0L;
+                    prazo = (long)sc.nextLong();
+
+
+                    Long novoId = 0L;
+
+                    for (Reserva rev : loja.reservas.reservas){
+
+                        if (rev.id > novoId){
+
+                            novoId = rev.id;
+                        }
+                    }
+
+                    novoId = novoId + 1;
+
+                    Reserva reserva = new Reserva(this.loadedProduto, this.usuarioLogado, quantidade, prazo, novoId);
+
+                    loja.reservas.addReserva(reserva);
+
+                    database.changeLoja(loja, loja.id);
+
+                    System.out.println("Reserva criada com sucesso");
+                    Tui.hold();
+
                 }
 
             }

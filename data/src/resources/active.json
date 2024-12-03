@@ -22,14 +22,37 @@
     ],
     "Lojas": [
         {
-            "dono": 1,
             "aberto": true,
+            "dono": 1,
             "localizacao": {
                 "endereco": "Rua jonh demagio n1223",
                 "latitude": "5°12'29.0\"S",
                 "longitude": "37°21'17.5\"W"
             },
-            "reservas": [],
+            "reservas": [
+                {
+                    "qtdProduto": 14,
+                    "cliente": 20,
+                    "expiracaoHora": "2024-12-03 20:52:43.0",
+                    "produto": 1,
+                    "dataReserva": "2024-12-03 15:52:43.0",
+                    "concluido": false,
+                    "precoFinal": 3.77,
+                    "pego": false,
+                    "id": 1
+                },
+                {
+                    "qtdProduto": 12,
+                    "cliente": 20,
+                    "expiracaoHora": "2024-12-03 20:17:37.391",
+                    "produto": 1,
+                    "dataReserva": "2024-12-03 18:17:37.391",
+                    "concluido": false,
+                    "precoFinal": 3.77,
+                    "pego": false,
+                    "id": 2
+                }
+            ],
             "avaliacoes": [],
             "tabelasPreco": [{
                 "hasDesconto": false,
@@ -63,7 +86,8 @@
                 "dataReserva": "2024-11-22 10:00:00",
                 "concluido": false,
                 "precoFinal": 120.5,
-                "pego": false
+                "pego": false,
+                "id": 23
             }],
             "avaliacoes": [{
                 "corpo": "Otimo produto",
@@ -104,7 +128,7 @@
                 "comida",
                 "referencia"
             ],
-            "favoritadas": 20,
+            "favoritadas": 21,
             "id": 1,
             "descricao": {
                 "corpo": "O favorito dos ouriços",
@@ -121,7 +145,7 @@
                 "medicamento",
                 "infecção"
             ],
-            "favoritadas": 11,
+            "favoritadas": 10,
             "id": 2,
             "descricao": {
                 "corpo": "O favorito das bacterias",
@@ -138,7 +162,7 @@
                 "medicamento",
                 "sex"
             ],
-            "favoritadas": 4,
+            "favoritadas": 1,
             "id": 3,
             "descricao": {
                 "corpo": "A pipa vai subir",
