@@ -220,6 +220,24 @@ public boolean removeLoja(Long idLoja) {
         return true;
     }
 
+    public Boolean removeverProdutoLoja() {
+
+        Database database = Database.getInstance();
+
+        Lojas lojas = database.querryLoja(this.loadedShop.id);
+
+        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
+            return false;
+        }
+
+        loja.removeProduto(this.loadedProduto);
+        database.changeLoja(loja, idLoja);
+        System.out.println("Produto removido com sucesso! \(^-^)/");
+        return true;
+    }
+
     //remover um produto da loja
 
     public Boolean removerProdutoLoja() {
