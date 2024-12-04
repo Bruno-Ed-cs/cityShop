@@ -148,8 +148,45 @@ public class App {
             break;
     }
 
+    
 }
 
+
+    public Boolean adicionarProdutoLoja() {
+
+        Database database = Database.getInstance();
+
+        Lojas lojas = database.querryLoja(this.loadedShop.id);
+
+        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para adicionar um produto nesta loja.");
+            return false;
+        }
+
+        loja.addProduto(this.loadedProduto);
+        database.changeLoja(loja, idLoja);
+        System.out.println("Produto adicionado com sucesso! \(^-^)/");
+        return true;
+    }
+
+    public Boolean removerProdutoLoja() {
+
+        Database database = Database.getInstance();
+
+        Lojas lojas = database.querryLoja(this.loadedShop.id);
+
+        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
+            return false;
+        }
+
+        loja.removeProduto(this.loadedProduto);
+        database.changeLoja(loja, idLoja);
+        System.out.println("Produto removido com sucesso! \(^-^)/");
+        return true;
+    }
 
     public Boolean isLogged(){
 
@@ -391,19 +428,21 @@ public class App {
         return true;
     }
 
-    public boolean removeLoja() {
+    public boolean removeLoja(Long idLoja) {
 
-        if (loadedShop == null) {
+        Database database = Database.getInstance();
+        Loja loja = database.getLoja(idLoja);
+
+        if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
         
             System.out.println("Nenhuma loja carregada.");
             return false;
         }
 
-        Database database = Database.getInstance();
-        database.removeLoja(loadedShop.id);
+        database.removeLoja(idLoja);
 
         System.out.println("Loja removida com sucesso!");
-        return true;
+        return true;                                                
 
     }
 
