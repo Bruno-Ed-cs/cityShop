@@ -182,10 +182,18 @@ public class App {
             return false;
         }
 
-        loja.removeProduto(this.loadedProduto);
-        database.changeLoja(loja, idLoja);
-        System.out.println("Produto removido com sucesso! \(^-^)/");
-        return true;
+            if(lojoa.removeProduto(this.loadedProduto)) {
+
+                loja.removeProduto(this.loadedProduto);
+                database.changeLoja(loja, idLoja);
+                System.out.println("Produto removido com sucesso! \(^-^)/");
+                return true;
+                
+            }
+
+            System.out.println("Produto nao encontrado.");
+            return false;
+       
     }
 
     public Boolean isLogged(){
