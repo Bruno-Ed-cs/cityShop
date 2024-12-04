@@ -38,6 +38,8 @@ public class App {
         return instance;
     }
 
+    //cadastrar o lojista
+
     public void cadastroLojista() {
 
         Database database = Database.getInstance();
@@ -105,6 +107,8 @@ public class App {
 
     }
 
+    //gerenciar as lojas
+
     public void gerenciarLojas() {
    
         if (usuarioLogado == null || !usuarioLogado.lojista) {
@@ -151,6 +155,52 @@ public class App {
     
 }
 
+//criar a loja
+
+public Boolean createLoja() {
+
+    if (!this.isLojista()) {
+
+        System.out.println("Nao eh lojista, nao pode criar loja.");
+        return false;
+    }
+
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("digite o nome da loja: ");
+    String nome = sc.nextLine();
+
+    Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
+
+    Database database = Database.getInstance();
+    database.addLoja(novLoja);
+
+    System.out.println("Loja criada com sucesso!");
+
+    return true;
+}
+
+
+//remover loja
+public boolean removeLoja(Long idLoja) {
+
+    Database database = Database.getInstance();
+    Loja loja = database.getLoja(idLoja);
+
+    if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
+    
+        System.out.println("Nenhuma loja carregada.");
+        return false;
+    }
+
+    database.removeLoja(idLoja);
+
+    System.out.println("Loja removida com sucesso!");
+    return true;                                                
+
+}
+
+//adicionar um produto a loja
 
     public Boolean adicionarProdutoLoja() {
 
@@ -169,6 +219,8 @@ public class App {
         System.out.println("Produto adicionado com sucesso! \(^-^)/");
         return true;
     }
+
+    //remover um produto da loja
 
     public Boolean removerProdutoLoja() {
 
@@ -195,6 +247,36 @@ public class App {
             return false;
        
     }
+
+    public Boolean lojistaLojas() {
+           
+        if(!isLojista()) {
+
+            System.out.println("Voce nao eh lojista. >:( saia daqui.");
+            return false;
+        }
+
+        Database database = Database.getInstance();
+        Lojas[] lojas = database.querryLoja();
+
+        System.out.println("Lojas do lojista: ");
+        boolean encotrouLoja = false;
+        for (Lojas loja : lojas) {
+
+            if (loja.lojista.equals(this.usuarioLogado)) {
+
+                System.out.println(loja.id + " - " + loja.nome);
+                encotrouLoja = true;
+            }
+        }
+
+        if (!encotrouLoja) {
+
+            System.out.println("Nenhuma loja cadastrada.");
+            return false;
+    }
+
+
 
     public Boolean isLogged(){
 
@@ -411,53 +493,14 @@ public class App {
         return true;
     }
 
-    // Função de criação de loja 
-
-    public Boolean createLoja() {
-
-        if (!this.isLojista()) {
-
-            System.out.println("Nao eh lojista, nao pode criar loja.");
-            return false;
-        }
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("digite o nome da loja: ");
-        String nome = sc.nextLine();
-
-        Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
-
-        Database database = Database.getInstance();
-        database.addLoja(novLoja);
-
-        System.out.println("Loja criada com sucesso!");
-
-        return true;
-    }
-
-    public boolean removeLoja(Long idLoja) {
-
-        Database database = Database.getInstance();
-        Loja loja = database.getLoja(idLoja);
-
-        if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
-        
-            System.out.println("Nenhuma loja carregada.");
-            return false;
-        }
-
-        database.removeLoja(idLoja);
-
-        System.out.println("Loja removida com sucesso!");
-        return true;                                                
-
-    }
+   
 
     // Função de reservar produto 
 
     public Boolean reservarProduto() {
+
         // Implementação para reservar um produto
+
         return true;
 
 
@@ -466,12 +509,16 @@ public class App {
     // Acessar loja
 
     public Boolean acessarLoja() {
+
         if (loadedShop != null) {
             System.out.println("Acessando a loja: " + loadedShop.nome);
             return true;
         }
+
         System.out.println("Nenhuma loja carregada.");
+
         return false;
+
     }
 
     // Acessar produto
