@@ -352,7 +352,7 @@ public class App {
                 this.loadedShop, 
                 usuarioLogado.id);
 
-            int opt = Tui.getChoice(2, 0);
+            int opt = Tui.getChoice(4, 0);
 
             if (opt == 0){
 
@@ -419,9 +419,60 @@ public class App {
 
                 }
 
+                case 3 -> {
+
+
+                }
+
+                case 4 -> {
+
+                    Scanner sc = new Scanner(System.in);
+
+                    Long target = 0L;
+
+                    Boolean found = false;
+
+                    this.loadedShop = database.getLoja(this.loadedProduto.id);
+
+                    Tui.clearTerminal();
+
+
+                    System.out.println("Insira o id da Reserva:");
+
+                    target = (long)sc.nextInt();
+
+                    for (int i = 0; i < this.loadedShop.reservas.reservas.size(); i++){
+
+                        Reserva reserva = this.loadedShop.reservas.reservas.get(i);
+
+                        if (reserva.id == target){
+
+                            found = true;
+                            reserva.concluido = true;
+
+                            database.changeLoja(this.loadedShop, this.loadedShop.id);
+                            break;
+
+                        }
+                    }
+
+                    if (found){
+                        System.out.println("Reserva cancelada");
+                        
+                    } else {
+
+                        System.out.println("Reserva nao encontrada");
+                    }
+
+                    Tui.hold();
+                }
+
             }
 
+
+            this.loadedProduto = database.getProduto(this.loadedProduto.id);
         }
+
 
 
     }

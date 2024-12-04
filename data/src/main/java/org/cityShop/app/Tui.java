@@ -287,7 +287,10 @@ public class Tui {
 
         Tui.clearTerminal();
 
+        System.out.println("==================================================Produto==================================================");
+
         System.out.println();
+
         System.out.println("Loja: " + loja.nome);
         System.out.println("Nome: " + produto.getNome());
         System.out.println();
@@ -335,6 +338,8 @@ public class Tui {
         System.out.println("2 => Reservar");
 
         System.out.println("3 => Acessar loja");
+
+        System.out.println("4 => Cancelar Reserva");
 
         System.out.println();
 

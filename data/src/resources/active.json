@@ -26,6 +26,14 @@
             "favoritos": [],
             "id": 3,
             "lojista": true
+        },
+        {
+            "senha": "432",
+            "cpf": "123123",
+            "nome": "gaudencio",
+            "favoritos": [],
+            "id": 4,
+            "lojista": false
         }
     ],
     "Lojas": [
@@ -59,6 +67,39 @@
                     "precoFinal": 3.77,
                     "pego": false,
                     "id": 2
+                },
+                {
+                    "qtdProduto": 2,
+                    "cliente": 20,
+                    "expiracaoHora": "2024-12-04 14:22:36.191",
+                    "produto": 1,
+                    "dataReserva": "2024-12-04 07:22:36.191",
+                    "concluido": false,
+                    "precoFinal": 3.77,
+                    "pego": false,
+                    "id": 3
+                },
+                {
+                    "qtdProduto": 10,
+                    "cliente": 20,
+                    "expiracaoHora": "2024-12-05 14:33:51.958",
+                    "produto": 1,
+                    "dataReserva": "2024-12-04 16:33:51.958",
+                    "concluido": false,
+                    "precoFinal": 3.77,
+                    "pego": false,
+                    "id": 4
+                },
+                {
+                    "qtdProduto": 32,
+                    "cliente": 20,
+                    "expiracaoHora": "2024-12-04 17:34:00.345",
+                    "produto": 1,
+                    "dataReserva": "2024-12-04 16:34:00.345",
+                    "concluido": true,
+                    "precoFinal": 3.77,
+                    "pego": false,
+                    "id": 5
                 }
             ],
             "avaliacoes": [],
@@ -136,7 +177,7 @@
                 "comida",
                 "referencia"
             ],
-            "favoritadas": 21,
+            "favoritadas": 24,
             "id": 1,
             "descricao": {
                 "corpo": "O favorito dos ouriços",
