@@ -162,7 +162,7 @@ public class Tui {
 
     }
 
-    private static  void favoritarLoja() {
+    private static void favoritarLoja() {
 
         Tui.clearTerminal();
 

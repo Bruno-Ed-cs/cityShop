@@ -104,6 +104,49 @@ public class App {
 
     }
 
+    public void gerenciarLojas() {
+   
+        if (usuarioLogado == null || !usuarioLogado.lojista) {
+
+            System.out.println("Nao eh lojista, nao pode gerenciar lojas.");
+            Tui.hold();
+            return;
+        }
+
+        Lojas [] lojas = Database.getInstance().querryLoja();
+
+        if (lojas == null || lojas.length == 0) {
+
+            System.out.println("Nenhuma loja cadastrada.");
+    } else {
+
+        for(int i = 0; i < lojas.length; i++) {
+
+            System.out.println(lojas[i].id + " - " + lojas[i].nome);
+        }
+    }
+
+    System.out.println("1- adicionr loja");
+    System.out.println("2- remover loja");
+    System.out.println("3- gerenciar loja");
+    System.out.println("0- voltar");
+
+    int escolha = Tui.getChoice(3, 0);
+
+    switch (escolha) {
+        case 1:
+            this.createLoja();
+            break;
+        case 2:
+            this.removeLoja();
+            break;
+        case 3:
+            this.gerenciarLoja();
+            break;
+    }
+
+}
+
 
     public Boolean isLogged(){
 
