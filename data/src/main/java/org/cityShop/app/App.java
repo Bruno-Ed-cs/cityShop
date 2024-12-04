@@ -38,7 +38,7 @@ public class App {
         return instance;
     }
 
-    public void cadastro() {
+    public void cadastroLojista() {
 
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
@@ -51,7 +51,7 @@ public class App {
         System.out.println("Digite a sua senha: ");
         String senha = sc.nextLine();
 
-        System.out.println("digite o seu cpf uWu");
+        System.out.println("digite o seu cpf: ");
         String cpf = sc.nextLine();
 
         Usuario [] usuarios = database.querryUsuarios();
@@ -353,18 +353,21 @@ public class App {
     }
 
     // Função de criação de usuário 
+
     public Boolean createUsuario() {
         // Implementação para criar um novo usuário
         return true;
     }
 
     // Função de criação de produto 
+
     public Boolean createProduto() {
         // Implementação para criar um novo produto
         return true;
     }
 
     // Função de criação de loja 
+
     public Boolean createLoja() {
 
         if (!this.isLojista()) {
@@ -388,13 +391,33 @@ public class App {
         return true;
     }
 
+    public boolean removeLoja() {
+
+        if (loadedShop == null) {
+        
+            System.out.println("Nenhuma loja carregada.");
+            return false;
+        }
+
+        Database database = Database.getInstance();
+        database.removeLoja(loadedShop.id);
+
+        System.out.println("Loja removida com sucesso!");
+        return true;
+
+    }
+
     // Função de reservar produto 
+
     public Boolean reservarProduto() {
         // Implementação para reservar um produto
         return true;
+
+
     }
 
     // Acessar loja
+
     public Boolean acessarLoja() {
         if (loadedShop != null) {
             System.out.println("Acessando a loja: " + loadedShop.nome);
@@ -405,6 +428,7 @@ public class App {
     }
 
     // Acessar produto
+
     public void acessarProduto() {
 
         if (loadedProduto == null) {
