@@ -30,6 +30,7 @@ public class App {
     // Método para garantir que apenas uma instância do App seja criada
 
     public static App getInstance() {
+
         if (instance == null) {
 
             instance = new App();
@@ -113,6 +114,8 @@ public class App {
             return;
         }
 
+        Database database = Database.getInstance();
+
         Lojas [] lojas = Database.getInstance().querryLoja();
 
         if (lojas == null || lojas.length == 0) {
@@ -164,13 +167,21 @@ public class App {
 
     public Boolean login(String nomeUsuario, String senha) {
 
-        if (usuarioLogado != null && usuarioLogado.nome.equals(nomeUsuario)) {
-            System.out.println("Logado com sucesso!");
-            return true;
-        }
-        System.out.println("Falha ao logar!");
-        return false;
+        Database database = Database.getInstance();
+        Usuarios [] usuarios = database.querryUsuarios();
+
+        for (Usuarios usuarios : usuarios) {
+
+            if (usuarios.getNome().equals(nomeUsuario) && usuarios.getSenha().equals(senha)) {
+                usuarioLogado = new Usuario(usuarios);
+                return true;
+            }
     }
+
+    System.out.println("Usuário ou senha incorretos :(");
+    return false;
+
+}
 
     // Função de logout
     public Boolean logout() {
@@ -355,7 +366,25 @@ public class App {
 
     // Função de criação de loja 
     public Boolean createLoja() {
-        // Implementação para criar uma nova loja
+
+        if (!this.isLojista()) {
+
+            System.out.println("Nao eh lojista, nao pode criar loja.");
+            return false;
+        }
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("digite o nome da loja: ");
+        String nome = sc.nextLine();
+
+        Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
+
+        Database database = Database.getInstance();
+        database.addLoja(novLoja);
+
+        System.out.println("Loja criada com sucesso!");
+
         return true;
     }
 
