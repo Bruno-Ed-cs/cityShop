@@ -2,18 +2,10 @@ package org.cityShop.app;
 
 import org.cityShop.usuario.*;
 
-import org.cityShop.loja.Avaliacao;
-import org.cityShop.loja.Loja;
-import org.cityShop.loja.Reserva;
+import org.cityShop.loja.*;
 import org.cityShop.produto.*;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Scanner;
-
-import javax.xml.crypto.Data;
-
-import org.cityShop.app.Database;
 
 public class App {
 
@@ -46,7 +38,7 @@ public class App {
 
     //cadastrar o lojista
 
-    public void cadastroLojista() {
+    public void cadastro() {
 
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
@@ -126,7 +118,7 @@ public class App {
 
         Database database = Database.getInstance();
 
-        Loja [] lojas = Database.getInstance().querryLoja();
+        Loja [] lojas = database.querryLoja();
 
         if (lojas == null || lojas.length == 0) {
 
@@ -157,7 +149,7 @@ public class App {
                 this.removeLoja(target);
 
             }
-            case 3 -> this.gerenciarLoja();
+            case 3 -> {}
         }
 
 
@@ -222,78 +214,11 @@ public class App {
 
     }
 
-    //adicionar um produto a loja
-
-    public Boolean adicionarProdutoLoja() {
-
-        Database database = Database.getInstance();
-
-        Loja[] lojas = database.querryLoja();
-
-        if (lojas == null || !lojas.lojista.equals(this.usuarioLogado)) {
-
-            System.out.println("Loja nao encontrada ou voce nao tem permissao para adicionar um produto nesta loja.");
-            return false;
-        }
-
-        loja.addProduto(this.loadedProduto);
-        database.changeLoja(loja, idLoja);
-        System.out.println("Produto adicionado com sucesso! \\(^-^)/");
-        return true;
-    }
-
-    public Boolean removeverProdutoLoja() {
-
-        Database database = Database.getInstance();
-
-        Loja lojas = database.querryLoja(this.loadedShop.id);
-
-        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
-
-            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
-            return false;
-        }
-
-        loja.removeProduto(this.loadedProduto);
-        database.changeLoja(loja, idLoja);
-        System.out.println("Produto removido com sucesso! \\(^-^)/");
-        return true;
-    }
-
-    //remover um produto da loja
-
-    public Boolean removerProdutoLoja() {
-
-        Database database = Database.getInstance();
-
-        Loja lojas = database.querryLoja(this.loadedShop.id);
-
-        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
-
-            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
-            return false;
-        }
-
-        if(lojoa.removeProduto(this.loadedProduto)) {
-
-            loja.removeProduto(this.loadedProduto);
-            database.changeLoja(loja, idLoja);
-            System.out.println("Produto removido com sucesso! \\(^-^)/");
-            return true;
-
-        }
-
-        System.out.println("Produto nao encontrado.");
-        return false;
-
-    }
-
-    public Boolean lojistaLoja()  {
+    public void lojistaLoja()  {
 
         if(!isLojista()) {
 
             System.out.println("Voce nao eh lojista. >:( saia daqui.");
-            return false;
         }
 
         Database database = Database.getInstance();
@@ -313,7 +238,8 @@ public class App {
         if (!encotrouLoja) {
 
             System.out.println("Nenhuma loja cadastrada.");
-            return false;
+            Tui.hold();
+            return;
         }
 
     }
@@ -542,38 +468,6 @@ public class App {
         System.out.println("Você precisa estar logado para ver as informações do usuário.");
         return false;
     }
-
-    public Boolean alterarEstoqueProduto(Long idProduto, int novoEstoque) {
-
-
-        Database databse = Databse.getInstance();
-        Produto produto = database.getProduto(idProduto);
-
-        if (produto == null || !usuarioLogado.isLojista()) {
-            System.out.println("Produto nao encontrado ou voc nao tem permissao para alterar o estoque deste produto.");
-            return false;
-        }
-
-        produto.setEstoque(novoEstoque);
-        database.changeProduto(produto, idProduto);
-        System.out.println("Estoque alterado com sucesso! <(>_<)>");
-        return true;
-
-    }
-
-    public Boolean visualizarReversas(Long idLoja) {
-        Database database = Database.getInstance();
-        Loja loja = database.getLoja(idLoja);
-
-        if (loja == null || !loja.lojista.equals(this.usuarioLogado)) {
-            System.out.println("Loja nao encontrada ou voce nao tem permissao para visualizar as reservas desta loja.");
-            return false;
-        }
-
-        Tui.menuReversas(loja);
-        return true;
-    }
-
     // Acessar loja
 
     // Acessar loja
@@ -851,21 +745,106 @@ public class App {
 
     }
 
-    private void favoritar(FavTypes type){
+    /**
 
+    //adicionar um produto a loja
 
-        if (type == FavTypes.PRODUTO){
+    public Boolean adicionarProdutoLoja() {
 
-        } else if (type == FavTypes.LOJA){
+        Database database = Database.getInstance();
+
+        Loja[] lojas = database.querryLoja();
+
+        if (lojas == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para adicionar um produto nesta loja.");
+            return false;
+        }
+
+        loja.addProduto(this.loadedProduto);
+        database.changeLoja(loja, idLoja);
+        System.out.println("Produto adicionado com sucesso! \\(^-^)/");
+        return true;
+    }
+
+    public Boolean removeverProdutoLoja() {
+
+        Database database = Database.getInstance();
+
+        Loja lojas = database.querryLoja(this.loadedShop.id);
+
+        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
+            return false;
+        }
+
+        loja.removeProduto(this.loadedProduto);
+        database.changeLoja(loja, idLoja);
+        System.out.println("Produto removido com sucesso! \\(^-^)/");
+        return true;
+    }
+
+    //remover um produto da loja
+
+    public Boolean removerProdutoLoja() {
+
+        Database database = Database.getInstance();
+
+        Loja lojas = database.querryLoja(this.loadedShop.id);
+
+        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para remover um produto nesta loja.");
+            return false;
+        }
+
+        if(lojoa.removeProduto(this.loadedProduto)) {
+
+            loja.removeProduto(this.loadedProduto);
+            database.changeLoja(loja, idLoja);
+            System.out.println("Produto removido com sucesso! \\(^-^)/");
+            return true;
 
         }
+
+        System.out.println("Produto nao encontrado.");
+        return false;
+
     }
 
 
+    public Boolean alterarEstoqueProduto(Long idProduto, int novoEstoque) {
 
 
+        Database databse = Databse.getInstance();
+        Produto produto = database.getProduto(idProduto);
 
+        if (produto == null || !usuarioLogado.isLojista()) {
+            System.out.println("Produto nao encontrado ou voc nao tem permissao para alterar o estoque deste produto.");
+            return false;
+        }
 
+        produto.setEstoque(novoEstoque);
+        database.changeProduto(produto, idProduto);
+        System.out.println("Estoque alterado com sucesso! <(>_<)>");
+        return true;
+
+    }
+
+    public Boolean visualizarReversas(Long idLoja) {
+        Database database = Database.getInstance();
+        Loja loja = database.getLoja(idLoja);
+
+        if (loja == null || !loja.lojista.equals(this.usuarioLogado)) {
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para visualizar as reservas desta loja.");
+            return false;
+        }
+
+        Tui.menuReversas(loja);
+        return true;
+    }
+    **/
 
 
 }

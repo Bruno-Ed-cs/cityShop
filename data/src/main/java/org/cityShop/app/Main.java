@@ -52,13 +52,11 @@ public class Main {
 
                 case 1 -> Tui.login(app);
                 case 2 -> app.cadastro();
+                case 3 -> app.logout();
                 case 4 -> app.listarLoja();
                 case 5 -> app.listarProdutos();
                 case 6 -> Tui.listarFavoritos(app);
-                //case 5 -> app.favoritarLoja(); //adicionar na loja em si
-                //case 6 -> app.favoritarProduto(); // opcao presente no produto
-                //
-
+                case 7 -> app.gerenciarLoja();
 
                 case 0 -> {
                     System.out.println("Saindo...");
