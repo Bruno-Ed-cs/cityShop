@@ -127,7 +127,7 @@ public class App {
             System.out.println("Nenhuma loja cadastrada.");
     } else {
 
-        for(int i = 0; i < lojas.length; i++) {
+        for(Lojas lojas: lojas) {
 
             System.out.println(lojas[i].id + " - " + lojas[i].nome);
         }
@@ -136,7 +136,7 @@ public class App {
     System.out.println("1- adicionr loja");
     System.out.println("2- remover loja");
     System.out.println("3- gerenciar loja");
-    System.out.println("0- voltar");
+    System.out.println("0<<< voltar");
 
     int escolha = Tui.getChoice(3, 0);
 
@@ -266,7 +266,7 @@ public boolean removeLoja(Long idLoja) {
        
     }
 
-    public Boolean lojistaLojas() {
+    public Boolean lojistaLojas()  {
            
         if(!isLojista()) {
 
@@ -294,6 +294,8 @@ public boolean removeLoja(Long idLoja) {
             return false;
     }
 
+}
+
 
 
     public Boolean isLogged(){
@@ -318,7 +320,7 @@ public boolean removeLoja(Long idLoja) {
         for (Usuarios usuarios : usuarios) {
 
             if (usuarios.getNome().equals(nomeUsuario) && usuarios.getSenha().equals(senha)) {
-                usuarioLogado = new Usuario(usuarios);
+                usuarioLogado = usuarios;
                 return true;
             }
     }
@@ -524,6 +526,37 @@ public boolean removeLoja(Long idLoja) {
 
     }
 
+    public Boolean alterarEstoqueProduto(Long idProduto, int novoEstoque) {
+
+
+        Database databse = Databse.getInstance();
+        Produto produto = database.getProduto(idProduto);
+
+        if (produto == null || !usuarioLogado.isLojista()) {
+            System.out.println("Produto nao encontrado ou voc nao tem permissao para alterar o estoque deste produto.");
+            return false;
+        }
+
+        produto.setEstoque(novoEstoque);
+        database.changeProduto(produto, idProduto);
+        System.out.println("Estoque alterado com sucesso! <(>_<)>");
+        return true;
+
+    }
+
+    public Boolean visualizarReversas(Long idLoja) {
+        Database database = Database.getInstance();
+        Loja loja = database.getLoja(idLoja);
+
+        if (loja == null || !loja.lojista.equals(this.usuarioLogado)) {
+            System.out.println("Loja nao encontrada ou voce nao tem permissao para visualizar as reservas desta loja.");
+            return false;
+        }
+
+        Tui.menuReversas(loja);
+        return true;
+    }
+
     // Acessar loja
 
     public Boolean acessarLoja() {
@@ -632,7 +665,14 @@ public boolean removeLoja(Long idLoja) {
         }
 
 
+        
     }
 
 
+
+
+
+    
+
 }
+
