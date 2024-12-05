@@ -35,10 +35,10 @@
             "id": 3,
             "idLoja": 2,
             "descricao": {
-                "nome": "Viagra",
-                "corpo": "A pipa vai subir"
+                "nome": "Dipirona",
+                "corpo": "Remedio para tosse"
             },
-            "categorias": ["medicamento", "sex"],
+            "categorias": ["medicamento", "gosto ruim"],
             "favoritadas": 1, 
             "estoque": {
                 "capacidade": 70,
@@ -88,7 +88,7 @@
             "id": 2,
             "aberto": true,
             "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
+                "endereco": "Rua jonh demagio n778",
                 "longitude": "37°21'17.5\"W",
                 "latitude": "5°12'29.0\"S"
             },

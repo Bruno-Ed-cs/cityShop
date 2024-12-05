@@ -5,6 +5,7 @@ import org.cityShop.usuario.*;
 import org.cityShop.loja.*;
 import org.cityShop.produto.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -375,45 +376,92 @@ public class App {
 
         if (usuarioLogado != null) {
 
-            Tui.clearTerminal();
+            Boolean running = true;
 
-            System.out.println("Favoritos de: " + usuarioLogado.nome + ":");
+            while (running){
+                Tui.clearTerminal();
 
-            boolean encontrouLojaFavorita = false;
-            boolean encontrouProdutoFavorito = false;
+                System.out.println("Favoritos de: " + usuarioLogado.nome );
 
-            System.out.println("\n--- Loja Favoritas ---");
+                Database database = Database.getInstance();
 
-            for (Favoritavel favorito : usuarioLogado.favoritos) {
+                Integer divisao = 0;
+                Integer count = 0;
+                ArrayList<Favoritavel> escolhas = new ArrayList<Favoritavel>();
 
-                if (favorito.getType() == FavTypes.LOJA) {
-                    System.out.println(favorito.toJSON());
-                    encontrouLojaFavorita = true;
+                System.out.println("\n--- Loja Favoritas ---");
+
+                for (Favoritavel favorito : usuarioLogado.favoritos) {
+
+                    if (favorito.getType() == FavTypes.LOJA) {
+
+                        count++;
+                        System.out.println("Opção => " + count);
+                        System.out.println("Loja: " + database.getLoja(favorito.getTarget()).nome);
+                        System.out.println();
+
+                        divisao++;
+                        escolhas.add(favorito);
+
+                    }
+                }
+
+                System.out.println("\n--- Produtos Favoritos ---");
+
+                for (Favoritavel favorito : usuarioLogado.favoritos) {
+
+                    if (favorito.getType() == FavTypes.PRODUTO) {
+
+                        count++;
+                        System.out.println("Opção => " + count);
+                        System.out.println("Produto: " + database.getProduto(favorito.getTarget()).getNome());
+                        System.out.println();
+
+                        escolhas.add(favorito);
+                    }
+                }
+
+                System.out.println("<<<< 0 => Voltar");
+
+                Integer opt = Tui.getChoice(escolhas.size() +1, 0);
+
+                if (opt <= 0 || escolhas.size() == 0 ){
+
+                    running = false;
+                    break;
+
+                } else {
+
+                    Favoritavel favorito = escolhas.get(opt -1);
+                    FavTypes type = favorito.getType();
+
+                    switch (type) {
+
+                        case PRODUTO -> {
+
+                            this.loadedProduto = database.getProduto(favorito.getTarget());
+
+                            this.acessarProduto();
+
+                        }
+
+                        case LOJA -> {
+
+                            this.loadedShop = database.getLoja(favorito.getTarget());
+
+                            this.acessarLoja();
+
+                        }
+
+                        case UNDEFINED -> {
+                            System.out.println("Um erro ocorreu");
+                        }
+
+                    }
+
 
                 }
             }
-
-            if (!encontrouLojaFavorita) {
-
-                System.out.println();
-            }
-
-            System.out.println("\n--- Produtos Favoritos ---");
-
-            for (Favoritavel favorito : usuarioLogado.favoritos) {
-
-                if (favorito.getType() == FavTypes.PRODUTO) {
-                    System.out.println(favorito.toJSON());
-                    encontrouProdutoFavorito = true;
-                }
-            }
-
-            if (!encontrouProdutoFavorito) {
-
-                System.out.println();
-            }
-
-            Tui.hold();
 
             return true;
 

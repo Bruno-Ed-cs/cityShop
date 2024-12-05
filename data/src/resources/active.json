@@ -12,6 +12,10 @@
                 {
                     "id": 1,
                     "type": "LOJA"
+                },
+                {
+                    "id": 3,
+                    "type": "PRODUTO"
                 }
             ],
             "id": 2,
@@ -21,20 +25,20 @@
             "senha": "12345",
             "cpf": "122.334.551.90",
             "nome": "seu ze",
-            "favoritos": [{
-                "id": 1,
-                "type": "LOJA"
-            }],
+            "favoritos": [],
             "id": 1,
             "lojista": true
         },
         {
-            "senha": "1",
-            "cpf": "22",
-            "nome": "toin",
-            "favoritos": [],
+            "senha": "12345",
+            "cpf": "223.441.228-43",
+            "nome": "Bruno",
+            "favoritos": [{
+                "id": 1,
+                "type": "LOJA"
+            }],
             "id": 3,
-            "lojista": true
+            "lojista": false
         }
     ],
     "Lojas": [
@@ -46,19 +50,22 @@
                 "latitude": "5°12'29.0\"S",
                 "longitude": "37°21'17.5\"W"
             },
-            "reservas": [],
-            "avaliacoes": [
-                {
-                    "corpo": "Um estabelecineto de respeio, contudo certos clientes nao foram agradaveis, foram racialmente disciminatorios e tinha merda de cachorro por toda a parte",
-                    "idUsuario": 2,
-                    "nota": 4
-                },
-                {
-                    "corpo": "simplement maravilhoso",
-                    "idUsuario": 1,
-                    "nota": 5
-                }
-            ],
+            "reservas": [{
+                "qtdProduto": 2,
+                "cliente": 3,
+                "expiracaoHora": "2024-12-05 23:24:12.992",
+                "produto": 1,
+                "dataReserva": "2024-12-05 18:24:12.992",
+                "concluido": true,
+                "precoFinal": 3.77,
+                "pego": false,
+                "id": 1
+            }],
+            "avaliacoes": [{
+                "corpo": "Uma vendinha amistosa, porém o cachorro estava sem sal",
+                "idUsuario": 3,
+                "nota": 4
+            }],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [{
@@ -72,40 +79,33 @@
                 "validade": "3024-11-21 19:07:34.324"
             }],
             "nome": "vendinha de cachorro quente",
-            "favoritadas": 173,
+            "favoritadas": 172,
             "id": 1
         },
         {
-            "aberto": true,
             "dono": 1,
+            "aberto": true,
             "localizacao": {
-                "endereco": "Rua jonh demagio n1223",
+                "endereco": "Rua jonh demagio n778",
                 "latitude": "5°12'29.0\"S",
                 "longitude": "37°21'17.5\"W"
             },
             "reservas": [{
                 "qtdProduto": 5,
                 "cliente": 1,
-                "expiracaoHora": "2024-11-22 14:00:00.0",
+                "expiracaoHora": "2024-11-22 14:00:00",
                 "produto": 1,
-                "dataReserva": "2024-11-22 10:00:00.0",
+                "dataReserva": "2024-11-22 10:00:00",
                 "concluido": false,
                 "precoFinal": 120.5,
                 "pego": false,
                 "id": 23
             }],
-            "avaliacoes": [
-                {
-                    "corpo": "Otimo produto",
-                    "idUsuario": 1,
-                    "nota": 5
-                },
-                {
-                    "corpo": "",
-                    "idUsuario": 2,
-                    "nota": 2
-                }
-            ],
+            "avaliacoes": [{
+                "corpo": "Otimo produto",
+                "idUsuario": 1,
+                "nota": 5
+            }],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [
@@ -122,10 +122,10 @@
                 "nome": "padrao",
                 "id": 34,
                 "criacao": "2024-11-21 19:07:34.324",
-                "validade": "2024-11-22 14:00:00.0"
+                "validade": "2024-11-22 14:00:00"
             }],
             "nome": "Boticario vigario",
-            "favoritadas": 88,
+            "favoritadas": 89,
             "id": 2
         }
     ],
@@ -172,13 +172,13 @@
             "idLoja": 2,
             "categorias": [
                 "medicamento",
-                "sex"
+                "gosto ruim"
             ],
-            "favoritadas": 1,
+            "favoritadas": 2,
             "id": 3,
             "descricao": {
-                "corpo": "A pipa vai subir",
-                "nome": "Viagra"
+                "corpo": "Remedio para tosse",
+                "nome": "Dipirona"
             }
         }
     ]
