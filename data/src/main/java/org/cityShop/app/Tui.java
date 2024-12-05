@@ -28,13 +28,13 @@ public class Tui {
         if (app.isLogged()){
 
             System.out.println("3 - Logout");
-            System.out.println("4 - Listar Lojas");
+            System.out.println("4 - Listar Loja");
             System.out.println("5 - Listar Produtos");
             System.out.println("6 - Listar Favoritos");
 
             if (app.isLojista()){
 
-                System.out.println("7 - Gerenciar Lojas");
+                System.out.println("7 - Gerenciar Loja");
             }
 
         } else {
@@ -201,7 +201,7 @@ public class Tui {
 
     }
 
-    public static void listarLojas(Loja[] lojas) {
+    public static void listarLoja(Loja[] lojas) {
 
        int count = 1;
 
@@ -213,7 +213,7 @@ public class Tui {
 
             Tui.clearTerminal();
 
-            System.out.println("=====================Lojas====================");
+            System.out.println("=====================Loja====================");
 
             for (Loja loja : lojas) {
 

@@ -52,7 +52,7 @@ public class Main {
 
                 case 1 -> Tui.login(app);
                 case 2 -> app.cadastro();
-                case 4 -> app.listarLojas();
+                case 4 -> app.listarLoja();
                 case 5 -> app.listarProdutos();
                 case 6 -> Tui.listarFavoritos(app);
                 //case 5 -> app.favoritarLoja(); //adicionar na loja em si

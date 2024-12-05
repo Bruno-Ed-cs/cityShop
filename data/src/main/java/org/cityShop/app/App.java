@@ -1,8 +1,7 @@
 package org.cityShop.app;
 
 import org.cityShop.usuario.*;
-import org.cityShop.loja.Loja;
-import org.cityShop.loja.Reserva;
+import org.cityShop.loja.*;
 import org.cityShop.produto.*;
 
 import java.util.Scanner;
@@ -109,8 +108,8 @@ public class App {
 
     //gerenciar as lojas
 
-    public void gerenciarLojas() {
-   
+    public void gerenciarLoja() {
+
         if (usuarioLogado == null || !usuarioLogado.lojista) {
 
             System.out.println("Nao eh lojista, nao pode gerenciar lojas.");
@@ -120,93 +119,93 @@ public class App {
 
         Database database = Database.getInstance();
 
-        Lojas [] lojas = Database.getInstance().querryLoja();
+        Loja [] lojas = Database.getInstance().querryLoja();
 
         if (lojas == null || lojas.length == 0) {
 
             System.out.println("Nenhuma loja cadastrada.");
-    } else {
+        } else {
 
-        for(Lojas lojas: lojas) {
+            for(Loja lojas: lojas) {
 
-            System.out.println(lojas[i].id + " - " + lojas[i].nome);
+                System.out.println(lojas[i].id + " - " + lojas[i].nome);
+            }
         }
-    }
 
-    System.out.println("1- adicionr loja");
-    System.out.println("2- remover loja");
-    System.out.println("3- gerenciar loja");
-    System.out.println("0<<< voltar");
+        System.out.println("1- adicionr loja");
+        System.out.println("2- remover loja");
+        System.out.println("3- gerenciar loja");
+        System.out.println("0<<< voltar");
 
-    int escolha = Tui.getChoice(3, 0);
+        int escolha = Tui.getChoice(3, 0);
 
-    switch (escolha) {
-        case 1:
+        switch (escolha) {
+            case 1:
             this.createLoja();
             break;
-        case 2:
+            case 2:
             this.removeLoja();
             break;
-        case 3:
+            case 3:
             this.gerenciarLoja();
             break;
+        }
+
+
     }
 
-    
-}
+    //criar a loja
 
-//criar a loja
+    public Boolean createLoja() {
 
-public Boolean createLoja() {
+        if (!this.isLojista()) {
 
-    if (!this.isLojista()) {
+            System.out.println("Nao eh lojista, nao pode criar loja.");
+            return false;
+        }
 
-        System.out.println("Nao eh lojista, nao pode criar loja.");
-        return false;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("digite o nome da loja: ");
+        String nome = sc.nextLine();
+
+        Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
+
+        Database database = Database.getInstance();
+        database.addLoja(novLoja);
+
+        System.out.println("Loja criada com sucesso!");
+
+        return true;
     }
 
-    Scanner sc = new Scanner(System.in);
 
-    System.out.println("digite o nome da loja: ");
-    String nome = sc.nextLine();
+    //remover loja
+    public boolean removeLoja(Long idLoja) {
 
-    Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
+        Database database = Database.getInstance();
+        Loja loja = database.getLoja(idLoja);
 
-    Database database = Database.getInstance();
-    database.addLoja(novLoja);
+        if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
 
-    System.out.println("Loja criada com sucesso!");
+            System.out.println("Nenhuma loja carregada.");
+            return false;
+        }
 
-    return true;
-}
+        database.removeLoja(idLoja);
 
+        System.out.println("Loja removida com sucesso!");
+        return true;                                                
 
-//remover loja
-public boolean removeLoja(Long idLoja) {
-
-    Database database = Database.getInstance();
-    Loja loja = database.getLoja(idLoja);
-
-    if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
-    
-        System.out.println("Nenhuma loja carregada.");
-        return false;
     }
 
-    database.removeLoja(idLoja);
-
-    System.out.println("Loja removida com sucesso!");
-    return true;                                                
-
-}
-
-//adicionar um produto a loja
+    //adicionar um produto a loja
 
     public Boolean adicionarProdutoLoja() {
 
         Database database = Database.getInstance();
 
-        Lojas lojas = database.querryLoja(this.loadedShop.id);
+        Loja lojas = database.querryLoja(this.loadedShop.id);
 
         if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
 
@@ -216,7 +215,7 @@ public boolean removeLoja(Long idLoja) {
 
         loja.addProduto(this.loadedProduto);
         database.changeLoja(loja, idLoja);
-        System.out.println("Produto adicionado com sucesso! \(^-^)/");
+        System.out.println("Produto adicionado com sucesso! \\(^-^)/");
         return true;
     }
 
@@ -224,7 +223,7 @@ public boolean removeLoja(Long idLoja) {
 
         Database database = Database.getInstance();
 
-        Lojas lojas = database.querryLoja(this.loadedShop.id);
+        Loja lojas = database.querryLoja(this.loadedShop.id);
 
         if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
 
@@ -234,7 +233,7 @@ public boolean removeLoja(Long idLoja) {
 
         loja.removeProduto(this.loadedProduto);
         database.changeLoja(loja, idLoja);
-        System.out.println("Produto removido com sucesso! \(^-^)/");
+        System.out.println("Produto removido com sucesso! \\(^-^)/");
         return true;
     }
 
@@ -244,7 +243,7 @@ public boolean removeLoja(Long idLoja) {
 
         Database database = Database.getInstance();
 
-        Lojas lojas = database.querryLoja(this.loadedShop.id);
+        Loja lojas = database.querryLoja(this.loadedShop.id);
 
         if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
 
@@ -252,22 +251,22 @@ public boolean removeLoja(Long idLoja) {
             return false;
         }
 
-            if(lojoa.removeProduto(this.loadedProduto)) {
+        if(lojoa.removeProduto(this.loadedProduto)) {
 
-                loja.removeProduto(this.loadedProduto);
-                database.changeLoja(loja, idLoja);
-                System.out.println("Produto removido com sucesso! \(^-^)/");
-                return true;
-                
-            }
+            loja.removeProduto(this.loadedProduto);
+            database.changeLoja(loja, idLoja);
+            System.out.println("Produto removido com sucesso! \\(^-^)/");
+            return true;
 
-            System.out.println("Produto nao encontrado.");
-            return false;
-       
+        }
+
+        System.out.println("Produto nao encontrado.");
+        return false;
+
     }
 
-    public Boolean lojistaLojas()  {
-           
+    public Boolean lojistaLoja()  {
+
         if(!isLojista()) {
 
             System.out.println("Voce nao eh lojista. >:( saia daqui.");
@@ -275,13 +274,13 @@ public boolean removeLoja(Long idLoja) {
         }
 
         Database database = Database.getInstance();
-        Lojas[] lojas = database.querryLoja();
+        Loja[] lojas = database.querryLoja();
 
-        System.out.println("Lojas do lojista: ");
+        System.out.println("Loja do lojista: ");
         boolean encotrouLoja = false;
-        for (Lojas loja : lojas) {
+        for (Loja loja : lojas) {
 
-            if (loja.lojista.equals(this.usuarioLogado)) {
+            if (loja.dono.equals(this.usuarioLogado.id)) {
 
                 System.out.println(loja.id + " - " + loja.nome);
                 encotrouLoja = true;
@@ -292,9 +291,9 @@ public boolean removeLoja(Long idLoja) {
 
             System.out.println("Nenhuma loja cadastrada.");
             return false;
-    }
+        }
 
-}
+    }
 
 
 
@@ -315,20 +314,20 @@ public boolean removeLoja(Long idLoja) {
     public Boolean login(String nomeUsuario, String senha) {
 
         Database database = Database.getInstance();
-        Usuarios [] usuarios = database.querryUsuarios();
+        Usuario [] usuarios = database.querryUsuarios();
 
-        for (Usuarios usuarios : usuarios) {
+        for (Usuario usuario: usuarios) {
 
-            if (usuarios.getNome().equals(nomeUsuario) && usuarios.getSenha().equals(senha)) {
-                usuarioLogado = usuarios;
+            if (usuario.nome.equals(nomeUsuario) && usuario.senha.equals(senha)) {
+                usuarioLogado = usuario;
                 return true;
             }
+        }
+
+        System.out.println("Usuário ou senha incorretos :(");
+        return false;
+
     }
-
-    System.out.println("Usuário ou senha incorretos :(");
-    return false;
-
-}
 
     // Função de logout
     public Boolean logout() {
@@ -368,7 +367,7 @@ public boolean removeLoja(Long idLoja) {
     }
 
     // Listar lojas
-    public Boolean listarLojas() {
+    public Boolean listarLoja() {
 
         Database database = Database.getInstance();
         Loja[] lojas = database.querryLoja();
@@ -380,7 +379,7 @@ public boolean removeLoja(Long idLoja) {
 
         }
 
-        Tui.listarLojas(lojas);
+        Tui.listarLoja(lojas);
         int opt = Tui.getChoice(lojas.length, 0);
 
         if (opt == 0) {
@@ -410,7 +409,7 @@ public boolean removeLoja(Long idLoja) {
             boolean encontrouLojaFavorita = false;
             boolean encontrouProdutoFavorito = false;
 
-            System.out.println("\n--- Lojas Favoritas ---");
+            System.out.println("\n--- Loja Favoritas ---");
 
             for (Favoritavel favorito : usuarioLogado.favoritos) {
 
@@ -513,7 +512,7 @@ public boolean removeLoja(Long idLoja) {
         return true;
     }
 
-   
+
 
     // Função de reservar produto 
 
@@ -665,14 +664,14 @@ public boolean removeLoja(Long idLoja) {
         }
 
 
-        
+
     }
 
 
 
 
 
-    
+
 
 }
 

@@ -225,7 +225,7 @@ public class Database {
 
 	public Loja[] querryLoja(){
 
-		JSONArray lojas = new JSONArray(this.database.getJSONArray("Lojas").toString());
+		JSONArray lojas = new JSONArray(this.database.getJSONArray("Loja").toString());
 
 		Loja[] querry = new Loja[lojas.length()];
 
@@ -278,11 +278,11 @@ public class Database {
 
 	public Boolean changeLoja(Loja novaLoja, Long idTarget){
 
-		Integer index = this.getIndex("Lojas", idTarget);
+		Integer index = this.getIndex("Loja", idTarget);
 
 		if (index != null){
 
-			this.database.getJSONArray("Lojas").put(index, novaLoja.toJSON());
+			this.database.getJSONArray("Loja").put(index, novaLoja.toJSON());
 			this.save();
 
 			return true;
@@ -346,7 +346,7 @@ public class Database {
 
 		JSONObject novo = loja.toJSON();
 
-		this.database.getJSONArray("Lojas").put(novo);
+		this.database.getJSONArray("Loja").put(novo);
 		
 		this.save();
 
@@ -396,7 +396,7 @@ public class Database {
 
     public Boolean removeLoja(Long idLoja) {
 
-        JSONArray lojas = this.database.getJSONArray("Lojas");
+        JSONArray lojas = this.database.getJSONArray("Loja");
 
         Boolean detected = false;
         Integer target = null;
@@ -410,7 +410,7 @@ public class Database {
         }
 
         if (detected) {
-            this.database.getJSONArray("Lojas").remove(target);
+            this.database.getJSONArray("Loja").remove(target);
             this.save();
             return true;
         } else {
@@ -463,7 +463,7 @@ public class Database {
 
 		Usuario user = App.getInstance().usuarioLogado;
 		System.out.println("Usuário: " + user.nome);
-		System.out.println("Lojas favoritas: " + user.favoritos);
+		System.out.println("Loja favoritas: " + user.favoritos);
 		System.out.println("Produtos favoritos: " + user.favoritos);
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -540,7 +540,7 @@ public class Database {
 		nova.id = 3L;
 		nova.nome = "hwlvetica";
 
-		database.database.getJSONArray("Lojas").put(nova.toJSON());
+		database.database.getJSONArray("Loja").put(nova.toJSON());
 
 		Produto nuevo = new Produto();
 
