@@ -332,9 +332,11 @@ public boolean removeLoja(Long idLoja) {
 
     // Função de logout
     public Boolean logout() {
+
         usuarioLogado = null;
         System.out.println("Deslogado com sucesso.");
         return true;
+        
     }
 
     // Listar produtos
