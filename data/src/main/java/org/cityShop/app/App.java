@@ -473,14 +473,12 @@ public class App {
     // Acessar loja
     public void acessarLoja() {
 
-        if (loadedShop != null) {
-            System.out.println("Acessando a loja: " + loadedShop.nome);
+        if (loadedShop == null) {
+
+            System.out.println("Nenhuma loja carregada.");
+            Tui.hold();
             return;
         }
-
-        System.out.println("Nenhuma loja carregada.");
-
-
 
         Boolean running = true;
         Database database = Database.getInstance();

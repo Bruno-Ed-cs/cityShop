@@ -418,7 +418,10 @@ public class Tui {
 
     public static void printAvaliacao(Avaliacao avaliacao){
 
+        Database database = Database.getInstance();
+
         System.out.println();
+        System.out.println("Usuario: " + database.getUsuario(avaliacao.idUsuario).nome);
         System.out.println("Nota: " + avaliacao.nota + "/5");
 
         StringBuilder corpo = new StringBuilder(avaliacao.corpo);

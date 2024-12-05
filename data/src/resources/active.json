@@ -21,8 +21,19 @@
             "senha": "12345",
             "cpf": "122.334.551.90",
             "nome": "seu ze",
-            "favoritos": [],
+            "favoritos": [{
+                "id": 1,
+                "type": "LOJA"
+            }],
             "id": 1,
+            "lojista": true
+        },
+        {
+            "senha": "1",
+            "cpf": "22",
+            "nome": "toin",
+            "favoritos": [],
+            "id": 3,
             "lojista": true
         }
     ],
@@ -36,11 +47,18 @@
                 "longitude": "37°21'17.5\"W"
             },
             "reservas": [],
-            "avaliacoes": [{
-                "corpo": "Um estabelecineto de respeio, contudo certos clientes nao foram agradaveis, foram racialmente disciminatorios e tinha merda de cachorro por toda a parte",
-                "idUsuario": 2,
-                "nota": 4
-            }],
+            "avaliacoes": [
+                {
+                    "corpo": "Um estabelecineto de respeio, contudo certos clientes nao foram agradaveis, foram racialmente disciminatorios e tinha merda de cachorro por toda a parte",
+                    "idUsuario": 2,
+                    "nota": 4
+                },
+                {
+                    "corpo": "simplement maravilhoso",
+                    "idUsuario": 1,
+                    "nota": 5
+                }
+            ],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [{
@@ -54,7 +72,7 @@
                 "validade": "3024-11-21 19:07:34.324"
             }],
             "nome": "vendinha de cachorro quente",
-            "favoritadas": 172,
+            "favoritadas": 173,
             "id": 1
         },
         {

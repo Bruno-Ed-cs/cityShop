@@ -44,7 +44,7 @@ public class Main {
 
             } else {
 
-                choice = Tui.getChoice(1, 0);
+                choice = Tui.getChoice(2, 0);
 
             }
 
