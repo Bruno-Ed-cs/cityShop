@@ -1,6 +1,7 @@
 package org.cityShop.app;
 
 import org.cityShop.usuario.*;
+import org.cityShop.loja.Avaliacao;
 import org.cityShop.loja.Loja;
 import org.cityShop.loja.Reserva;
 import org.cityShop.produto.*;
@@ -228,8 +229,6 @@ public class App {
 
     }
 
-
-
     // Listar favoritos
 
     public Boolean listarFavoritos() {
@@ -391,18 +390,49 @@ public class App {
                     }
 
                 }
+
                 //adicionar avaliacao
                 case 3 -> {
 
+                    Scanner sc = new Scanner(System.in);
+                    Integer nota = 0;
+                    String corpo = new String();
+
+                    Tui.clearTerminal();
+
+                    System.out.println("Qual a nota entre 0 e 5:");
+                    nota = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.println("Digite a avaliação");
+                    corpo = sc.nextLine();
+
+                    Avaliacao ava = new Avaliacao(nota, corpo, this.usuarioLogado.id);
+
+                    this.loadedShop.avaliacoes.add(ava);
+
+                    database.changeLoja(this.loadedShop, this.loadedShop.id);
                 }
+
                 //listar avaliacoes
 
                 case 4 -> {
 
+                    Tui.clearTerminal();
+
+                    if (this.loadedShop.avaliacoes.size() == 0){
+
+                        System.out.println("Nenhuma avaliacao registrada");
+                    } else {
+
+                        for (Avaliacao avaliacao : this.loadedShop.avaliacoes){
+
+                            Tui.printAvaliacao(avaliacao);
+                        }
+                    }
+
+                    Tui.hold();
                 }
-
-
-
 
             }
 

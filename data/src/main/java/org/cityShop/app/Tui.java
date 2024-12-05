@@ -3,6 +3,7 @@ import java.io.*;
 
 import java.util.Scanner;
 
+import javax.security.sasl.Sasl;
 import javax.xml.crypto.Data;
 
 import org.cityShop.loja.*;
@@ -412,6 +413,27 @@ public class Tui {
         System.out.println("<<<<<< 0 => Voltar");
 
 
+
+    }
+
+    public static void printAvaliacao(Avaliacao avaliacao){
+
+        System.out.println();
+        System.out.println("Nota: " + avaliacao.nota + "/5");
+
+        StringBuilder corpo = new StringBuilder(avaliacao.corpo);
+
+
+        for (int i = 0; i < corpo.length(); i++){
+
+            if (i % 100 == 0){
+                corpo.insert(i, "\n");
+            }
+            
+        }
+
+        System.out.println("Corpo: \n" + corpo.toString());
+        System.out.println();
 
     }
 

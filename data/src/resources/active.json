@@ -10,10 +10,6 @@
                     "type": "PRODUTO"
                 },
                 {
-                    "id": 2,
-                    "type": "LOJA"
-                },
-                {
                     "id": 1,
                     "type": "LOJA"
                 }
@@ -40,7 +36,11 @@
                 "longitude": "37°21'17.5\"W"
             },
             "reservas": [],
-            "avaliacoes": [],
+            "avaliacoes": [{
+                "corpo": "Um estabelecineto de respeio, contudo certos clientes nao foram agradaveis, foram racialmente disciminatorios e tinha merda de cachorro por toda a parte",
+                "idUsuario": 2,
+                "nota": 4
+            }],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [{
@@ -58,8 +58,8 @@
             "id": 1
         },
         {
-            "dono": 1,
             "aberto": true,
+            "dono": 1,
             "localizacao": {
                 "endereco": "Rua jonh demagio n1223",
                 "latitude": "5°12'29.0\"S",
@@ -68,19 +68,26 @@
             "reservas": [{
                 "qtdProduto": 5,
                 "cliente": 1,
-                "expiracaoHora": "2024-11-22 14:00:00",
+                "expiracaoHora": "2024-11-22 14:00:00.0",
                 "produto": 1,
-                "dataReserva": "2024-11-22 10:00:00",
+                "dataReserva": "2024-11-22 10:00:00.0",
                 "concluido": false,
                 "precoFinal": 120.5,
                 "pego": false,
                 "id": 23
             }],
-            "avaliacoes": [{
-                "corpo": "Otimo produto",
-                "idUsuario": 1,
-                "nota": 5
-            }],
+            "avaliacoes": [
+                {
+                    "corpo": "Otimo produto",
+                    "idUsuario": 1,
+                    "nota": 5
+                },
+                {
+                    "corpo": "",
+                    "idUsuario": 2,
+                    "nota": 2
+                }
+            ],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [
@@ -97,10 +104,10 @@
                 "nome": "padrao",
                 "id": 34,
                 "criacao": "2024-11-21 19:07:34.324",
-                "validade": "2024-11-22 14:00:00"
+                "validade": "2024-11-22 14:00:00.0"
             }],
             "nome": "Boticario vigario",
-            "favoritadas": 89,
+            "favoritadas": 88,
             "id": 2
         }
     ],
