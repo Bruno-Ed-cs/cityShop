@@ -19,7 +19,7 @@ public class FavoritoLoja implements Favoritavel
 
 	}
 	
-	public FavoritoLoja(Long idTarget, Long idUsuario){
+	public FavoritoLoja(Long idUsuario, Long idTarget){
 
 		//Armazena o id da loja favoritada
 
@@ -44,6 +44,7 @@ public class FavoritoLoja implements Favoritavel
 	}
 
 
+	@Override
 	//Retorna o id da loja que o usuario favoritou
 	 
 	public Long getTarget() {
@@ -52,16 +53,8 @@ public class FavoritoLoja implements Favoritavel
 	}
 
 	
-	//Retorna o id do usuario que favoritou a loja
-	 
-	public Long getIdTargeLong() {
-
-		return idUsuario;
-
-	}
 
 	@Override
-
 	// Retorna o tipo da favorita o (Loja ou Produto)
 	
 	public FavTypes getType() {

@@ -4,10 +4,16 @@
             "senha": "12345",
             "cpf": "223.334.551.90",
             "nome": "Astoufo",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
+            "favoritos": [
+                {
+                    "id": 1,
+                    "type": "PRODUTO"
+                },
+                {
+                    "id": 1,
+                    "type": "LOJA"
+                }
+            ],
             "id": 2,
             "lojista": false
         },
@@ -17,14 +23,6 @@
             "nome": "seu ze",
             "favoritos": [],
             "id": 1,
-            "lojista": true
-        },
-        {
-            "senha": "123456",
-            "cpf": "323.44.5-1",
-            "nome": "rogerio",
-            "favoritos": [],
-            "id": 3,
             "lojista": true
         }
     ],
@@ -37,31 +35,12 @@
                 "latitude": "5°12'29.0\"S",
                 "longitude": "37°21'17.5\"W"
             },
-            "reservas": [
-                {
-                    "qtdProduto": 14,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-03 20:52:43.0",
-                    "produto": 1,
-                    "dataReserva": "2024-12-03 15:52:43.0",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 1
-                },
-                {
-                    "qtdProduto": 12,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-03 20:17:37.391",
-                    "produto": 1,
-                    "dataReserva": "2024-12-03 18:17:37.391",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 2
-                }
-            ],
-            "avaliacoes": [],
+            "reservas": [],
+            "avaliacoes": [{
+                "corpo": "Um estabelecineto de respeio, contudo certos clientes nao foram agradaveis, foram racialmente disciminatorios e tinha merda de cachorro por toda a parte",
+                "idUsuario": 2,
+                "nota": 4
+            }],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [{
@@ -75,12 +54,12 @@
                 "validade": "3024-11-21 19:07:34.324"
             }],
             "nome": "vendinha de cachorro quente",
-            "favoritadas": 170,
+            "favoritadas": 172,
             "id": 1
         },
         {
-            "dono": 1,
             "aberto": true,
+            "dono": 1,
             "localizacao": {
                 "endereco": "Rua jonh demagio n1223",
                 "latitude": "5°12'29.0\"S",
@@ -89,19 +68,26 @@
             "reservas": [{
                 "qtdProduto": 5,
                 "cliente": 1,
-                "expiracaoHora": "2024-11-22 14:00:00",
+                "expiracaoHora": "2024-11-22 14:00:00.0",
                 "produto": 1,
-                "dataReserva": "2024-11-22 10:00:00",
+                "dataReserva": "2024-11-22 10:00:00.0",
                 "concluido": false,
                 "precoFinal": 120.5,
                 "pego": false,
                 "id": 23
             }],
-            "avaliacoes": [{
-                "corpo": "Otimo produto",
-                "idUsuario": 1,
-                "nota": 5
-            }],
+            "avaliacoes": [
+                {
+                    "corpo": "Otimo produto",
+                    "idUsuario": 1,
+                    "nota": 5
+                },
+                {
+                    "corpo": "",
+                    "idUsuario": 2,
+                    "nota": 2
+                }
+            ],
             "tabelasPreco": [{
                 "hasDesconto": false,
                 "produtos": [
@@ -118,10 +104,10 @@
                 "nome": "padrao",
                 "id": 34,
                 "criacao": "2024-11-21 19:07:34.324",
-                "validade": "2024-11-22 14:00:00"
+                "validade": "2024-11-22 14:00:00.0"
             }],
             "nome": "Boticario vigario",
-            "favoritadas": 89,
+            "favoritadas": 88,
             "id": 2
         }
     ],
@@ -136,7 +122,7 @@
                 "comida",
                 "referencia"
             ],
-            "favoritadas": 21,
+            "favoritadas": 20,
             "id": 1,
             "descricao": {
                 "corpo": "O favorito dos ouriços",

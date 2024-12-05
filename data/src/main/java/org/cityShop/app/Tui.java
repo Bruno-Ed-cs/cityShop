@@ -3,6 +3,7 @@ import java.io.*;
 
 import java.util.Scanner;
 
+import javax.security.sasl.Sasl;
 import javax.xml.crypto.Data;
 
 import org.cityShop.loja.*;
@@ -50,6 +51,8 @@ public class Tui {
     public static void login(App app){
 
         Tui.clearTerminal();
+
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("digite o nome do usuario: ");
         String nomeUsuario = sc.nextLine();
@@ -203,35 +206,50 @@ public class Tui {
 
     public static void listarLoja(Loja[] lojas) {
 
-       int count = 1;
+        int count = 1;
 
-            if (lojas == null) {
+        if (lojas == null) {
 
-                System.out.println("falha ao listar lojas :(");
-                return;
-            }
+            System.out.println("falha ao listar lojas :(");
+            return;
+        }
 
-            Tui.clearTerminal();
+        Tui.clearTerminal();
 
-            System.out.println("=====================Loja====================");
+        System.out.println("=====================Lojas====================");
 
-            for (Loja loja : lojas) {
-
-                System.out.println();
-                System.out.println("opções => " + count);
-                System.out.println(loja.nome);
-                System.out.println("Favoritos: " + loja.favoritadas);
-
-                count++;
-
-            }
+        for (Loja loja : lojas) {
 
             System.out.println();
-            System.out.println("< 0 - voltar");
+            System.out.println("opções => " + count);
+            System.out.println(loja.nome);
+            System.out.println("Favoritos: " + loja.favoritadas);
+            System.out.println("Localização: " + loja.localizacao.endereco);
+            System.out.println("Nota: " + loja.getMediaNotas() + "/5");
 
-            return;
-           
+            if (loja.aberto){
+
+                System.out.println("Aberto");
+            } else {
+
+                System.out.println("Fechado");
+            }
+
+
+
+
+            count++;
+
+        }
+
+        System.out.println();
+        System.out.println("< 0 - voltar");
+
+        return;
+
     }
+
+    
 
 
     public static void listarProdutos(Produto[] produtos) {
@@ -287,7 +305,10 @@ public class Tui {
 
         Tui.clearTerminal();
 
+        System.out.println("==================================================Produto==================================================");
+
         System.out.println();
+
         System.out.println("Loja: " + loja.nome);
         System.out.println("Nome: " + produto.getNome());
         System.out.println();
@@ -336,6 +357,8 @@ public class Tui {
 
         System.out.println("3 => Acessar loja");
 
+        System.out.println("4 => Cancelar Reserva");
+
         System.out.println();
 
         System.out.println("0 => Voltar");
@@ -344,23 +367,73 @@ public class Tui {
 
     }
 
-    public static void menuLoja(Loja loja){
+    public static void menuLoja(Loja loja, Boolean isFavorito){
+
+        Database database = Database.getInstance();
 
         Tui.clearTerminal();
-
-        System.out.println();
-        System.out.println("Nome: " + loja.nome);
-        System.out.println();
+        System.out.println("===========================================" + loja.nome + "===========================================");
+        System.out.println("Dono: " + database.getUsuario(loja.dono).nome);
         System.out.println("Favoritos: " + loja.favoritadas);
         System.out.println();
+        System.out.println("Endereço: " + loja.localizacao.endereco);
+        System.out.println("Coordenadas: " + loja.localizacao.latitude + " " + loja.localizacao.longitude);
         System.out.println();
+        System.out.println("Nota: " + loja.getMediaNotas() + "/5");
 
-        System.out.println("Opções");
-        System.out.println("1 => Favoritar");
+        String estrela = isFavorito? "" : "";
+        System.out.println("Favorito: " + estrela);
+
+        if (loja.aberto){
+
+            System.out.println("Aberto");
+        } else {
+
+            System.out.println("Fechado");
+        }
+
+        //listar produtos
+        //favoritar
+        //adicionar avaliacao
+        //listar avaliacoes
+
+        System.out.println("Opções: ");
+        System.out.println("1 => Listar Produtos");
+
+        if (isFavorito){
+
+            System.out.println("2 => Remover Favorito");
+        } else {
+            System.out.println("2 => Favoritar Loja");
+        }
+
+        System.out.println("3 => Deixar Avaliação");
+        System.out.println("4 => Ver Avaliações");
+        System.out.println();
+        System.out.println("<<<<<< 0 => Voltar");
+
+
+
+    }
+
+    public static void printAvaliacao(Avaliacao avaliacao){
 
         System.out.println();
+        System.out.println("Nota: " + avaliacao.nota + "/5");
 
-        System.out.println("0 => Voltar");
+        StringBuilder corpo = new StringBuilder(avaliacao.corpo);
+
+
+        for (int i = 0; i < corpo.length(); i++){
+
+            if (i % 100 == 0){
+                corpo.insert(i, "\n");
+            }
+            
+        }
+
+        System.out.println("Corpo: \n" + corpo.toString());
+        System.out.println();
 
     }
 

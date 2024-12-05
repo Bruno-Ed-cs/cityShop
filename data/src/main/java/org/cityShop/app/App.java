@@ -1,10 +1,17 @@
 package org.cityShop.app;
 
 import org.cityShop.usuario.*;
-import org.cityShop.loja.*;
+
+import org.cityShop.loja.Avaliacao;
+import org.cityShop.loja.Loja;
+import org.cityShop.loja.Reserva;
 import org.cityShop.produto.*;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Scanner;
+
+import javax.xml.crypto.Data;
 
 import org.cityShop.app.Database;
 
@@ -23,7 +30,7 @@ public class App {
     private App() {
         //teste
 
-        this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true, "12345");
+        //this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true, "12345");
     }
 
     // Método para garantir que apenas uma instância do App seja criada
@@ -361,7 +368,7 @@ public class App {
 
         if (produtos.length == 0) {
 
-            System.out.println("Nenhum produto cadastrado ainda :(");
+            System.out.println();
 
         }
 
@@ -379,6 +386,30 @@ public class App {
         acessarProduto();  // Acessar o produto
 
 
+
+    }
+
+    public void listarProdutos(Produto[] produtos) {
+
+
+        if (produtos.length == 0) {
+
+            System.out.println();
+
+        }
+
+        Tui.listarProdutos(produtos);  
+        int opt = Tui.getChoice(produtos.length, 0);
+
+        if (opt == 0) {
+
+            return;
+
+        }
+
+        loadedProduto = produtos[opt - 1];
+
+        acessarProduto();  // Acessar o produto
 
     }
 
@@ -405,12 +436,10 @@ public class App {
         }
 
         loadedShop = lojas[opt - 1];
-        acessarLoja();
+        this.acessarLoja();
         return true;
 
     }
-
-
 
     // Listar favoritos
 
@@ -438,7 +467,7 @@ public class App {
 
             if (!encontrouLojaFavorita) {
 
-                System.out.println("Nenhuma loja favorita ainda :(");
+                System.out.println();
             }
 
             System.out.println("\n--- Produtos Favoritos ---");
@@ -453,7 +482,7 @@ public class App {
 
             if (!encontrouProdutoFavorito) {
 
-                System.out.println("Nenhum produto favorito ainda :(");
+                System.out.println();
             }
 
             Tui.hold();
@@ -514,33 +543,6 @@ public class App {
         return false;
     }
 
-    // Função de criação de usuário 
-
-    public Boolean createUsuario() {
-        // Implementação para criar um novo usuário
-        return true;
-    }
-
-    // Função de criação de produto 
-
-    public Boolean createProduto() {
-        // Implementação para criar um novo produto
-        return true;
-    }
-
-
-
-    // Função de reservar produto 
-
-    public Boolean reservarProduto() {
-
-        // Implementação para reservar um produto
-
-        return true;
-
-
-    }
-
     public Boolean alterarEstoqueProduto(Long idProduto, int novoEstoque) {
 
 
@@ -574,17 +576,125 @@ public class App {
 
     // Acessar loja
 
-    public Boolean acessarLoja() {
+    // Acessar loja
+    public void acessarLoja() {
 
         if (loadedShop != null) {
             System.out.println("Acessando a loja: " + loadedShop.nome);
-            return true;
+            return;
         }
 
         System.out.println("Nenhuma loja carregada.");
 
-        return false;
 
+
+        Boolean running = true;
+        Database database = Database.getInstance();
+
+        while (running){
+
+            Boolean isFavorito = this.usuarioLogado.hasFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+            Tui.menuLoja(this.loadedShop, isFavorito);
+
+            Integer opt = Tui.getChoice(4, 0);
+
+            switch (opt){
+
+                case 0 -> {
+                    running = false;
+                }
+
+                //listar produtos
+                case 1 -> {
+
+                    Produto[] produtos = database.querryProduto(this.loadedShop.id);
+
+                    if (produtos.length == 0){
+
+                        Tui.clearTerminal();
+                        System.out.println("Nenhuma loja encontrada");
+                        Tui.hold();
+                    } else {
+
+                        this.listarProdutos(produtos);
+
+                    }
+
+                }
+
+                //favoritar
+                case 2 -> {
+
+                    if (this.usuarioLogado.hasFavorito(this.loadedShop.id, FavTypes.LOJA)){
+
+                        this.usuarioLogado.removerFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito removido =)");
+                        Tui.hold();
+                    } else {
+
+                        this.usuarioLogado.adicionarFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito adicionado =)");
+                        Tui.hold();
+
+                    }
+
+                }
+
+                //adicionar avaliacao
+                case 3 -> {
+
+                    Scanner sc = new Scanner(System.in);
+                    Integer nota = 0;
+                    String corpo = new String();
+
+                    Tui.clearTerminal();
+
+                    System.out.println("Qual a nota entre 0 e 5:");
+                    nota = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.println("Digite a avaliação");
+                    corpo = sc.nextLine();
+
+                    Avaliacao ava = new Avaliacao(nota, corpo, this.usuarioLogado.id);
+
+                    this.loadedShop.avaliacoes.add(ava);
+
+                    database.changeLoja(this.loadedShop, this.loadedShop.id);
+                }
+
+                //listar avaliacoes
+
+                case 4 -> {
+
+                    Tui.clearTerminal();
+
+                    if (this.loadedShop.avaliacoes.size() == 0){
+
+                        System.out.println("Nenhuma avaliacao registrada");
+                    } else {
+
+                        for (Avaliacao avaliacao : this.loadedShop.avaliacoes){
+
+                            Tui.printAvaliacao(avaliacao);
+                        }
+                    }
+
+                    Tui.hold();
+                }
+
+            }
+
+
+
+            this.loadedShop = database.getLoja(this.loadedShop.id);
+
+        }
     }
 
     // Acessar produto
@@ -604,23 +714,24 @@ public class App {
             this.loadedShop = database.getLoja(this.loadedProduto.idLoja);
 
             Tui.menuProduto(this.loadedProduto, 
-                usuarioLogado.hasFavorito(this.loadedProduto.id), 
+                usuarioLogado.hasFavorito(this.loadedProduto.id, FavTypes.PRODUTO), 
                 this.loadedShop, 
                 usuarioLogado.id);
 
-            int opt = Tui.getChoice(2, 0);
-
-            if (opt == 0){
-
-                break;
-            }
+            int opt = Tui.getChoice(4, 0);
 
             switch (opt){
 
-                case 1 -> {
-                    if (this.usuarioLogado.hasFavorito(loadedProduto.id)){
+                case 0 -> {
+                    running = false;
+                }
 
-                        this.usuarioLogado.removerFavorito(this.loadedProduto.id);
+                case 1 -> {
+
+
+                    if (this.usuarioLogado.hasFavorito(this.loadedProduto.id, FavTypes.PRODUTO)){
+
+                        this.usuarioLogado.removerFavorito(this.loadedProduto.id, FavTypes.PRODUTO);
 
                         Tui.clearTerminal();
                         System.out.println("Favorito removido =)");
@@ -634,8 +745,10 @@ public class App {
                         Tui.hold();
 
                     }
+
                 }
 
+                //fazer reserva
                 case 2 -> {
 
                     Scanner sc = new Scanner(System.in);
@@ -675,13 +788,79 @@ public class App {
 
                 }
 
+                // adicionar acesso a loja 
+                case 3 -> {
+
+                    this.loadedShop = database.getLoja(this.loadedProduto.idLoja);
+
+                    this.acessarLoja();
+
+                }
+
+                //cancelar reserva
+                case 4 -> {
+
+                    Scanner sc = new Scanner(System.in);
+
+                    Long target = 0L;
+
+                    Boolean found = false;
+
+                    this.loadedShop = database.getLoja(this.loadedProduto.id);
+
+                    Tui.clearTerminal();
+
+
+                    System.out.println("Insira o id da Reserva:");
+
+                    target = (long)sc.nextInt();
+
+                    for (int i = 0; i < this.loadedShop.reservas.reservas.size(); i++){
+
+                        Reserva reserva = this.loadedShop.reservas.reservas.get(i);
+
+                        if (reserva.id == target){
+
+                            found = true;
+                            reserva.concluido = true;
+
+                            database.changeLoja(this.loadedShop, this.loadedShop.id);
+                            break;
+
+                        }
+                    }
+
+                    if (found){
+                        System.out.println("Reserva cancelada");
+
+                    } else {
+
+                        System.out.println("Reserva nao encontrada");
+                    }
+
+                    Tui.hold();
+                }
+
             }
 
+
+            this.loadedProduto = database.getProduto(this.loadedProduto.id);
         }
 
 
 
     }
+
+    private void favoritar(FavTypes type){
+
+
+        if (type == FavTypes.PRODUTO){
+
+        } else if (type == FavTypes.LOJA){
+
+        }
+    }
+
 
 
 
