@@ -463,7 +463,7 @@ public class Database {
 
 		Usuario user = App.getInstance().usuarioLogado;
 		System.out.println("Usuário: " + user.nome);
-		System.out.println("Lojas favoritas: " + user.favoritos);
+		System.out.println("Loja favoritas: " + user.favoritos);
 		System.out.println("Produtos favoritos: " + user.favoritos);
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());

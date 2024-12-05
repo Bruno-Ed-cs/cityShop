@@ -5,9 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.cityShop.app.Database;
 import org.cityShop.produto.*;
-import org.cityShop.usuario.Usuario;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -224,6 +222,28 @@ public class Loja
 		}
 
 		return produtos;
+
+	}
+
+	public Double getMediaNotas(){
+
+		Double med = 0.0;
+		Double count = 0.0;
+
+		for (Avaliacao avaliacao : this.avaliacoes){
+
+			count++;
+
+			med += (double)avaliacao.nota;
+
+		}
+
+		if (count == 0.0){
+
+			count = 1.0;
+		}
+
+		return med / count;
 
 	}
 

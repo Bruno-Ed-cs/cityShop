@@ -1,7 +1,5 @@
 package org.cityShop.loja;
 
-import org.cityShop.testes.Json;
-import org.cityShop.usuario.*;
 import org.json.JSONObject;
 
 public class Avaliacao {
@@ -11,6 +9,11 @@ public class Avaliacao {
 	public Long idUsuario;
 
 	public Avaliacao(Integer nota, String corpo, Long autor) {
+
+		if (nota > 5){
+
+			nota = 5;
+		}
 
 		this.nota = nota;
 		this.corpo = corpo;
