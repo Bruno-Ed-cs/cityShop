@@ -227,5 +227,27 @@ public class Loja
 
 	}
 
+	public Double getMediaNotas(){
+
+		Double med = 0.0;
+		Double count = 0.0;
+
+		for (Avaliacao avaliacao : this.avaliacoes){
+
+			count++;
+
+			med += (double)avaliacao.nota;
+
+		}
+
+		if (count == 0.0){
+
+			count = 1.0;
+		}
+
+		return med / count;
+
+	}
+
 	
 }

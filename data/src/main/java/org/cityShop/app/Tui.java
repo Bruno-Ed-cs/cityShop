@@ -203,34 +203,47 @@ public class Tui {
 
     public static void listarLojas(Loja[] lojas) {
 
-       int count = 1;
+        int count = 1;
 
-            if (lojas == null) {
+        if (lojas == null) {
 
-                System.out.println("falha ao listar lojas :(");
-                return;
-            }
+            System.out.println("falha ao listar lojas :(");
+            return;
+        }
 
-            Tui.clearTerminal();
+        Tui.clearTerminal();
 
-            System.out.println("=====================Lojas====================");
+        System.out.println("=====================Lojas====================");
 
-            for (Loja loja : lojas) {
-
-                System.out.println();
-                System.out.println("opções => " + count);
-                System.out.println(loja.nome);
-                System.out.println("Favoritos: " + loja.favoritadas);
-
-                count++;
-
-            }
+        for (Loja loja : lojas) {
 
             System.out.println();
-            System.out.println("< 0 - voltar");
+            System.out.println("opções => " + count);
+            System.out.println(loja.nome);
+            System.out.println("Favoritos: " + loja.favoritadas);
+            System.out.println("Localização: " + loja.localizacao.endereco);
+            System.out.println("Nota: " + loja.getMediaNotas() + "/5");
 
-            return;
-           
+            if (loja.aberto){
+
+                System.out.println("Aberto");
+            } else {
+
+                System.out.println("Fechado");
+            }
+
+
+
+
+            count++;
+
+        }
+
+        System.out.println();
+        System.out.println("< 0 - voltar");
+
+        return;
+
     }
 
 

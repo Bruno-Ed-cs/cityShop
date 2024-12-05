@@ -145,7 +145,7 @@ public class App {
 
         if (produtos.length == 0) {
 
-            System.out.println("Nenhum produto cadastrado ainda :(");
+            System.out.println();
 
         }
 
@@ -163,6 +163,30 @@ public class App {
         acessarProduto();  // Acessar o produto
 
 
+
+    }
+
+    public void listarProdutos(Produto[] produtos) {
+
+
+        if (produtos.length == 0) {
+
+            System.out.println();
+
+        }
+
+        Tui.listarProdutos(produtos);  
+        int opt = Tui.getChoice(produtos.length, 0);
+
+        if (opt == 0) {
+
+            return;
+
+        }
+
+        loadedProduto = produtos[opt - 1];
+
+        acessarProduto();  // Acessar o produto
 
     }
 
@@ -189,7 +213,7 @@ public class App {
         }
 
         loadedShop = lojas[opt - 1];
-        acessarLoja();
+        this.acessarLoja();
         return true;
 
     }
@@ -298,38 +322,14 @@ public class App {
         return false;
     }
 
-    // Função de criação de usuário 
-    public Boolean createUsuario() {
-        // Implementação para criar um novo usuário
-        return true;
-    }
-
-    // Função de criação de produto 
-    public Boolean createProduto() {
-        // Implementação para criar um novo produto
-        return true;
-    }
-
-    // Função de criação de loja 
-    public Boolean createLoja() {
-        // Implementação para criar uma nova loja
-        return true;
-    }
-
-    // Função de reservar produto 
-    public Boolean reservarProduto() {
-        // Implementação para reservar um produto
-        return true;
-    }
-
     // Acessar loja
-    public Boolean acessarLoja() {
-        if (loadedShop != null) {
-            System.out.println("Acessando a loja: " + loadedShop.nome);
-            return true;
-        }
-        System.out.println("Nenhuma loja carregada.");
-        return false;
+    public void acessarLoja() {
+
+        //listar produtos
+        //favoritar
+        //adicionar avaliacao
+        //listar avaliacoes
+
     }
 
     // Acessar produto
@@ -419,6 +419,7 @@ public class App {
 
                 }
 
+                // adicionar acesso a loja 
                 case 3 -> {
 
 
