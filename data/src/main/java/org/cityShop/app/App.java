@@ -26,7 +26,7 @@ public class App {
     private App() {
         //teste
 
-        this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true, "12345");
+        //this.usuarioLogado = new Usuario("testeJoadodasilva", "772.33.11.2", 20L, true, "12345");
     }
 
     // Método para garantir que apenas uma instância do App seja criada
@@ -123,12 +123,20 @@ public class App {
 
     public Boolean login(String nomeUsuario, String senha) {
 
-        if (usuarioLogado != null && usuarioLogado.nome.equals(nomeUsuario)) {
-            System.out.println("Logado com sucesso!");
-            return true;
+        Database database = Database.getInstance();
+        Usuario [] usuarios = database.querryUsuarios();
+
+        for (Usuario usuario: usuarios) {
+
+            if (usuario.nome.equals(nomeUsuario) && usuario.senha.equals(senha)) {
+                usuarioLogado = usuario;
+                return true;
+            }
         }
-        System.out.println("Falha ao logar!");
+
+        System.out.println("Usuário ou senha incorretos :(");
         return false;
+
     }
 
     // Função de logout
@@ -365,7 +373,23 @@ public class App {
                 //favoritar
                 case 2 -> {
 
-                    this.favoritar(FavTypes.LOJA);
+                    if (this.usuarioLogado.hasFavorito(this.loadedShop.id, FavTypes.LOJA)){
+
+                        this.usuarioLogado.removerFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito removido =)");
+                        Tui.hold();
+                    } else {
+
+                        this.usuarioLogado.adicionarFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito adicionado =)");
+                        Tui.hold();
+
+                    }
+
                 }
                 //adicionar avaliacao
                 case 3 -> {
@@ -419,7 +443,24 @@ public class App {
 
                 case 1 -> {
 
-                    this.favoritar(FavTypes.PRODUTO);
+
+                    if (this.usuarioLogado.hasFavorito(this.loadedProduto.id, FavTypes.PRODUTO)){
+
+                        this.usuarioLogado.removerFavorito(this.loadedProduto.id, FavTypes.PRODUTO);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito removido =)");
+                        Tui.hold();
+                    } else {
+
+                        this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
+
+                        Tui.clearTerminal();
+                        System.out.println("Favorito adicionado =)");
+                        Tui.hold();
+
+                    }
+
                 }
 
                 //fazer reserva
@@ -530,42 +571,8 @@ public class App {
 
         if (type == FavTypes.PRODUTO){
 
-
-            if (this.usuarioLogado.hasFavorito(this.loadedProduto.id, type)){
-
-                this.usuarioLogado.removerFavorito(this.loadedProduto.id, type);
-
-                Tui.clearTerminal();
-                System.out.println("Favorito removido =)");
-                Tui.hold();
-            } else {
-
-                this.usuarioLogado.adicionarFavorito(loadedProduto.id, type);
-
-                Tui.clearTerminal();
-                System.out.println("Favorito adicionado =)");
-                Tui.hold();
-
-            }
         } else if (type == FavTypes.LOJA){
 
-
-            if (this.usuarioLogado.hasFavorito(this.loadedShop.id, type)){
-
-                this.usuarioLogado.removerFavorito(this.loadedShop.id, type);
-
-                Tui.clearTerminal();
-                System.out.println("Favorito removido =)");
-                Tui.hold();
-            } else {
-
-                this.usuarioLogado.adicionarFavorito(this.loadedShop.id, type);
-
-                Tui.clearTerminal();
-                System.out.println("Favorito adicionado =)");
-                Tui.hold();
-
-            }
         }
     }
 

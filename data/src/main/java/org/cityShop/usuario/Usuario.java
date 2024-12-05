@@ -210,7 +210,7 @@ public class Usuario {
 
         for (Favoritavel favorito : this.favoritos){
 
-            if (favorito.getTarget() == id){
+            if (favorito.getTarget().equals(id) && favorito.getType().toString().equals(type.toString())){
 
                 return true;
             }

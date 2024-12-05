@@ -4,10 +4,20 @@
             "senha": "12345",
             "cpf": "223.334.551.90",
             "nome": "Astoufo",
-            "favoritos": [{
-                "id": 1,
-                "type": "PRODUTO"
-            }],
+            "favoritos": [
+                {
+                    "id": 1,
+                    "type": "PRODUTO"
+                },
+                {
+                    "id": 2,
+                    "type": "LOJA"
+                },
+                {
+                    "id": 1,
+                    "type": "LOJA"
+                }
+            ],
             "id": 2,
             "lojista": false
         },
@@ -18,22 +28,6 @@
             "favoritos": [],
             "id": 1,
             "lojista": true
-        },
-        {
-            "senha": "123456",
-            "cpf": "323.44.5-1",
-            "nome": "rogerio",
-            "favoritos": [],
-            "id": 3,
-            "lojista": true
-        },
-        {
-            "senha": "432",
-            "cpf": "123123",
-            "nome": "gaudencio",
-            "favoritos": [],
-            "id": 4,
-            "lojista": false
         }
     ],
     "Lojas": [
@@ -45,63 +39,7 @@
                 "latitude": "5°12'29.0\"S",
                 "longitude": "37°21'17.5\"W"
             },
-            "reservas": [
-                {
-                    "qtdProduto": 14,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-03 20:52:43.0",
-                    "produto": 1,
-                    "dataReserva": "2024-12-03 15:52:43.0",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 1
-                },
-                {
-                    "qtdProduto": 12,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-03 20:17:37.391",
-                    "produto": 1,
-                    "dataReserva": "2024-12-03 18:17:37.391",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 2
-                },
-                {
-                    "qtdProduto": 2,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-04 14:22:36.191",
-                    "produto": 1,
-                    "dataReserva": "2024-12-04 07:22:36.191",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 3
-                },
-                {
-                    "qtdProduto": 10,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-05 14:33:51.958",
-                    "produto": 1,
-                    "dataReserva": "2024-12-04 16:33:51.958",
-                    "concluido": false,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 4
-                },
-                {
-                    "qtdProduto": 32,
-                    "cliente": 20,
-                    "expiracaoHora": "2024-12-04 17:34:00.345",
-                    "produto": 1,
-                    "dataReserva": "2024-12-04 16:34:00.345",
-                    "concluido": true,
-                    "precoFinal": 3.77,
-                    "pego": false,
-                    "id": 5
-                }
-            ],
+            "reservas": [],
             "avaliacoes": [],
             "tabelasPreco": [{
                 "hasDesconto": false,
@@ -116,7 +54,7 @@
                 "validade": "3024-11-21 19:07:34.324"
             }],
             "nome": "vendinha de cachorro quente",
-            "favoritadas": 190,
+            "favoritadas": 172,
             "id": 1
         },
         {
@@ -177,7 +115,7 @@
                 "comida",
                 "referencia"
             ],
-            "favoritadas": 27,
+            "favoritadas": 20,
             "id": 1,
             "descricao": {
                 "corpo": "O favorito dos ouriços",

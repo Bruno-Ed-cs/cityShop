@@ -19,7 +19,7 @@ public class FavoritoLoja implements Favoritavel
 
 	}
 	
-	public FavoritoLoja(Long idTarget, Long idUsuario){
+	public FavoritoLoja(Long idUsuario, Long idTarget){
 
 		//Armazena o id da loja favoritada
 

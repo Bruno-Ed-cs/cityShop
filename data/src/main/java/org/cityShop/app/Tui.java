@@ -51,6 +51,8 @@ public class Tui {
 
         Tui.clearTerminal();
 
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("digite o nome do usuario: ");
         String nomeUsuario = sc.nextLine();
 
