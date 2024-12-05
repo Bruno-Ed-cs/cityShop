@@ -4,6 +4,7 @@ import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.xml.crypto.Data;
 
@@ -145,14 +146,14 @@ public class Usuario {
         database.changeUsuario(this, this.id);
     }
 
-    public void removerFavorito(Long id){
+    public void removerFavorito(Long id, FavTypes type){
 
         Favoritavel target = null;
         Database database = Database.getInstance();
 
         for (Favoritavel favorito : this.favoritos){
 
-            if (favorito.getTarget() == id){
+            if (favorito.getTarget() == id && favorito.getType() == type){
 
 
                 switch (favorito.getType()){
@@ -205,7 +206,7 @@ public class Usuario {
             .toArray(Favoritavel[]::new);
     }
 
-    public Boolean hasFavorito(Long id){
+    public Boolean hasFavorito(Long id, FavTypes type){
 
         for (Favoritavel favorito : this.favoritos){
 

@@ -7,6 +7,8 @@ import org.cityShop.produto.*;
 
 import java.util.Scanner;
 
+import javax.xml.crypto.Data;
+
 import org.cityShop.app.Database;
 
 public class App {
@@ -246,7 +248,7 @@ public class App {
 
             if (!encontrouLojaFavorita) {
 
-                System.out.println("Nenhuma loja favorita ainda :(");
+                System.out.println();
             }
 
             System.out.println("\n--- Produtos Favoritos ---");
@@ -261,7 +263,7 @@ public class App {
 
             if (!encontrouProdutoFavorito) {
 
-                System.out.println("Nenhum produto favorito ainda :(");
+                System.out.println();
             }
 
             Tui.hold();
@@ -325,11 +327,66 @@ public class App {
     // Acessar loja
     public void acessarLoja() {
 
-        //listar produtos
-        //favoritar
-        //adicionar avaliacao
-        //listar avaliacoes
+        Boolean running = true;
+        Database database = Database.getInstance();
 
+        while (running){
+
+            Boolean isFavorito = this.usuarioLogado.hasFavorito(this.loadedShop.id, FavTypes.LOJA);
+
+            Tui.menuLoja(this.loadedShop, isFavorito);
+
+            Integer opt = Tui.getChoice(4, 0);
+
+            switch (opt){
+
+                case 0 -> {
+                    running = false;
+                }
+
+                //listar produtos
+                case 1 -> {
+
+                    Produto[] produtos = database.querryProduto(this.loadedShop.id);
+
+                    if (produtos.length == 0){
+
+                        Tui.clearTerminal();
+                        System.out.println("Nenhuma loja encontrada");
+                        Tui.hold();
+                    } else {
+
+                        this.listarProdutos(produtos);
+
+                    }
+
+                }
+
+                //favoritar
+                case 2 -> {
+
+                    this.favoritar(FavTypes.LOJA);
+                }
+                //adicionar avaliacao
+                case 3 -> {
+
+                }
+                //listar avaliacoes
+
+                case 4 -> {
+
+                }
+
+
+
+
+            }
+
+
+
+            this.loadedShop = database.getLoja(this.loadedShop.id);
+
+        }
     }
 
     // Acessar produto
@@ -348,38 +405,24 @@ public class App {
             this.loadedShop = database.getLoja(this.loadedProduto.idLoja);
 
             Tui.menuProduto(this.loadedProduto, 
-                usuarioLogado.hasFavorito(this.loadedProduto.id), 
+                usuarioLogado.hasFavorito(this.loadedProduto.id, FavTypes.PRODUTO), 
                 this.loadedShop, 
                 usuarioLogado.id);
 
             int opt = Tui.getChoice(4, 0);
 
-            if (opt == 0){
-
-                break;
-            }
-
             switch (opt){
 
-                case 1 -> {
-                    if (this.usuarioLogado.hasFavorito(loadedProduto.id)){
-
-                        this.usuarioLogado.removerFavorito(this.loadedProduto.id);
-
-                        Tui.clearTerminal();
-                        System.out.println("Favorito removido =)");
-                        Tui.hold();
-                    } else {
-
-                        this.usuarioLogado.adicionarFavorito(loadedProduto.id, FavTypes.PRODUTO);
-
-                        Tui.clearTerminal();
-                        System.out.println("Favorito adicionado =)");
-                        Tui.hold();
-
-                    }
+                case 0 -> {
+                    running = false;
                 }
 
+                case 1 -> {
+
+                    this.favoritar(FavTypes.PRODUTO);
+                }
+
+                //fazer reserva
                 case 2 -> {
 
                     Scanner sc = new Scanner(System.in);
@@ -422,9 +465,13 @@ public class App {
                 // adicionar acesso a loja 
                 case 3 -> {
 
+                    this.loadedShop = database.getLoja(this.loadedProduto.idLoja);
+
+                    this.acessarLoja();
 
                 }
 
+                //cancelar reserva
                 case 4 -> {
 
                     Scanner sc = new Scanner(System.in);
@@ -459,7 +506,7 @@ public class App {
 
                     if (found){
                         System.out.println("Reserva cancelada");
-                        
+
                     } else {
 
                         System.out.println("Reserva nao encontrada");
@@ -477,6 +524,51 @@ public class App {
 
 
     }
+
+    private void favoritar(FavTypes type){
+
+
+        if (type == FavTypes.PRODUTO){
+
+
+            if (this.usuarioLogado.hasFavorito(this.loadedProduto.id, type)){
+
+                this.usuarioLogado.removerFavorito(this.loadedProduto.id, type);
+
+                Tui.clearTerminal();
+                System.out.println("Favorito removido =)");
+                Tui.hold();
+            } else {
+
+                this.usuarioLogado.adicionarFavorito(loadedProduto.id, type);
+
+                Tui.clearTerminal();
+                System.out.println("Favorito adicionado =)");
+                Tui.hold();
+
+            }
+        } else if (type == FavTypes.LOJA){
+
+
+            if (this.usuarioLogado.hasFavorito(this.loadedShop.id, type)){
+
+                this.usuarioLogado.removerFavorito(this.loadedShop.id, type);
+
+                Tui.clearTerminal();
+                System.out.println("Favorito removido =)");
+                Tui.hold();
+            } else {
+
+                this.usuarioLogado.adicionarFavorito(this.loadedShop.id, type);
+
+                Tui.clearTerminal();
+                System.out.println("Favorito adicionado =)");
+                Tui.hold();
+
+            }
+        }
+    }
+
 
 
 }

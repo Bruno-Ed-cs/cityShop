@@ -246,6 +246,8 @@ public class Tui {
 
     }
 
+    
+
 
     public static void listarProdutos(Produto[] produtos) {
 
@@ -362,23 +364,52 @@ public class Tui {
 
     }
 
-    public static void menuLoja(Loja loja){
+    public static void menuLoja(Loja loja, Boolean isFavorito){
+
+        Database database = Database.getInstance();
 
         Tui.clearTerminal();
-
-        System.out.println();
-        System.out.println("Nome: " + loja.nome);
-        System.out.println();
+        System.out.println("===========================================" + loja.nome + "===========================================");
+        System.out.println("Dono: " + database.getUsuario(loja.dono).nome);
         System.out.println("Favoritos: " + loja.favoritadas);
         System.out.println();
+        System.out.println("Endereço: " + loja.localizacao.endereco);
+        System.out.println("Coordenadas: " + loja.localizacao.latitude + " " + loja.localizacao.longitude);
         System.out.println();
+        System.out.println("Nota: " + loja.getMediaNotas() + "/5");
 
-        System.out.println("Opções");
-        System.out.println("1 => Favoritar");
+        String estrela = isFavorito? "" : "";
+        System.out.println("Favorito: " + estrela);
 
+        if (loja.aberto){
+
+            System.out.println("Aberto");
+        } else {
+
+            System.out.println("Fechado");
+        }
+
+        //listar produtos
+        //favoritar
+        //adicionar avaliacao
+        //listar avaliacoes
+
+        System.out.println("Opções: ");
+        System.out.println("1 => Listar Produtos");
+
+        if (isFavorito){
+
+            System.out.println("2 => Remover Favorito");
+        } else {
+            System.out.println("2 => Favoritar Loja");
+        }
+
+        System.out.println("3 => Deixar Avaliação");
+        System.out.println("4 => Ver Avaliações");
         System.out.println();
+        System.out.println("<<<<<< 0 => Voltar");
 
-        System.out.println("0 => Voltar");
+
 
     }
 
