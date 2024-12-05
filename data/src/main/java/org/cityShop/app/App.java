@@ -126,9 +126,9 @@ public class App {
             System.out.println("Nenhuma loja cadastrada.");
         } else {
 
-            for(Loja lojas: lojas) {
+            for(Loja loja: lojas) {
 
-                System.out.println(lojas[i].id + " - " + lojas[i].nome);
+                System.out.println(loja.id + " - " + loja.nome);
             }
         }
 
@@ -140,15 +140,17 @@ public class App {
         int escolha = Tui.getChoice(3, 0);
 
         switch (escolha) {
-            case 1:
-            this.createLoja();
-            break;
-            case 2:
-            this.removeLoja();
-            break;
-            case 3:
-            this.gerenciarLoja();
-            break;
+            case 1 -> this.createLoja();
+            case 2 ->{
+
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Insira o id da loja que deseja remover");
+                Long target = (long)sc.nextInt();
+
+                this.removeLoja(target);
+
+            }
+            case 3 -> this.gerenciarLoja();
         }
 
 
@@ -169,7 +171,21 @@ public class App {
         System.out.println("digite o nome da loja: ");
         String nome = sc.nextLine();
 
-        Loja novLoja = new Loja(nomeLoja, this.usuarioLogado.id);
+        System.out.println("digite o endereço da loja: ");
+        String endereco = sc.nextLine();
+
+
+        System.out.println("digite a latirude da loja: ");
+        String latitude = sc.nextLine();
+
+
+        System.out.println("digite a longitude da loja: ");
+        String longitude = sc.nextLine();
+
+
+        Local localizacao = new Local(endereco, longitude, latitude);
+
+        Loja novLoja = new Loja(nome, this.usuarioLogado.id, localizacao);
 
         Database database = Database.getInstance();
         database.addLoja(novLoja);
@@ -186,7 +202,7 @@ public class App {
         Database database = Database.getInstance();
         Loja loja = database.getLoja(idLoja);
 
-        if (loaja == null || !loja.id.equals(this.loadedShop.id)) {
+        if (loja == null || !loja.id.equals(this.loadedShop.id)) {
 
             System.out.println("Nenhuma loja carregada.");
             return false;
@@ -205,9 +221,9 @@ public class App {
 
         Database database = Database.getInstance();
 
-        Loja lojas = database.querryLoja(this.loadedShop.id);
+        Loja[] lojas = database.querryLoja();
 
-        if (loja == null || !lojas.lojista.equals(this.usuarioLogado)) {
+        if (lojas == null || !lojas.lojista.equals(this.usuarioLogado)) {
 
             System.out.println("Loja nao encontrada ou voce nao tem permissao para adicionar um produto nesta loja.");
             return false;
