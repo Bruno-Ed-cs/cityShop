@@ -4,9 +4,6 @@ import org.cityShop.produto.*;
 import org.cityShop.loja.*;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
-import javax.xml.crypto.Data;
 
 import org.cityShop.app.Database;
 import org.json.*;

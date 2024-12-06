@@ -1,7 +1,6 @@
 package org.cityShop.produto;
 
 import org.json.JSONObject;
-import org.json.JSONPointer;
 
 public class ItemProduto {
 	

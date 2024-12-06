@@ -3,12 +3,8 @@ import java.io.*;
 
 import java.util.Scanner;
 
-import javax.security.sasl.Sasl;
-import javax.xml.crypto.Data;
-
 import org.cityShop.loja.*;
 import org.cityShop.produto.*;
-import org.cityShop.usuario.*;
 
 
 public class Tui {
@@ -103,106 +99,6 @@ public class Tui {
         return choice;
     }
     
-
-    private static  void listarFavoritos() {
-
-        Tui.clearTerminal();
-
-        App app = App.getInstance();
-
-        if (app.usuarioLogado == null) {
-
-            System.out.println("Você precisa logar para ver seus favoritos :(");
-
-            return;
-        }
-        Boolean sucesso = app.listarFavoritos();
-
-        if (!sucesso) {
-            System.out.println("Nenhum favorito encontrado.");
-        }
-
-        Tui.hold();
-    }
-
-    private static  void favoritarProduto() {
-
-        Tui.clearTerminal();
-
-        Database database = Database.getInstance();
-
-        Produto[] produtos = database.querryProduto();
-
-        if(produtos == null || produtos.length == 0) {
-            
-            System.out.println("Nenhum produto cadastrado ainda :(");
-            Tui.hold();
-            return;
-        }
-
-        System.out.println("Escolha um produto p/ favoritar: ");
-
-        for (int i = 0; i < produtos.length; i++) {
-
-            System.out.println(produtos[i].id + " - " + produtos[i].getNome());
-        }
-
-        System.out.println("< 0 - Voltar");
-
-        int choice = Tui.getChoice(produtos.length, 0);
-
-        if (choice == 0) {
-            	
-            return;
-        }
-
-        Produto produtoSelecionado = produtos[choice - 1];
-
-        App app = App.getInstance();
-        boolean sucesso = app.favoritarProduto(produtoSelecionado.id);
-        System.out.println(sucesso ? "Produto favoritado com sucesso!" : "Falha ao favoritar produto");
-        Tui.hold();
-
-    }
-
-    private static void favoritarLoja() {
-
-        Tui.clearTerminal();
-
-        Database database = Database.getInstance();
-
-        Loja[] lojas = database.querryLoja();
-
-        if(lojas == null || lojas.length == 0) {
-            
-            System.out.println("Nenhuma loja cadastrada ainda :(");
-            Tui.hold();
-            return;
-        }
-
-        System.out.println("Escolha uma loja p/ favoritar: ");
-
-        for (int i = 0; i < lojas.length; i++) {
-
-            System.out.println(lojas[i].id + " - " + lojas[i].nome);
-        }
-
-        System.out.println("< 0 - Voltar");
-
-        int choice = Tui.getChoice(lojas.length, 0);
-
-        if (choice == 0) {
-            	
-            return;
-        }
-
-        Loja lojaSelecionada = lojas[choice - 1];
-        App app = App.getInstance();
-        boolean sucesso = app.favoritarLoja(lojaSelecionada.id);
-        System.out.println(sucesso ? "Loja favoritada com sucesso!" : "Falha ao favoritar loja");
-        Tui.hold();
-
-    }
 
     public static void listarLoja(Loja[] lojas) {
 

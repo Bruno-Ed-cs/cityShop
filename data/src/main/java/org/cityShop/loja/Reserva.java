@@ -3,10 +3,7 @@ import org.cityShop.produto.Produto;
 import org.cityShop.usuario.Usuario;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-
-import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 
 
 public class Reserva

@@ -1,6 +1,5 @@
 package org.cityShop.loja;
 
-import java.beans.Introspector;
 import java.util.ArrayList;
 
 import org.json.JSONArray;

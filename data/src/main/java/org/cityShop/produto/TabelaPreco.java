@@ -1,11 +1,8 @@
 package org.cityShop.produto;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Dictionary;
 
-import org.cityShop.loja.TabelaReserva;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
